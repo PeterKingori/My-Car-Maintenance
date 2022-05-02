@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Car Maintenance</string>
+    <string name="welcome">Welcome!</string>
+    <string name="car_tow_image">Image of car being towed</string>
+    <string name="add_vehicle_text">Add your first vehicle.</string>
+    <string name="add_vehicle_button">Add vehicle</string>
 </resources>
