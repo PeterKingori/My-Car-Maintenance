@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".VehicleRegistrationActivity">
+
+    <EditText
+        android:id="@+id/vehicle_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vehicle type"
+        android:inputType="textCapWords"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/vehicle_manufacturer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Manufacturer"
+        android:inputType="textCapWords"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_type" />
+
+    <EditText
+        android:id="@+id/vehicle_model"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Model"
+        android:inputType="textCapWords"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_manufacturer" />
+
+    <EditText
+        android:id="@+id/vehicle_license_plate"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:hint="License plate"
+        android:inputType="textCapCharacters"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_model" />
+
+    <EditText
+        android:id="@+id/vehicle_model_year"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:hint="Model year"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vehicle_license_plate"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_model" />
+
+    <EditText
+        android:id="@+id/vehicle_fuel_type"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:hint="Fuel type"
+        android:inputType="textCapWords"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_license_plate" />
+
+    <EditText
+        android:id="@+id/vehicle_fuel_capacity"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:hint="Fuel capacity (L)"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vehicle_fuel_type"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_model_year" />
+
+    <EditText
+        android:id="@+id/vehicle_chassis_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Chassis number *optional"
+        android:inputType="textCapCharacters"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_fuel_type" />
+
+    <EditText
+        android:id="@+id/vehicle_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Notes"
+        android:inputType="textMultiLine|textCapSentences"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_chassis_number" />
+</androidx.constraintlayout.widget.ConstraintLayout>
