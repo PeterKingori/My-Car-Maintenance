@@ -13,4 +13,5 @@
     <string name="fuel_capacity">Fuel capacity (L)</string>
     <string name="chassis_number">Chassis number *optional</string>
     <string name="notes">Notes</string>
+    <string name="register">Register</string>
 </resources>

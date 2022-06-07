@@ -5,11 +5,21 @@
       <map>
         <entry key="app/src/main/res/drawable-anydpi-v26/ic_launcher_foreground.xml" value="0.3845" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3845" />
+        <entry key="app/src/main/res/drawable/ic_baseline_build_24.xml" value="0.318" />
+        <entry key="app/src/main/res/drawable/ic_baseline_chassis_number_24.xml" value="0.248" />
+        <entry key="app/src/main/res/drawable/ic_baseline_directions_car_24.xml" value="0.318" />
+        <entry key="app/src/main/res/drawable/ic_baseline_fuel_type_24.xml" value="0.248" />
+        <entry key="app/src/main/res/drawable/ic_baseline_license_24.xml" value="0.248" />
+        <entry key="app/src/main/res/drawable/ic_baseline_list_24.xml" value="0.318" />
+        <entry key="app/src/main/res/drawable/ic_baseline_local_gas_station_24.xml" value="0.248" />
+        <entry key="app/src/main/res/drawable/ic_baseline_manufacturer_24.xml" value="0.318" />
+        <entry key="app/src/main/res/drawable/ic_baseline_notes_24.xml" value="0.248" />
+        <entry key="app/src/main/res/drawable/ic_car_manufacturer.xml" value="0.318" />
         <entry key="app/src/main/res/drawable/ic_car_wrench.xml" value="0.3845" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3845" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.3845" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_vehicle_registration.xml" value="0.32563405797101447" />
+        <entry key="app/src/main/res/layout/activity_vehicle_registration.xml" value="0.375" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3845" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3845" />
       </map>
