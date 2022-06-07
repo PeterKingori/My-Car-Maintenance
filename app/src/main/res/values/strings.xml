@@ -4,4 +4,13 @@
     <string name="car_tow_image">Image of car being towed</string>
     <string name="add_vehicle_text">Add your first vehicle.</string>
     <string name="add_vehicle_button">Add vehicle</string>
+    <string name="vehicle_type">Vehicle type</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="model">Model</string>
+    <string name="license_plate">License plate</string>
+    <string name="model_year">Model year</string>
+    <string name="fuel_type">Fuel type</string>
+    <string name="fuel_capacity">Fuel capacity (L)</string>
+    <string name="chassis_number">Chassis number *optional</string>
+    <string name="notes">Notes</string>
 </resources>

@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".VehicleRegistrationActivity">
+    tools:context=".VehicleRegistrationActivity"
+    tools:ignore="Autofill">
 
     <EditText
         android:id="@+id/vehicle_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Vehicle type"
+        android:hint="@string/vehicle_type"
         android:inputType="textCapWords"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,7 +21,7 @@
         android:id="@+id/vehicle_manufacturer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Manufacturer"
+        android:hint="@string/manufacturer"
         android:inputType="textCapWords"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vehicle_type" />
@@ -29,7 +30,7 @@
         android:id="@+id/vehicle_model"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Model"
+        android:hint="@string/model"
         android:inputType="textCapWords"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vehicle_manufacturer" />
@@ -38,7 +39,7 @@
         android:id="@+id/vehicle_license_plate"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:hint="License plate"
+        android:hint="@string/license_plate"
         android:inputType="textCapCharacters"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vehicle_model" />
@@ -47,7 +48,7 @@
         android:id="@+id/vehicle_model_year"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:hint="Model year"
+        android:hint="@string/model_year"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/vehicle_license_plate"
@@ -57,7 +58,7 @@
         android:id="@+id/vehicle_fuel_type"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:hint="Fuel type"
+        android:hint="@string/fuel_type"
         android:inputType="textCapWords"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vehicle_license_plate" />
@@ -66,7 +67,7 @@
         android:id="@+id/vehicle_fuel_capacity"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:hint="Fuel capacity (L)"
+        android:hint="@string/fuel_capacity"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/vehicle_fuel_type"
@@ -76,17 +77,18 @@
         android:id="@+id/vehicle_chassis_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Chassis number *optional"
+        android:hint="@string/chassis_number"
         android:inputType="textCapCharacters"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vehicle_fuel_type" />
+        app:layout_constraintTop_toBottomOf="@id/vehicle_fuel_type"
+        tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/vehicle_notes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Notes"
+        android:hint="@string/notes"
         android:inputType="textMultiLine|textCapSentences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
