@@ -20,9 +20,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/vehicle_type"
+        style="@style/Widget.MyCarMaintenance.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginTop="0dp"
         android:hint="@string/vehicle_type"
         app:layout_constraintStart_toEndOf="@id/icon_vehicle_type"
         app:layout_constraintTop_toTopOf="parent">
@@ -47,10 +48,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/vehicle_manufacturer"
+        style="@style/Widget.MyCarMaintenance.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
         android:hint="@string/manufacturer"
         app:layout_constraintStart_toEndOf="@id/icon_vehicle_manufacturer"
         app:layout_constraintTop_toBottomOf="@id/vehicle_type">
@@ -75,10 +75,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/vehicle_model"
+        style="@style/Widget.MyCarMaintenance.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
         android:hint="@string/model"
         app:layout_constraintStart_toEndOf="@id/icon_vehicle_model"
         app:layout_constraintTop_toBottomOf="@id/vehicle_manufacturer">
@@ -115,9 +114,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_license_plate"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_weight="1"
             android:hint="@string/license_plate">
@@ -132,9 +131,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_model_year"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:hint="@string/model_year">
 
@@ -170,9 +169,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_fuel_type"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_weight="1"
             android:hint="@string/fuel_type">
@@ -187,9 +186,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_fuel_capacity"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:hint="@string/fuel_capacity">
 
@@ -214,10 +213,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/vehicle_chassis_number"
+        style="@style/Widget.MyCarMaintenance.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
         android:hint="@string/chassis_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/icon_vehicle_chassis_number"
@@ -243,10 +241,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/vehicle_notes"
+        style="@style/Widget.MyCarMaintenance.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
         android:hint="@string/notes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/icon_vehicle_notes"
