@@ -14,4 +14,5 @@
     <string name="chassis_number">Chassis number *optional</string>
     <string name="notes">Notes</string>
     <string name="register">Register</string>
+    <string name="register_vehicle">Register Vehicle</string>
 </resources>
