@@ -1,8 +1,7 @@
 package com.pkndegwa.mycarmaintenance
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.pkndegwa.mycarmaintenance.databinding.ActivityMainBinding
 
 /**
@@ -16,13 +15,5 @@ class MainActivity : AppCompatActivity() {
         // Set up view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Launch the VehicleRegistrationActivity on addVehicleButton click
-        binding.addVehicleButton.setOnClickListener { vehicleRegistration() }
-    }
-
-    private fun vehicleRegistration() {
-        val intent = Intent(this, VehicleRegistrationActivity::class.java)
-        startActivity(intent)
     }
 }

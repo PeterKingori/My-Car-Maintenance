@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    tools:context=".ui.WelcomeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -58,4 +58,5 @@
                 app:layout_constraintTop_toBottomOf="@+id/add_vehicle_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 </layout>
