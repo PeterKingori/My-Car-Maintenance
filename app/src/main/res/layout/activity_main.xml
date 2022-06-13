@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/welcome_car_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="150dp"
-        android:contentDescription="@string/car_tow_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/car_towing" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/welcome_text"
-        style="@style/Widget.MyCarMaintenance.TextView"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/welcome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_car_image" />
+        android:padding="16dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/add_vehicle_text"
-        style="@style/Widget.MyCarMaintenance.TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/add_vehicle_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
+        <ImageView
+            android:id="@+id/welcome_car_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="150dp"
+            android:contentDescription="@string/car_tow_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/car_towing" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_vehicle_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:minHeight="56dp"
-        android:text="@string/add_vehicle_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_vehicle_text" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/welcome_text"
+            style="@style/Widget.MyCarMaintenance.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/welcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_car_image" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/add_vehicle_text"
+            style="@style/Widget.MyCarMaintenance.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/add_vehicle_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_vehicle_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="56dp"
+            android:text="@string/add_vehicle_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_vehicle_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
