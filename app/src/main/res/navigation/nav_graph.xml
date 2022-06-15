@@ -18,5 +18,14 @@
         android:id="@+id/vehicleRegistrationFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.VehicleRegistrationFragment"
         android:label="@string/register_vehicle"
-        tools:layout="@layout/fragment_vehicle_registration" />
+        tools:layout="@layout/fragment_vehicle_registration" >
+        <action
+            android:id="@+id/action_vehicleRegistrationFragment_to_vehicleManufacturersFragment"
+            app:destination="@id/vehicleManufacturersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleManufacturersFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.VehicleManufacturersFragment"
+        android:label="@string/manufacturer"
+        tools:layout="@layout/fragment_vehicle_manufacturers" />
 </navigation>
