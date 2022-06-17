@@ -26,7 +26,9 @@ class WelcomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Launch the VehicleRegistrationFragment on addVehicleButton click
         binding.addVehicleButton.setOnClickListener {
-            val action = WelcomeFragmentDirections.actionWelcomeFragmentToVehicleRegistrationFragment()
+            val action = WelcomeFragmentDirections.actionWelcomeFragmentToVehicleRegistrationFragment(
+                manufacturerName = null.toString()
+            )
             view.findNavController().navigate(action)
         }
     }

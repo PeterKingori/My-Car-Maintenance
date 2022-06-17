@@ -12,10 +12,24 @@ import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBind
  * [VehicleRegistrationFragment] allows a user to add details of a vehicle to be registered.
  */
 class VehicleRegistrationFragment : Fragment() {
+
+    companion object {
+        const val MANUFACTURER_NAME = "manufacturerName"
+    }
+
     private var _binding: FragmentVehicleRegistrationBinding? = null
+    private var manufacturerNameId: String = ""
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            manufacturerNameId = it.getString(MANUFACTURER_NAME).toString()
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Retrieve and inflate the layout for this fragment.
@@ -28,6 +42,12 @@ class VehicleRegistrationFragment : Fragment() {
             val action =
                 VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehicleManufacturersFragment()
             view.findNavController().navigate(action)
+        }
+
+        if (manufacturerNameId == "null") {
+            binding.vehicleManufacturerEditText.setText("")
+        } else {
+            binding.vehicleManufacturerEditText.setText(manufacturerNameId)
         }
     }
 

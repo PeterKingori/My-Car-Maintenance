@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.pkndegwa.mycarmaintenance.adapter.ManufacturerAdapter
 import com.pkndegwa.mycarmaintenance.data.ManufacturerData
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleManufacturersBinding
@@ -15,6 +16,7 @@ import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleManufacturersBin
  */
 class VehicleManufacturersFragment : Fragment() {
     private var _binding: FragmentVehicleManufacturersBinding? = null
+    private lateinit var recyclerView: RecyclerView
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
@@ -27,7 +29,7 @@ class VehicleManufacturersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val manufacturersDataset = ManufacturerData.getManufacturerData()
-        val recyclerView = binding.recyclerView
+        recyclerView = binding.recyclerView
         recyclerView.adapter = ManufacturerAdapter(this.requireContext(), manufacturersDataset)
 
         // Adds a [DividerItemDecoration] between items
