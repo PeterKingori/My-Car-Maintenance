@@ -15,10 +15,12 @@ import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleManufacturersBin
  */
 class VehicleManufacturersFragment : Fragment() {
     private var _binding: FragmentVehicleManufacturersBinding? = null
+
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        // Inflate the layout for this fragment
+        // Retrieve and inflate the layout for this fragment
         _binding = FragmentVehicleManufacturersBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -34,6 +36,9 @@ class VehicleManufacturersFragment : Fragment() {
         )
     }
 
+    /**
+     * Frees the binding object when the Fragment is destroyed.
+     */
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
