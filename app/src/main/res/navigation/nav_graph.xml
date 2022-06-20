@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/vehicleManufacturersFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.VehicleManufacturersFragment"
-        android:label="@string/manufacturer"
+        android:label="@string/manufacturers"
         tools:layout="@layout/fragment_vehicle_manufacturers">
         <action
             android:id="@+id/action_vehicleManufacturersFragment_to_vehicleRegistrationFragment"

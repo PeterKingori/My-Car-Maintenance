@@ -6,6 +6,7 @@
     <string name="add_vehicle_button">Add vehicle</string>
     <string name="vehicle_type">Vehicle type</string>
     <string name="manufacturer">Manufacturer</string>
+    <string name="manufacturers">Manufacturers</string>
     <string name="model">Model</string>
     <string name="license_plate">License plate</string>
     <string name="model_year">Model year</string>
