@@ -49,6 +49,11 @@ class VehicleRegistrationFragment : Fragment() {
         } else {
             binding.vehicleManufacturerEditText.setText(manufacturerNameId)
         }
+
+        binding.registerVehicleButton.setOnClickListener {
+            val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehiclesFragment()
+            view.findNavController().navigate(action)
+        }
     }
 
     /**

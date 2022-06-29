@@ -203,10 +203,37 @@
                         android:id="@+id/vehicle_fuel_capacity_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="numberDecimal" />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/icon_vehicle_mileage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                app:layout_constraintBottom_toBottomOf="@+id/vehicle_mileage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/vehicle_mileage"
+                app:srcCompat="@drawable/ic_baseline_mileage_24" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/vehicle_mileage"
+                style="@style/Widget.MyCarMaintenance.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/mileage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icon_vehicle_mileage"
+                app:layout_constraintTop_toBottomOf="@id/vehicle_fuel">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
                 android:id="@+id/icon_vehicle_chassis_number"
@@ -226,40 +253,13 @@
                 android:hint="@string/chassis_number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/icon_vehicle_chassis_number"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_fuel">
+                app:layout_constraintTop_toBottomOf="@id/vehicle_mileage">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/vehicle_chassis_number_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapCharacters" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/icon_vehicle_notes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
-                app:layout_constraintBottom_toBottomOf="@+id/vehicle_notes"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/vehicle_notes"
-                app:srcCompat="@drawable/ic_baseline_notes_24" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vehicle_notes"
-                style="@style/Widget.MyCarMaintenance.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/notes"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/icon_vehicle_notes"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_chassis_number">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine|textCapSentences" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -272,7 +272,7 @@
                 android:text="@string/register"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vehicle_notes" />
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_chassis_number" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
