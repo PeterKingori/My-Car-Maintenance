@@ -1,5 +1,8 @@
 package com.pkndegwa.mycarmaintenance.model
 
+/**
+ * Data model for registered vehicles.
+ */
 data class Vehicle(
     var type: String,
     var manufacturer: String,
