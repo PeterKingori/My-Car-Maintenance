@@ -12,5 +12,5 @@ data class Vehicle(
     var fuelType: String,
     var fuelCapacity: Int,
     var mileage: Int,
-    var chassisNumber: String?,
+    var chassisNumber: String = "",
 )

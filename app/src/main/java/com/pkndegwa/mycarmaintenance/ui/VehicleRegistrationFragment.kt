@@ -44,7 +44,7 @@ class VehicleRegistrationFragment : Fragment() {
             view.findNavController().navigate(action)
         }
 
-        if (manufacturerNameId == "null") {
+        if (manufacturerNameId == "") {
             binding.vehicleManufacturerEditText.setText("")
         } else {
             binding.vehicleManufacturerEditText.setText(manufacturerNameId)

@@ -27,7 +27,7 @@ class WelcomeFragment : Fragment() {
         // Launch the VehicleRegistrationFragment on addVehicleButton click
         binding.addVehicleButton.setOnClickListener {
             val action = WelcomeFragmentDirections.actionWelcomeFragmentToVehicleRegistrationFragment(
-                manufacturerName = null.toString()
+                manufacturerName = ""
             )
             view.findNavController().navigate(action)
         }
