@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.pkndegwa.mycarmaintenance.adapter.VehiclesAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehiclesBinding
+import com.pkndegwa.mycarmaintenance.model.VehiclesViewModel
 
 /**
  * [VehiclesFragment] displays a list of registered vehicles.
@@ -18,7 +19,7 @@ class VehiclesFragment : Fragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: VehiclesViewModel by activityViewModels()
+    private val sharedVehiclesViewModel: VehiclesViewModel by activityViewModels()
 
     /**
      * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
@@ -27,12 +28,6 @@ class VehiclesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentVehiclesBinding.inflate(inflater, container, false)
 
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.lifecycleOwner = this
-
-        // Giving the binding access to the OverviewViewModel
-        binding.viewModel = viewModel
-
         return binding.root
     }
 
@@ -40,7 +35,7 @@ class VehiclesFragment : Fragment() {
         // Initialise the RecyclerView adapter
         val adapter = VehiclesAdapter()
         binding.vehiclesListRecyclerView.adapter = adapter
-        adapter.submitList(viewModel.vehiclesData)
+        adapter.submitList(sharedVehiclesViewModel.vehiclesData)
     }
 
     /**

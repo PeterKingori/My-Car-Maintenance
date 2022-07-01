@@ -1,11 +1,16 @@
-package com.pkndegwa.mycarmaintenance.ui
+package com.pkndegwa.mycarmaintenance.model
 
 import androidx.lifecycle.ViewModel
 import com.pkndegwa.mycarmaintenance.data.ManufacturerData
-import com.pkndegwa.mycarmaintenance.model.Manufacturer
 
-class ManufacturerViewModel: ViewModel() {
+/**
+ * The [ViewModel] that is attached to the VehicleManufacturersFragment.
+ */
+class ManufacturerViewModel : ViewModel() {
+    // The internal variable that stores a list of vehicle manufacturers.
     private var _manufacturerData: List<Manufacturer> = listOf()
+
+    // The external immutable variable that's a backing field for _manufacturerData.
     val manufacturerData: List<Manufacturer> get() = _manufacturerData
 
     init {

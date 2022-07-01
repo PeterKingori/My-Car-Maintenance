@@ -18,7 +18,7 @@ class ManufacturerAdapter(private val context: Context, private val dataset: Lis
     /**
      * Provides a reference for the views needed to display items in the list.
      */
-    class ManufacturerViewHolder(binding: ManufacturersListItemBinding):
+    class ManufacturerViewHolder(binding: ManufacturersListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val viewHolder = binding.manufacturerDetails
         val imageView = binding.manufacturerLogo

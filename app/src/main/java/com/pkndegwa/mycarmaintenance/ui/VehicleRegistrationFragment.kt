@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
+import com.pkndegwa.mycarmaintenance.model.VehiclesViewModel
 
 /**
  * [VehicleRegistrationFragment] allows a user to add details of a vehicle to be registered.
@@ -22,6 +25,8 @@ class VehicleRegistrationFragment : Fragment() {
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
+
+    private val sharedVehiclesViewModel: VehiclesViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +56,35 @@ class VehicleRegistrationFragment : Fragment() {
         }
 
         binding.registerVehicleButton.setOnClickListener {
-            val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehiclesFragment()
-            view.findNavController().navigate(action)
+            setVehicleDetails()
         }
+    }
+
+    private fun setVehicleDetails() {
+        val vehicleType = binding.vehicleTypeEditText.text.toString()
+        val manufacturer = binding.vehicleManufacturerEditText.text.toString()
+        val model = binding.vehicleModelEditText.text.toString()
+        val licensePlate = binding.vehicleLicensePlateEditText.text.toString()
+        val modelYear = binding.vehicleModelYearEditText.text.toString().toInt()
+        val fuelType = binding.vehicleFuelTypeEditText.text.toString()
+        val fuelCapacity = binding.vehicleFuelCapacityEditText.text.toString().toDouble()
+        val mileage = binding.vehicleMileageEditText.text.toString().toInt()
+        val chassisNumber = binding.vehicleChassisNumberEditText.text.toString()
+
+        sharedVehiclesViewModel.setVehicleDetails(
+            type = vehicleType,
+            vehicleManufacturer = manufacturer,
+            vehicleModel = model,
+            vehicleLicensePlate = licensePlate,
+            vehicleModelYear = modelYear,
+            vehicleFuelType = fuelType,
+            vehicleFuelCapacity = fuelCapacity,
+            vehicleMileage = mileage,
+            vehicleChassisNumber = chassisNumber
+        )
+
+        val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehiclesFragment()
+        findNavController().navigate(action)
     }
 
     /**

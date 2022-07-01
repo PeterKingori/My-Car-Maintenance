@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.pkndegwa.mycarmaintenance.adapter.ManufacturerAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleManufacturersBinding
+import com.pkndegwa.mycarmaintenance.model.ManufacturerViewModel
 
 /**
  * [VehicleManufacturersFragment] allows a user to select a manufacturer when registering their vehicle.
