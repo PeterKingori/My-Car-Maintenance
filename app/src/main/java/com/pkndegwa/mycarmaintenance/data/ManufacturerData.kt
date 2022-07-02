@@ -8,7 +8,7 @@ import com.pkndegwa.mycarmaintenance.model.Manufacturer
  */
 object ManufacturerData {
     fun getManufacturerData(): List<Manufacturer> {
-        return listOf(
+        return arrayListOf(
             Manufacturer(R.string.abarth, R.drawable.logo_abarth),
             Manufacturer(R.string.abt, R.drawable.logo_abt_sportsline),
             Manufacturer(R.string.ac, R.drawable.logo_ac),
