@@ -11,13 +11,12 @@ import com.pkndegwa.mycarmaintenance.databinding.ActivityMainBinding
  * Main entry point for the app.
  */
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Set up view binding
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Get the navigation host fragment from this Activity
