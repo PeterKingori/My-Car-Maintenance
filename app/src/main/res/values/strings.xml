@@ -17,6 +17,12 @@
     <string name="register">Register</string>
     <string name="register_vehicle">Register Vehicle</string>
 
+    <!-- Vehicle type -->
+    <string name="car">Car</string>
+    <string name="motorcycle">Motorcycle</string>
+    <string name="bus">Bus</string>
+    <string name="truck">Truck</string>
+
     <!-- Vehicle manufacturers -->
     <string name="abarth">Abarth</string>
     <string name="abt">ABT</string>

@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
+                android:focusable="false"
                 android:hint="@string/vehicle_type"
                 app:layout_constraintStart_toEndOf="@id/icon_vehicle_type"
                 app:layout_constraintTop_toTopOf="parent">
@@ -38,6 +39,7 @@
                     android:id="@+id/vehicle_type_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:inputType="textCapWords" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -57,6 +59,7 @@
                 style="@style/Widget.MyCarMaintenance.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:hint="@string/manufacturer"
                 app:layout_constraintStart_toEndOf="@id/icon_vehicle_manufacturer"
                 app:layout_constraintTop_toBottomOf="@id/vehicle_type">

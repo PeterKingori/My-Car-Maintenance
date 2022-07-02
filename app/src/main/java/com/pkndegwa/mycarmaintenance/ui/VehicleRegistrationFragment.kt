@@ -2,12 +2,16 @@ package com.pkndegwa.mycarmaintenance.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.MenuRes
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
 import com.pkndegwa.mycarmaintenance.model.VehiclesViewModel
 
@@ -43,6 +47,10 @@ class VehicleRegistrationFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.vehicleTypeEditText.setOnClickListener {
+            showMenu(it, R.menu.popup_menu)
+        }
+
         binding.vehicleManufacturerEditText.setOnClickListener {
             val action =
                 VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehicleManufacturersFragment()
@@ -60,6 +68,23 @@ class VehicleRegistrationFragment : Fragment() {
         }
     }
 
+    /**
+     * Shows a menu to select a vehicle type.
+     */
+    private fun showMenu(view: View, @MenuRes menuRes: Int) {
+        val popup = PopupMenu(context!!, view)
+        popup.menuInflater.inflate(menuRes, popup.menu)
+        popup.setOnMenuItemClickListener { menuItem: MenuItem ->
+            binding.vehicleTypeEditText.setText(menuItem.title)
+            binding.iconVehicleType.setImageDrawable(menuItem.icon)
+            return@setOnMenuItemClickListener true
+        }
+        popup.show()
+    }
+
+    /**
+     * Sets the entered vehicle details in the [VehiclesViewModel].
+     */
     private fun setVehicleDetails() {
         val vehicleType = binding.vehicleTypeEditText.text.toString()
         val manufacturer = binding.vehicleManufacturerEditText.text.toString()

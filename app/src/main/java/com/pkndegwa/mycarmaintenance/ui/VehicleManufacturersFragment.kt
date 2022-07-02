@@ -32,7 +32,7 @@ class VehicleManufacturersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val manufacturersDataset = viewModel.manufacturerData
-        recyclerView = binding.recyclerView
+        recyclerView = binding.vehicleManufacturersRecyclerView
         recyclerView.adapter = ManufacturerAdapter(this.requireContext(), manufacturersDataset)
 
         // Adds a [DividerItemDecoration] between items

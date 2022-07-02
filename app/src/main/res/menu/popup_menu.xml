@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/option_car"
+        android:icon="@drawable/ic_baseline_directions_car_24"
+        android:title="@string/car" />
+    <item
+        android:id="@+id/option_motorcycle"
+        android:icon="@drawable/ic_baseline_directions_bike_24"
+        android:title="@string/motorcycle" />
+    <item
+        android:id="@+id/option_bus"
+        android:icon="@drawable/ic_baseline_directions_bus_24"
+        android:title="@string/bus" />
+    <item
+        android:id="@+id/option_truck"
+        android:icon="@drawable/ic_baseline_directions_truck_24"
+        android:title="@string/truck" />
+</menu>
