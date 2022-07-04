@@ -1,5 +1,7 @@
 package com.pkndegwa.mycarmaintenance.model
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.pkndegwa.mycarmaintenance.data.VehiclesData
 
@@ -7,14 +9,14 @@ import com.pkndegwa.mycarmaintenance.data.VehiclesData
  * The [ViewModel] that is attached to the VehiclesFragment.
  */
 class VehiclesViewModel : ViewModel() {
-    private var _vehicleType = ""
-    val vehicleType = _vehicleType
+    private var _vehicleType = MutableLiveData("")
+    val vehicleType: LiveData<String> = _vehicleType
 
-    private var _manufacturer = ""
-    val manufacturer = _manufacturer
+    private var _manufacturer = MutableLiveData("")
+    val manufacturer: LiveData<String> = _manufacturer
 
-    private var _model = ""
-    val model = _model
+    private var _model = MutableLiveData("")
+    val model: LiveData<String> = _model
 
     private var _licensePlate = ""
     val licensePlate = _licensePlate
@@ -45,26 +47,34 @@ class VehiclesViewModel : ViewModel() {
         _vehiclesData = VehiclesData.getVehiclesData()
     }
 
-    // Set vehicle details.
-    fun setVehicleDetails(
-        type: String, vehicleManufacturer: String, vehicleModel: String, vehicleLicensePlate: String,
-        vehicleModelYear: Int, vehicleFuelType: String, vehicleFuelCapacity: Double, vehicleMileage:
-        Int, vehicleChassisNumber: String = ""
-    ) {
-        _vehicleType = type
-        _manufacturer = vehicleManufacturer
-        _model = vehicleModel
-        _licensePlate = vehicleLicensePlate
-        _modelYear = vehicleModelYear
-        _fuelType = vehicleFuelType
-        _fuelCapacity = vehicleFuelCapacity
-        _mileage = vehicleMileage
-        _chassisNumber = vehicleChassisNumber
-
-        val vehicle = Vehicle(
-            type, vehicleManufacturer, vehicleModel, vehicleLicensePlate,
-            vehicleModelYear, vehicleFuelType, vehicleFuelCapacity, vehicleMileage, vehicleChassisNumber
-        )
-        VehiclesData.vehicles.add(vehicle)
+    fun setVehicleType(type: String) {
+        _vehicleType.value = type
     }
+
+    fun setVehicleManufacturer(manufacturer: String) {
+        _manufacturer.value = manufacturer
+    }
+
+    // Set vehicle details.
+//    fun setVehicleDetails(
+//        type: String, vehicleManufacturer: String, vehicleModel: String, vehicleLicensePlate: String,
+//        vehicleModelYear: Int, vehicleFuelType: String, vehicleFuelCapacity: Double, vehicleMileage:
+//        Int, vehicleChassisNumber: String = ""
+//    ) {
+//        _vehicleType = type
+//        _manufacturer = vehicleManufacturer
+//        _model = vehicleModel
+//        _licensePlate = vehicleLicensePlate
+//        _modelYear = vehicleModelYear
+//        _fuelType = vehicleFuelType
+//        _fuelCapacity = vehicleFuelCapacity
+//        _mileage = vehicleMileage
+//        _chassisNumber = vehicleChassisNumber
+//
+//        val vehicle = Vehicle(
+//            type, vehicleManufacturer, vehicleModel, vehicleLicensePlate,
+//            vehicleModelYear, vehicleFuelType, vehicleFuelCapacity, vehicleMileage, vehicleChassisNumber
+//        )
+//        VehiclesData.vehicles.add(vehicle)
+//    }
 }

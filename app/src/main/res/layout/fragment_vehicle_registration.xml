@@ -5,6 +5,13 @@
     tools:context=".ui.VehicleRegistrationFragment"
     tools:ignore="Autofill">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.pkndegwa.mycarmaintenance.model.VehiclesViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -40,7 +47,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:inputType="textCapWords" />
+                    android:inputType="textCapWords"
+                    android:text="@{viewModel.vehicleType}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,6 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
+                    android:text="@{viewModel.manufacturer}"
                     android:inputType="textCapWords" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -96,6 +105,7 @@
                     android:id="@+id/vehicle_model_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@{viewModel.model}"
                     android:inputType="textCapWords" />
 
             </com.google.android.material.textfield.TextInputLayout>

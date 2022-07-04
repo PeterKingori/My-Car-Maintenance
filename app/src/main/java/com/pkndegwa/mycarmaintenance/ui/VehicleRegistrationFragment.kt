@@ -47,6 +47,10 @@ class VehicleRegistrationFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.apply {
+            viewModel = sharedVehiclesViewModel
+        }
+
         binding.vehicleTypeEditText.setOnClickListener {
             showMenu(it, R.menu.popup_menu)
         }
@@ -57,11 +61,7 @@ class VehicleRegistrationFragment : Fragment() {
             view.findNavController().navigate(action)
         }
 
-        if (manufacturerNameId == "") {
-            binding.vehicleManufacturerEditText.setText("")
-        } else {
-            binding.vehicleManufacturerEditText.setText(manufacturerNameId)
-        }
+        sharedVehiclesViewModel.setVehicleManufacturer(manufacturerNameId)
 
         binding.registerVehicleButton.setOnClickListener {
             setVehicleDetails()
@@ -76,7 +76,7 @@ class VehicleRegistrationFragment : Fragment() {
         popup.menuInflater.inflate(menuRes, popup.menu)
         popup.setOnMenuItemClickListener { menuItem: MenuItem ->
             binding.vehicleTypeEditText.setText(menuItem.title)
-            binding.iconVehicleType.setImageDrawable(menuItem.icon)
+            sharedVehiclesViewModel.setVehicleType(menuItem.title.toString())
             return@setOnMenuItemClickListener true
         }
         popup.show()
@@ -86,27 +86,27 @@ class VehicleRegistrationFragment : Fragment() {
      * Sets the entered vehicle details in the [VehiclesViewModel].
      */
     private fun setVehicleDetails() {
-        val vehicleType = binding.vehicleTypeEditText.text.toString()
-        val manufacturer = binding.vehicleManufacturerEditText.text.toString()
-        val model = binding.vehicleModelEditText.text.toString()
-        val licensePlate = binding.vehicleLicensePlateEditText.text.toString()
-        val modelYear = binding.vehicleModelYearEditText.text.toString().toInt()
-        val fuelType = binding.vehicleFuelTypeEditText.text.toString()
-        val fuelCapacity = binding.vehicleFuelCapacityEditText.text.toString().toDouble()
-        val mileage = binding.vehicleMileageEditText.text.toString().toInt()
-        val chassisNumber = binding.vehicleChassisNumberEditText.text.toString()
-
-        sharedVehiclesViewModel.setVehicleDetails(
-            type = vehicleType,
-            vehicleManufacturer = manufacturer,
-            vehicleModel = model,
-            vehicleLicensePlate = licensePlate,
-            vehicleModelYear = modelYear,
-            vehicleFuelType = fuelType,
-            vehicleFuelCapacity = fuelCapacity,
-            vehicleMileage = mileage,
-            vehicleChassisNumber = chassisNumber
-        )
+//        val vehicleType = binding.vehicleTypeEditText.text.toString()
+//        val manufacturer = binding.vehicleManufacturerEditText.text.toString()
+//        val model = binding.vehicleModelEditText.text.toString()
+//        val licensePlate = binding.vehicleLicensePlateEditText.text.toString()
+//        val modelYear = binding.vehicleModelYearEditText.text.toString().toInt()
+//        val fuelType = binding.vehicleFuelTypeEditText.text.toString()
+//        val fuelCapacity = binding.vehicleFuelCapacityEditText.text.toString().toDouble()
+//        val mileage = binding.vehicleMileageEditText.text.toString().toInt()
+//        val chassisNumber = binding.vehicleChassisNumberEditText.text.toString()
+//
+//        sharedVehiclesViewModel.setVehicleDetails(
+//            type = vehicleType,
+//            vehicleManufacturer = manufacturer,
+//            vehicleModel = model,
+//            vehicleLicensePlate = licensePlate,
+//            vehicleModelYear = modelYear,
+//            vehicleFuelType = fuelType,
+//            vehicleFuelCapacity = fuelCapacity,
+//            vehicleMileage = mileage,
+//            vehicleChassisNumber = chassisNumber
+//        )
 
         val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehiclesFragment()
         findNavController().navigate(action)
@@ -115,8 +115,9 @@ class VehicleRegistrationFragment : Fragment() {
     /**
      * Frees the binding object when the Fragment is destroyed.
      */
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         _binding = null
     }
+
 }
