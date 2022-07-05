@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Widget.MyCarMaintenance.TextView" parent="Widget.MaterialComponents.TextView">
         <item name="minHeight">48dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textAppearance">?attr/textAppearanceBody1</item>
     </style>
 
-    <style name="Widget.MyCarMaintenance.TextInputLayout"
-        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="Widget.MyCarMaintenance.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_marginStart">40dp</item>
         <item name="android:layout_marginTop">16dp</item>
+        <item name="errorIconDrawable">@drawable/ic_baseline_error_outline_24</item>
+        <item name="helperTextTextAppearance">@style/TextAppearance.MaterialComponents.Subtitle1</item>
     </style>
-    <style name="Widget.MyCarMaintenance.TextInputLayout2"
-        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+    <style name="Widget.MyCarMaintenance.TextInputLayout2" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_marginTop">16dp</item>
     </style>
 </resources>

@@ -5,40 +5,27 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.R
+import com.pkndegwa.mycarmaintenance.data.VehiclesData
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
-import com.pkndegwa.mycarmaintenance.model.VehiclesViewModel
+import com.pkndegwa.mycarmaintenance.model.Vehicle
 
 /**
  * [VehicleRegistrationFragment] allows a user to add details of a vehicle to be registered.
  */
 class VehicleRegistrationFragment : Fragment() {
 
-    companion object {
-        const val MANUFACTURER_NAME = "manufacturerName"
-    }
-
     private var _binding: FragmentVehicleRegistrationBinding? = null
-    private var manufacturerNameId: String = ""
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
-
-    private val sharedVehiclesViewModel: VehiclesViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            manufacturerNameId = it.getString(MANUFACTURER_NAME).toString()
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Retrieve and inflate the layout for this fragment.
@@ -47,66 +34,87 @@ class VehicleRegistrationFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.apply {
-            viewModel = sharedVehiclesViewModel
-        }
-
+        // Setup a click listener for the Vehicle type EditText to show a menu.
         binding.vehicleTypeEditText.setOnClickListener {
-            showMenu(it, R.menu.popup_menu)
+            showMenu(binding.vehicleTypeEditText, R.menu.popup_menu_vehicle_type)
         }
 
-        binding.vehicleManufacturerEditText.setOnClickListener {
-            val action =
-                VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehicleManufacturersFragment()
-            view.findNavController().navigate(action)
+        // Setup a click listener for the Fuel type EditText to show a menu.
+        binding.vehicleFuelTypeEditText.setOnClickListener {
+            showMenu(binding.vehicleFuelTypeEditText, R.menu.popup_menu_fuel_type)
         }
 
-        sharedVehiclesViewModel.setVehicleManufacturer(manufacturerNameId)
-
+        // Setup a click listener for the Register buttons.
         binding.registerVehicleButton.setOnClickListener {
-            setVehicleDetails()
+            if (checkInputFields(binding.vehicleType) &&
+                checkInputFields(binding.vehicleManufacturer) &&
+                checkInputFields(binding.vehicleModel) &&
+                checkInputFields(binding.vehicleLicensePlate) &&
+                checkInputFields(binding.vehicleFuelType) &&
+                checkInputFields(binding.vehicleMileage)
+            ) {
+                registerVehicle()
+            }
         }
     }
 
     /**
-     * Shows a menu to select a vehicle type.
+     * Shows a menu to select a certain property of a vehicle.
      */
-    private fun showMenu(view: View, @MenuRes menuRes: Int) {
+    private fun showMenu(view: EditText, @MenuRes menuRes: Int) {
         val popup = PopupMenu(context!!, view)
         popup.menuInflater.inflate(menuRes, popup.menu)
         popup.setOnMenuItemClickListener { menuItem: MenuItem ->
-            binding.vehicleTypeEditText.setText(menuItem.title)
-            sharedVehiclesViewModel.setVehicleType(menuItem.title.toString())
+            view.setText(menuItem.title)
             return@setOnMenuItemClickListener true
         }
         popup.show()
     }
 
     /**
-     * Sets the entered vehicle details in the [VehiclesViewModel].
+     * Checks if the fields have been filled and proceeds to the fragment showing the registered vehicles.
      */
-    private fun setVehicleDetails() {
-//        val vehicleType = binding.vehicleTypeEditText.text.toString()
-//        val manufacturer = binding.vehicleManufacturerEditText.text.toString()
-//        val model = binding.vehicleModelEditText.text.toString()
-//        val licensePlate = binding.vehicleLicensePlateEditText.text.toString()
-//        val modelYear = binding.vehicleModelYearEditText.text.toString().toInt()
-//        val fuelType = binding.vehicleFuelTypeEditText.text.toString()
-//        val fuelCapacity = binding.vehicleFuelCapacityEditText.text.toString().toDouble()
-//        val mileage = binding.vehicleMileageEditText.text.toString().toInt()
-//        val chassisNumber = binding.vehicleChassisNumberEditText.text.toString()
-//
-//        sharedVehiclesViewModel.setVehicleDetails(
-//            type = vehicleType,
-//            vehicleManufacturer = manufacturer,
-//            vehicleModel = model,
-//            vehicleLicensePlate = licensePlate,
-//            vehicleModelYear = modelYear,
-//            vehicleFuelType = fuelType,
-//            vehicleFuelCapacity = fuelCapacity,
-//            vehicleMileage = mileage,
-//            vehicleChassisNumber = chassisNumber
-//        )
+    private fun checkInputFields(view: TextInputLayout): Boolean {
+        return if (view.editText?.text.toString() == "") {
+            setError(view)
+            removeError(view)
+            false
+        } else {
+            true
+        }
+    }
+
+    /**
+     * Sets the text field error status.
+     */
+    private fun setError(view: TextInputLayout) {
+        view.isErrorEnabled = true
+        view.error = "Fill in this field."
+    }
+
+    /**
+     * Removes the text field error stats.
+     */
+    private fun removeError(view: TextInputLayout) {
+        view.editText?.doOnTextChanged { _, _, _, _ ->
+            view.isErrorEnabled = false
+            view.error = null
+        }
+    }
+
+    /**
+     * Creates a Vehicle instance, saves the data and navigates to the VehiclesFragment.
+     */
+    private fun registerVehicle() {
+        val type = binding.vehicleTypeEditText.text.toString()
+        val manufacturer = binding.vehicleManufacturerEditText.text.toString()
+        val model = binding.vehicleModelEditText.text.toString()
+        val licensePlate = binding.vehicleLicensePlateEditText.text.toString()
+        val fuel = binding.vehicleFuelTypeEditText.text.toString()
+        val mileage = binding.vehicleMileageEditText.text.toString().toInt()
+
+        val vehicle = Vehicle(type, manufacturer, model, licensePlate, fuel, mileage)
+        VehiclesData.vehicles.add(vehicle)
 
         val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehiclesFragment()
         findNavController().navigate(action)
@@ -119,5 +127,4 @@ class VehicleRegistrationFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 }
