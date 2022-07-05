@@ -2,8 +2,6 @@ package com.pkndegwa.mycarmaintenance.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pkndegwa.mycarmaintenance.databinding.VehiclesListItemBinding
 import com.pkndegwa.mycarmaintenance.model.Vehicle
@@ -11,7 +9,7 @@ import com.pkndegwa.mycarmaintenance.model.Vehicle
 /**
  * Adapter for the [RecyclerView] in VehiclesFragment.
  */
-class VehiclesAdapter : ListAdapter<Vehicle, VehiclesAdapter.VehiclesViewHolder>(DiffCallback) {
+class VehiclesAdapter(private val dataset: List<Vehicle>) : RecyclerView.Adapter<VehiclesAdapter.VehiclesViewHolder>() {
 
     /**
      * Provides a reference for the views needed to display items in the list.
@@ -20,7 +18,7 @@ class VehiclesAdapter : ListAdapter<Vehicle, VehiclesAdapter.VehiclesViewHolder>
         fun bind(vehicle: Vehicle) {
             binding.vehicleModel.text = vehicle.model
             binding.vehicleManufacturer.text = vehicle.manufacturer
-            binding.vehicleModelYear.text = vehicle.modelYear.toString()
+            binding.vehicleLicense.text = vehicle.licensePlate
             binding.vehicleOdometer.text = vehicle.mileage.toString()
         }
     }
@@ -37,18 +35,12 @@ class VehiclesAdapter : ListAdapter<Vehicle, VehiclesAdapter.VehiclesViewHolder>
      * Replaces the content of an existing view with new data.
      */
     override fun onBindViewHolder(holder: VehiclesViewHolder, position: Int) {
-        val vehicle = getItem(position)
+        val vehicle = dataset[position]
         holder.bind(vehicle)
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<Vehicle>() {
-        override fun areItemsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
-            return oldItem == newItem
-        }
-
-    }
+    /**
+     * Returns the size of the dataset (invoked by the layout manager).
+     */
+    override fun getItemCount(): Int = dataset.size
 }

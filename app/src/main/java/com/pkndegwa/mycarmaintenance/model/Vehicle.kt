@@ -8,9 +8,6 @@ data class Vehicle(
     var manufacturer: String,
     var model: String,
     var licensePlate: String,
-    var modelYear: Int,
     var fuelType: String,
-    var fuelCapacity: Double,
     var mileage: Int,
-    var chassisNumber: String = "",
 )

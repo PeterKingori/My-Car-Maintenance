@@ -37,7 +37,7 @@
                 android:drawableTop="@drawable/ic_baseline_manufacturer_24"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/vehicle_model_year"
+                app:layout_constraintEnd_toStartOf="@+id/vehicle_license"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,17 +45,17 @@
                 tools:text="Suzuki" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/vehicle_model_year"
+                android:id="@+id/vehicle_license"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_baseline_calendar_month_24"
+                android:drawableTop="@drawable/ic_baseline_license_24"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 app:layout_constraintBottom_toBottomOf="@+id/vehicle_manufacturer"
                 app:layout_constraintEnd_toStartOf="@+id/vehicle_odometer"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/vehicle_manufacturer"
                 app:layout_constraintTop_toTopOf="@+id/vehicle_manufacturer"
-                tools:text="2012" />
+                tools:text="KAA 123A" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/vehicle_odometer"
@@ -64,11 +64,11 @@
                 android:layout_marginEnd="32dp"
                 android:drawableTop="@drawable/ic_baseline_mileage_24"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                app:layout_constraintBottom_toBottomOf="@+id/vehicle_model_year"
+                app:layout_constraintBottom_toBottomOf="@+id/vehicle_license"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/vehicle_model_year"
-                app:layout_constraintTop_toTopOf="@+id/vehicle_model_year"
+                app:layout_constraintStart_toEndOf="@+id/vehicle_license"
+                app:layout_constraintTop_toTopOf="@+id/vehicle_license"
                 tools:text="65000" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

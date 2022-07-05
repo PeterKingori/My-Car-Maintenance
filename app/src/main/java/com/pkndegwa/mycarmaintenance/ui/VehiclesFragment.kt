@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.pkndegwa.mycarmaintenance.adapter.VehiclesAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehiclesBinding
 import com.pkndegwa.mycarmaintenance.model.VehiclesViewModel
@@ -19,7 +19,7 @@ class VehiclesFragment : Fragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
-    private val sharedVehiclesViewModel: VehiclesViewModel by activityViewModels()
+    private val vehiclesViewModel: VehiclesViewModel by viewModels()
 
     /**
      * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
@@ -27,15 +27,13 @@ class VehiclesFragment : Fragment() {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentVehiclesBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Initialise the RecyclerView adapter
-        val adapter = VehiclesAdapter()
-        binding.vehiclesListRecyclerView.adapter = adapter
-        adapter.submitList(sharedVehiclesViewModel.vehiclesData)
+        val recyclerView = binding.vehiclesListRecyclerView
+        recyclerView.adapter = VehiclesAdapter(vehiclesViewModel.vehiclesData)
     }
 
     /**

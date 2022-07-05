@@ -3,9 +3,9 @@ package com.pkndegwa.mycarmaintenance.data
 import com.pkndegwa.mycarmaintenance.model.Vehicle
 
 object VehiclesData {
-    val vehicles = arrayListOf<Vehicle>()
+    val vehicles = ArrayList<Vehicle>()
 
-    fun getVehiclesData(): List<Vehicle> {
+    fun getVehiclesData(): ArrayList<Vehicle> {
         return vehicles
     }
 }
