@@ -24,7 +24,9 @@
             app:destination="@id/vehiclesFragment" />
         <action
             android:id="@+id/action_vehicleRegistrationFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
+            app:destination="@id/welcomeFragment"
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/vehiclesFragment"

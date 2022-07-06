@@ -29,7 +29,7 @@
         <entry key="app/src/main/res/layout/activity_vehicle_registration.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_start.xml" value="0.396875" />
         <entry key="app/src/main/res/layout/fragment_vehicle_manufacturers.xml" value="0.396875" />
-        <entry key="app/src/main/res/layout/fragment_vehicle_registration.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_vehicle_registration.xml" value="0.14320987654320988" />
         <entry key="app/src/main/res/layout/fragment_vehicle_type.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_vehicles.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_welcome.xml" value="0.396875" />

@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentWelcomeBinding
 
 /**
@@ -26,8 +27,7 @@ class WelcomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Launch the VehicleRegistrationFragment on addVehicleButton click
         binding.addVehicleButton.setOnClickListener {
-            val action = WelcomeFragmentDirections.actionWelcomeFragmentToVehicleRegistrationFragment()
-            view.findNavController().navigate(action)
+            findNavController().navigate(R.id.action_welcomeFragment_to_vehicleRegistrationFragment)
         }
     }
 
