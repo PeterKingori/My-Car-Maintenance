@@ -34,14 +34,18 @@ class VehicleRegistrationFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Setup a click listener for the Vehicle type EditText to show a menu.
-        binding.vehicleTypeEditText.setOnClickListener {
-            showMenu(binding.vehicleTypeEditText, R.menu.popup_menu_vehicle_type)
-        }
+        binding.apply {
+            vehicleRegistrationFragment = this@VehicleRegistrationFragment
 
-        // Setup a click listener for the Fuel type EditText to show a menu.
-        binding.vehicleFuelTypeEditText.setOnClickListener {
-            showMenu(binding.vehicleFuelTypeEditText, R.menu.popup_menu_fuel_type)
+            // Setup a click listener for the Vehicle type EditText to show a menu.
+            vehicleTypeEditText.setOnClickListener {
+                showMenu(binding.vehicleTypeEditText, R.menu.popup_menu_vehicle_type)
+            }
+
+            // Setup a click listener for the Fuel type EditText to show a menu.
+            vehicleFuelTypeEditText.setOnClickListener {
+                showMenu(binding.vehicleFuelTypeEditText, R.menu.popup_menu_fuel_type)
+            }
         }
 
         // Setup a click listener for the Register buttons.
@@ -118,6 +122,28 @@ class VehicleRegistrationFragment : Fragment() {
 
         val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehiclesFragment()
         findNavController().navigate(action)
+    }
+
+    /**
+     * Cancels the registration.
+     */
+    fun cancelRegistration() {
+        clearText()
+        findNavController().navigate(R.id.action_vehicleRegistrationFragment_to_welcomeFragment)
+    }
+
+    /**
+     * Clear the text fields.
+     */
+    private fun clearText() {
+        binding.apply {
+            vehicleTypeEditText.text = null
+            vehicleManufacturerEditText.text = null
+            vehicleModelEditText.text = null
+            vehicleLicensePlateEditText.text = null
+            vehicleFuelTypeEditText.text = null
+            vehicleMileageEditText.text = null
+        }
     }
 
     /**

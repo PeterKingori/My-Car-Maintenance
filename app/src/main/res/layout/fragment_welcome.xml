@@ -5,7 +5,6 @@
     tools:context=".ui.WelcomeFragment">
 
     <ScrollView
-        android:id="@+id/welcomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_vehicleRegistrationFragment_to_vehiclesFragment"
             app:destination="@id/vehiclesFragment" />
+        <action
+            android:id="@+id/action_vehicleRegistrationFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/vehiclesFragment"

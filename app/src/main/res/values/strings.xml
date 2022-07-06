@@ -16,6 +16,7 @@
     <string name="mileage">Mileage</string>
     <string name="register">Register</string>
     <string name="register_vehicle">Register Vehicle</string>
+    <string name="cancel">Cancel</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>
