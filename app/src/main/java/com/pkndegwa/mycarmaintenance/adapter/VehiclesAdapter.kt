@@ -2,9 +2,12 @@ package com.pkndegwa.mycarmaintenance.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.VehiclesListItemBinding
 import com.pkndegwa.mycarmaintenance.model.Vehicle
+import com.pkndegwa.mycarmaintenance.ui.VehiclesFragmentDirections
 
 /**
  * Adapter for the [RecyclerView] in VehiclesFragment.
@@ -36,6 +39,9 @@ class VehiclesAdapter(private val dataset: List<Vehicle>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: VehiclesViewHolder, position: Int) {
         val vehicle = dataset[position]
         holder.bind(vehicle)
+        holder.itemView.setOnClickListener {
+            holder.itemView.findNavController().navigate(R.id.action_vehiclesFragment_to_vehicleDetailsFragment)
+        }
     }
 
     /**

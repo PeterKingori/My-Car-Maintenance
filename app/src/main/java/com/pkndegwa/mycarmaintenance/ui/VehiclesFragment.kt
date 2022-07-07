@@ -21,11 +21,8 @@ class VehiclesFragment : Fragment() {
 
     private val vehiclesViewModel: VehiclesViewModel by viewModels()
 
-    /**
-     * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
-     * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
-     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        // Inflate the layout for this fragment.
         _binding = FragmentVehiclesBinding.inflate(inflater, container, false)
         return binding.root
     }
