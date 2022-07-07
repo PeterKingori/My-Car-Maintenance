@@ -1,18 +1,21 @@
 package com.pkndegwa.mycarmaintenance
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.pkndegwa.mycarmaintenance.databinding.ActivityMainBinding
+import com.pkndegwa.mycarmaintenance.model.VehiclesViewModel
 
 /**
  * Main entry point for the app.
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
+    private val vehiclesViewModel: VehiclesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +28,13 @@ class MainActivity : AppCompatActivity() {
 
         // Instantiate the navController using the NavHostFragment
         navController = navHostFragment.navController
+
+        // Select nav_graph depending on whether there are saved vehicles or not
+        if (vehiclesViewModel.vehiclesData.size == 0) {
+            navController.setGraph(R.navigation.nav_graph)
+        } else {
+            navController.setGraph(R.navigation.nav_graph_2)
+        }
 
         val appBarConfiguration = AppBarConfiguration.Builder(R.id.welcomeFragment, R.id.vehiclesFragment).build()
 

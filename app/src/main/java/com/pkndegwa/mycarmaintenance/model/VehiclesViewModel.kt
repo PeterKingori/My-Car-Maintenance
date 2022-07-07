@@ -15,6 +15,6 @@ class VehiclesViewModel : ViewModel() {
 
     init {
         // Initialise the list of vehicles if any exist.
-        _vehiclesData = VehiclesData.getVehiclesData()
+        _vehiclesData = VehiclesData.vehicles
     }
 }
