@@ -20,65 +20,48 @@
                 android:id="@+id/vehicle_model"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="0dp"
-                android:paddingStart="12dp"
-                android:paddingTop="0dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="12dp"
+                android:padding="16dp"
                 android:textAppearance="?attr/textAppearanceHeadline5"
-                app:drawableTopCompat="@drawable/generic_car"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Swift" />
+                tools:text="Suzuki Swift" />
 
-            <com.google.android.material.divider.MaterialDivider
+            <ImageView
+                android:id="@+id/vehicle_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
+                android:contentDescription="@string/image_of_vehicle"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_model" />
-
-            <TextView
-                android:id="@+id/vehicle_manufacturer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                app:drawableTopCompat="@drawable/ic_baseline_manufacturer_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/vehicle_license"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vehicle_model"
-                tools:text="Suzuki" />
+                app:srcCompat="@drawable/generic_car" />
 
             <TextView
                 android:id="@+id/vehicle_license"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 app:drawableTopCompat="@drawable/ic_baseline_license_24"
-                app:layout_constraintBottom_toBottomOf="@+id/vehicle_manufacturer"
-                app:layout_constraintEnd_toStartOf="@+id/vehicle_odometer"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/vehicle_manufacturer"
-                app:layout_constraintTop_toTopOf="@+id/vehicle_manufacturer"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_image"
                 tools:text="KAA 123A" />
 
             <TextView
                 android:id="@+id/vehicle_odometer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="56dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 app:drawableTopCompat="@drawable/ic_baseline_mileage_24"
                 app:layout_constraintBottom_toBottomOf="@+id/vehicle_license"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/vehicle_license"
                 app:layout_constraintTop_toTopOf="@+id/vehicle_license"
                 tools:text="65000" />
