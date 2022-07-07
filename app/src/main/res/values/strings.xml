@@ -30,5 +30,6 @@
     <string name="electric">Electric</string>
     <string name="liquefied_petroleum_gas">Liquefied Petroleum Gas (LPG)</string>
     <string name="compressed_natural_gas">Compressed Natural Gas (CNG)</string>
+    <string name="image_of_vehicle">Image of vehicle</string>
 
 </resources>
