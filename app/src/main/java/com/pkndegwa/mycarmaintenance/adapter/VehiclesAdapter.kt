@@ -19,7 +19,7 @@ class VehiclesAdapter(private val dataset: List<Vehicle>) : RecyclerView.Adapter
      */
     class VehiclesViewHolder(private var binding: VehiclesListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(vehicle: Vehicle) {
-            binding.vehicleModel.text = vehicle.manufacturer + " " + vehicle.model
+            binding.vehicleName.text = vehicle.manufacturer + " " + vehicle.model
             binding.vehicleLicense.text = vehicle.licensePlate
             binding.vehicleOdometer.text = vehicle.mileage.toString()
         }

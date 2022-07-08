@@ -17,7 +17,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/vehicle_model"
+                android:id="@+id/vehicle_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
@@ -35,7 +35,7 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_model"
+                app:layout_constraintTop_toBottomOf="@id/vehicle_name"
                 app:srcCompat="@drawable/generic_car" />
 
             <TextView

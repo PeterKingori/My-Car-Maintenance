@@ -4,20 +4,17 @@
     <string name="car_tow_image">Image of car being towed</string>
     <string name="add_vehicle_text">Add your first vehicle.</string>
     <string name="add_vehicle_button">Add vehicle</string>
-    <string name="vehicle_type">Vehicle type</string>
+    <string name="vehicle_type">Vehicle Type</string>
     <string name="manufacturer">Manufacturer</string>
-    <string name="manufacturers">Manufacturers</string>
     <string name="model">Model</string>
-    <string name="license_plate">License plate</string>
-    <string name="model_year">Model year</string>
-    <string name="fuel_type">Fuel type</string>
-    <string name="fuel_capacity">Fuel capacity (L)</string>
-    <string name="chassis_number">Chassis number (optional)</string>
+    <string name="license_plate">License Plate</string>
+    <string name="fuel_type">Fuel Type</string>
     <string name="mileage">Mileage</string>
     <string name="register">Register</string>
     <string name="register_vehicle">Register Vehicle</string>
     <string name="cancel">Cancel</string>
     <string name="image_of_vehicle">Image of vehicle</string>
+    <string name="fuel">Fuel</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>
@@ -31,5 +28,6 @@
     <string name="electric">Electric</string>
     <string name="liquefied_petroleum_gas">Liquefied Petroleum Gas (LPG)</string>
     <string name="compressed_natural_gas">Compressed Natural Gas (CNG)</string>
+
 
 </resources>
