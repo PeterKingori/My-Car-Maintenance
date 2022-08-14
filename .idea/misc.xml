@@ -25,10 +25,11 @@
         <entry key="app/src/main/res/drawable/ic_car_wrench.xml" value="0.3845" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3845" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.3845" />
+        <entry key="app/src/main/res/drawable/image_shadow.xml" value="0.332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_vehicle_registration.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_start.xml" value="0.396875" />
-        <entry key="app/src/main/res/layout/fragment_vehicle_details.xml" value="0.328804347826087" />
+        <entry key="app/src/main/res/layout/fragment_vehicle_details.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_vehicle_manufacturers.xml" value="0.396875" />
         <entry key="app/src/main/res/layout/fragment_vehicle_registration.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_vehicle_type.xml" value="0.335" />

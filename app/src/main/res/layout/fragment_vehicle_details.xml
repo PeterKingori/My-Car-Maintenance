@@ -10,7 +10,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/vehicle_image"
@@ -18,10 +19,11 @@
                 android:layout_height="150dp"
                 android:contentDescription="@string/image_of_vehicle"
                 android:scaleType="centerCrop"
+                android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/generic_car" />
+                app:srcCompat="@drawable/generic_car2" />
 
             <TextView
                 android:id="@+id/vehicle_manufacturer_and_model"

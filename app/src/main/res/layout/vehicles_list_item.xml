@@ -33,10 +33,11 @@
                 android:layout_height="150dp"
                 android:contentDescription="@string/image_of_vehicle"
                 android:scaleType="centerCrop"
+                android:foreground="@drawable/image_shadow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vehicle_name"
-                app:srcCompat="@drawable/generic_car" />
+                app:srcCompat="@drawable/generic_car2" />
 
             <TextView
                 android:id="@+id/vehicle_license"

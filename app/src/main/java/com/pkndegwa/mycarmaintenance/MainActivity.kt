@@ -1,14 +1,12 @@
 package com.pkndegwa.mycarmaintenance
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.pkndegwa.mycarmaintenance.databinding.ActivityMainBinding
-import com.pkndegwa.mycarmaintenance.model.VehiclesViewModel
 
 /**
  * Main entry point for the app.

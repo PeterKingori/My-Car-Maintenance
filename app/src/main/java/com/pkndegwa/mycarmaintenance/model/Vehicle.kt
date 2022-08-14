@@ -4,10 +4,10 @@ package com.pkndegwa.mycarmaintenance.model
  * Data model for registered vehicles.
  */
 data class Vehicle(
-    var type: String,
-    var manufacturer: String,
-    var model: String,
-    var licensePlate: String,
-    var fuelType: String,
-    var mileage: Int,
+    val type: String,
+    val manufacturer: String,
+    val model: String,
+    val licensePlate: String,
+    val fuelType: String,
+    val mileage: Int,
 )

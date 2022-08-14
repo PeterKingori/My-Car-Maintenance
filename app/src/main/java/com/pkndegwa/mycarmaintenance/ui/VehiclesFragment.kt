@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.pkndegwa.mycarmaintenance.adapter.VehiclesAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehiclesBinding
 import com.pkndegwa.mycarmaintenance.model.VehiclesViewModel
@@ -19,7 +19,7 @@ class VehiclesFragment : Fragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
-    private val vehiclesViewModel: VehiclesViewModel by viewModels()
+    private val vehiclesViewModel: VehiclesViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment.

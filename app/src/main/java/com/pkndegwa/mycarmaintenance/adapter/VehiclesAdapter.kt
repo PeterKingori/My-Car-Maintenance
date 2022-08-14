@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.VehiclesListItemBinding
 import com.pkndegwa.mycarmaintenance.model.Vehicle
-import com.pkndegwa.mycarmaintenance.ui.VehiclesFragmentDirections
 
 /**
  * Adapter for the [RecyclerView] in VehiclesFragment.
