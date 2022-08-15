@@ -1,6 +1,8 @@
 package com.pkndegwa.mycarmaintenance.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.pkndegwa.mycarmaintenance.data.VehicleDao
 import com.pkndegwa.mycarmaintenance.data.model.Vehicle
@@ -10,6 +12,7 @@ import kotlinx.coroutines.launch
  * The [ViewModel] that is attached to the VehiclesFragment.
  */
 class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
+    val allVehicles: LiveData<List<Vehicle>> = vehicleDao.getAllVehicles().asLiveData()
 
     /**
      * This function takes in a [Vehicle] object and adds the data to the database
@@ -27,8 +30,8 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      * and returns it.
      * @return Vehicle
      */
-    private fun getNewVehicleEntry(vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
-    vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String): Vehicle {
+    private fun createNewVehicleEntry(vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
+                                      vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String): Vehicle {
         return Vehicle(
             type = vehicleType,
             manufacturer = vehicleManufacturer,
@@ -45,7 +48,7 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      */
     fun addNewVehicle(vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
                       vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String) {
-        val newVehicle = getNewVehicleEntry(vehicleType, vehicleManufacturer, vehicleModel,
+        val newVehicle = createNewVehicleEntry(vehicleType, vehicleManufacturer, vehicleModel,
             vehicleLicensePlate, vehicleFuelType, vehicleMileage)
         insertVehicle(newVehicle)
     }
