@@ -8,23 +8,11 @@
     android:padding="8dp"
     tools:context=".ui.HomeFragment">
 
-    <include
-        android:id="@+id/empty_data_parent"
-        layout="@layout/empty_vehicle_data"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vehicles_list_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,14 +20,12 @@
         tools:listitem="@layout/vehicles_list_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/newVehicleFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:clickable="true"
-        android:visibility="gone"
-        android:contentDescription="Add new vehicle"
-        android:focusable="true"
+        android:contentDescription="@string/new_vehicle_fab"
         android:src="@drawable/ic_baseline_add_24"
         android:tintMode="@color/white"
         app:borderWidth="0dp"

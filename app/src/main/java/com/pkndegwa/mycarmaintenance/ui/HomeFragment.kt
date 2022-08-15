@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentHomeBinding
 
 /**
@@ -25,10 +23,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Launch the VehicleRegistrationFragment on addVehicleButton click
-        binding.emptyDataParent.addVehicleButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_vehicleRegistrationFragment)
-        }
+
     }
 
     /**
