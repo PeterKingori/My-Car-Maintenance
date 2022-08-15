@@ -1,4 +1,4 @@
-package com.pkndegwa.mycarmaintenance.model
+package com.pkndegwa.mycarmaintenance.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

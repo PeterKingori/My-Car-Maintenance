@@ -1,4 +1,4 @@
-package com.pkndegwa.mycarmaintenance.ui
+package com.pkndegwa.mycarmaintenance.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
-import com.pkndegwa.mycarmaintenance.model.Vehicle
+import com.pkndegwa.mycarmaintenance.data.model.Vehicle
 
 /**
  * [VehicleRegistrationFragment] allows a user to add details of a vehicle to be registered.
@@ -120,7 +120,6 @@ class VehicleRegistrationFragment : Fragment() {
         val fuel = binding.vehicleFuelTypeEditText.text.toString()
         val mileage = binding.vehicleMileageEditText.text.toString().toInt()
 
-        val vehicle = Vehicle(type, manufacturer, model, licensePlate, fuel, mileage)
         val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToHomeFragment()
         findNavController().navigate(action)
     }

@@ -1,4 +1,4 @@
-package com.pkndegwa.mycarmaintenance.ui
+package com.pkndegwa.mycarmaintenance.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
