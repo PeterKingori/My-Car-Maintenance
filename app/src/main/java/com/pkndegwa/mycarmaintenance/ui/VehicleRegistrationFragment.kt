@@ -1,10 +1,12 @@
 package com.pkndegwa.mycarmaintenance.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
@@ -22,7 +24,6 @@ import com.pkndegwa.mycarmaintenance.model.Vehicle
 class VehicleRegistrationFragment : Fragment() {
 
     private var _binding: FragmentVehicleRegistrationBinding? = null
-
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
@@ -127,7 +128,7 @@ class VehicleRegistrationFragment : Fragment() {
     /**
      * Cancels the registration.
      */
-    fun cancelRegistration() {
+    private fun cancelRegistration() {
         clearText()
         findNavController().navigate(R.id.action_vehicleRegistrationFragment_to_homeFragment)
     }
@@ -151,6 +152,10 @@ class VehicleRegistrationFragment : Fragment() {
      */
     override fun onDestroy() {
         super.onDestroy()
+        // Hide keyboard.
+        val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as
+                InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
         _binding = null
     }
 }

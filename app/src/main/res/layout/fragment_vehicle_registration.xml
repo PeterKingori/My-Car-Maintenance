@@ -66,6 +66,7 @@
                 android:id="@+id/vehicle_manufacturer_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
                 android:inputType="textCapWords" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -94,6 +95,7 @@
                 android:id="@+id/vehicle_model_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
                 android:inputType="textCapWords" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -123,6 +125,7 @@
                 android:id="@+id/vehicle_license_plate_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
                 android:inputType="textCapCharacters" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -181,6 +184,7 @@
                 android:id="@+id/vehicle_mileage_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
                 android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
