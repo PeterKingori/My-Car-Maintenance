@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.R
-import com.pkndegwa.mycarmaintenance.data.VehiclesData
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
 import com.pkndegwa.mycarmaintenance.model.Vehicle
 
@@ -66,7 +65,7 @@ class VehicleRegistrationFragment : Fragment() {
      * Shows a menu to select a certain property of a vehicle.
      */
     private fun showMenu(view: EditText, @MenuRes menuRes: Int) {
-        val popup = PopupMenu(context!!, view)
+        val popup = PopupMenu(requireContext(), view)
         popup.menuInflater.inflate(menuRes, popup.menu)
         popup.setOnMenuItemClickListener { menuItem: MenuItem ->
             view.setText(menuItem.title)
@@ -118,7 +117,6 @@ class VehicleRegistrationFragment : Fragment() {
         val mileage = binding.vehicleMileageEditText.text.toString().toInt()
 
         val vehicle = Vehicle(type, manufacturer, model, licensePlate, fuel, mileage)
-        VehiclesData.vehicles.add(vehicle)
 
         val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehiclesFragment()
         findNavController().navigate(action)

@@ -15,6 +15,7 @@
     <string name="cancel">Cancel</string>
     <string name="image_of_vehicle">Image of vehicle</string>
     <string name="fuel">Fuel</string>
+    <string name="vehicle_name">%s %s</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>

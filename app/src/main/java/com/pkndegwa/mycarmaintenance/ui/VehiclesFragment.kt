@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.pkndegwa.mycarmaintenance.adapter.VehiclesAdapter
+import com.pkndegwa.mycarmaintenance.adapter.VehiclesListAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehiclesBinding
-import com.pkndegwa.mycarmaintenance.model.VehiclesViewModel
 
 /**
  * [VehiclesFragment] displays a list of registered vehicles.
@@ -30,7 +29,7 @@ class VehiclesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Initialise the RecyclerView adapter
         val recyclerView = binding.vehiclesListRecyclerView
-        recyclerView.adapter = VehiclesAdapter(vehiclesViewModel.vehiclesData)
+        recyclerView.adapter = VehiclesListAdapter()
     }
 
     /**
