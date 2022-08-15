@@ -197,17 +197,17 @@
             android:layout_marginEnd="@dimen/side_margin"
             android:minHeight="@dimen/button_min_height"
             android:text="@string/cancel"
-            app:layout_constraintEnd_toStartOf="@id/register_vehicle_button"
+            app:layout_constraintEnd_toStartOf="@id/save_vehicle_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/register_vehicle_button" />
+            app:layout_constraintTop_toTopOf="@id/save_vehicle_button" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/register_vehicle_button"
+            android:id="@+id/save_vehicle_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
             android:minHeight="@dimen/button_min_height"
-            android:text="@string/register"
+            android:text="@string/save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/cancel_register_button"
             app:layout_constraintTop_toBottomOf="@id/vehicle_mileage" />

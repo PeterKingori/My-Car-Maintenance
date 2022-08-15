@@ -10,7 +10,7 @@
     <string name="license_plate">License Plate</string>
     <string name="fuel_type">Fuel Type</string>
     <string name="mileage">Mileage</string>
-    <string name="register">Register</string>
+    <string name="save">Save</string>
     <string name="register_vehicle">Register Vehicle</string>
     <string name="cancel">Cancel</string>
     <string name="image_of_vehicle">Image of vehicle</string>

@@ -8,24 +8,33 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
+import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
-import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
 import com.pkndegwa.mycarmaintenance.data.model.Vehicle
+import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
+import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModel
+import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModelFactory
 
 /**
  * [VehicleRegistrationFragment] allows a user to add details of a vehicle to be registered.
  */
 class VehicleRegistrationFragment : Fragment() {
-
     private var _binding: FragmentVehicleRegistrationBinding? = null
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
+
+    private val viewModel: VehiclesViewModel by activityViewModels {
+        VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
+    }
+    private lateinit var vehicle: Vehicle
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Retrieve and inflate the layout for this fragment.
@@ -34,6 +43,7 @@ class VehicleRegistrationFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.apply {
             // Setup a click listener for the Vehicle type EditText to show a menu.
             vehicleTypeEditText.setOnClickListener {
@@ -49,18 +59,10 @@ class VehicleRegistrationFragment : Fragment() {
             cancelRegisterButton.setOnClickListener {
                 cancelRegistration()
             }
-        }
 
-        // Setup a click listener for the Register buttons.
-        binding.registerVehicleButton.setOnClickListener {
-            if (checkInputFields(binding.vehicleType) &&
-                checkInputFields(binding.vehicleManufacturer) &&
-                checkInputFields(binding.vehicleModel) &&
-                checkInputFields(binding.vehicleLicensePlate) &&
-                checkInputFields(binding.vehicleFuelType) &&
-                checkInputFields(binding.vehicleMileage)
-            ) {
-                registerVehicle()
+            // Setup a click listener for the Register buttons.
+            saveVehicleButton.setOnClickListener {
+                addNewVehicle()
             }
         }
     }
@@ -79,10 +81,10 @@ class VehicleRegistrationFragment : Fragment() {
     }
 
     /**
-     * Checks if the fields have been filled and proceeds to the fragment showing the registered vehicles.
+     * Checks if the text input fields have been filled.
      */
-    private fun checkInputFields(view: TextInputLayout): Boolean {
-        return if (view.editText?.text.toString() == "") {
+    private fun isEntryValid(view: TextInputLayout): Boolean {
+        return if (!viewModel.isEntryValid(view.editText?.text.toString())) {
             setError(view)
             removeError(view)
             false
@@ -90,6 +92,31 @@ class VehicleRegistrationFragment : Fragment() {
             true
         }
     }
+
+    /**
+     * Validates user input before adding the new vehicle in the database using the ViewModel.
+     */
+    private fun addNewVehicle() {
+        if (isEntryValid(binding.vehicleType) &&
+            isEntryValid(binding.vehicleManufacturer) &&
+            isEntryValid(binding.vehicleModel) &&
+            isEntryValid(binding.vehicleLicensePlate) &&
+            isEntryValid(binding.vehicleFuelType) &&
+            isEntryValid(binding.vehicleMileage)
+        ) {
+            viewModel.addNewVehicle(
+                vehicleType = binding.vehicleTypeEditText.text.toString(),
+                vehicleManufacturer = binding.vehicleManufacturerEditText.text.toString(),
+                vehicleModel = binding.vehicleModelEditText.text.toString(),
+                vehicleLicensePlate = binding.vehicleLicensePlateEditText.text.toString(),
+                vehicleFuelType = binding.vehicleFuelTypeEditText.text.toString(),
+                vehicleMileage = binding.vehicleMileageEditText.text.toString()
+            )
+            Toast.makeText(this.context, "Vehicle saved successfully", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_vehicleRegistrationFragment_to_homeFragment)
+        }
+    }
+
 
     /**
      * Sets the text field error status.
@@ -107,21 +134,6 @@ class VehicleRegistrationFragment : Fragment() {
             view.isErrorEnabled = false
             view.error = null
         }
-    }
-
-    /**
-     * Creates a Vehicle instance, saves the data and navigates to the VehiclesFragment.
-     */
-    private fun registerVehicle() {
-        val type = binding.vehicleTypeEditText.text.toString()
-        val manufacturer = binding.vehicleManufacturerEditText.text.toString()
-        val model = binding.vehicleModelEditText.text.toString()
-        val licensePlate = binding.vehicleLicensePlateEditText.text.toString()
-        val fuel = binding.vehicleFuelTypeEditText.text.toString()
-        val mileage = binding.vehicleMileageEditText.text.toString().toInt()
-
-        val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToHomeFragment()
-        findNavController().navigate(action)
     }
 
     /**
