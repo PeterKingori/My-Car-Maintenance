@@ -1,140 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".ui.VehicleDetailsFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="8dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/vehicle_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:contentDescription="@string/image_of_vehicle"
+            android:padding="16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/generic_car" />
+
+        <TextView
+            android:id="@+id/vehicle_manufacturer_and_model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vehicle_image"
+            tools:text="Suzuki Swift" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/vehicle_specs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="#E9E9ED"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_manufacturer_and_model">
 
-            <ImageView
-                android:id="@+id/vehicle_image"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:contentDescription="@string/image_of_vehicle"
-                android:scaleType="centerCrop"
-                android:padding="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/generic_car2" />
-
-            <TextView
-                android:id="@+id/vehicle_manufacturer_and_model"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vehicle_image"
-                tools:text="Suzuki Swift" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/vehicle_specs"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                app:cardBackgroundColor="#E9E9ED"
-                app:cardCornerRadius="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_manufacturer_and_model">
+                android:padding="12dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="12dp">
+                <LinearLayout
+                    android:id="@+id/left_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <LinearLayout
-                        android:id="@+id/left_layout"
+                    <TextView
+                        android:id="@+id/license"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:orientation="vertical"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="@string/license_plate"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        tools:text="License Plate" />
 
-                        <TextView
-                            android:id="@+id/license"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            android:text="@string/license_plate"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            tools:text="License Plate" />
-
-                        <TextView
-                            android:id="@+id/license_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            tools:text="KAE 123J" />
-
-                        <TextView
-                            android:id="@+id/fuel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            android:text="@string/fuel"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            tools:text="Fuel" />
-
-                        <TextView
-                            android:id="@+id/fuel_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            tools:text="Petrol" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/right_layout"
+                    <TextView
+                        android:id="@+id/license_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        tools:text="KAE 123J" />
 
-                        <TextView
-                            android:id="@+id/mileage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            android:text="@string/mileage"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            tools:text="Mileage" />
+                    <TextView
+                        android:id="@+id/fuel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="@string/fuel"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        tools:text="Fuel" />
 
-                        <TextView
-                            android:id="@+id/mileage_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="122dp"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            tools:text="12,0km" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/fuel_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        tools:text="Petrol" />
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <LinearLayout
+                    android:id="@+id/right_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-</layout>
+                    <TextView
+                        android:id="@+id/mileage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="@string/mileage"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        tools:text="Mileage" />
+
+                    <TextView
+                        android:id="@+id/mileage_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="122dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        tools:text="12,0km" />
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -7,27 +7,27 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.pkndegwa.mycarmaintenance.R
-import com.pkndegwa.mycarmaintenance.databinding.FragmentWelcomeBinding
+import com.pkndegwa.mycarmaintenance.databinding.FragmentHomeBinding
 
 /**
- * [WelcomeFragment] allows a user to click a button to register a vehicle.
+ * [HomeFragment] allows a user to click a button to register a vehicle.
  */
-class WelcomeFragment : Fragment() {
-    private var _binding: FragmentWelcomeBinding? = null
+class HomeFragment : Fragment() {
+    private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Retrieve and inflate the layout for this fragment
-        _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Launch the VehicleRegistrationFragment on addVehicleButton click
-        binding.addVehicleButton.setOnClickListener {
-            findNavController().navigate(R.id.action_welcomeFragment_to_vehicleRegistrationFragment)
+        binding.emptyDataParent.addVehicleButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_vehicleRegistrationFragment)
         }
     }
 

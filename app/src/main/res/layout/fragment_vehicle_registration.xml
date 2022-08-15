@@ -1,223 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.VehicleRegistrationFragment"
-    tools:ignore="Autofill">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.VehicleRegistrationFragment">
 
-    <data>
-
-        <variable
-            name="vehicleRegistrationFragment"
-            type="com.pkndegwa.mycarmaintenance.ui.VehicleRegistrationFragment" />
-    </data>
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/icon_vehicle_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@+id/vehicle_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_type"
+            app:srcCompat="@drawable/ic_baseline_directions_car_24" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_type"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_marginTop="0dp"
+            android:focusable="false"
+            android:hint="@string/vehicle_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_vehicle_type"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/icon_vehicle_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
-                app:layout_constraintBottom_toBottomOf="@+id/vehicle_type"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/vehicle_type"
-                app:srcCompat="@drawable/ic_baseline_directions_car_24" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vehicle_type"
-                style="@style/Widget.MyCarMaintenance.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:focusable="false"
-                android:hint="@string/vehicle_type"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/icon_vehicle_type"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/vehicle_type_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:inputType="none" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/icon_vehicle_manufacturer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
-                app:layout_constraintBottom_toBottomOf="@+id/vehicle_manufacturer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/vehicle_manufacturer"
-                app:srcCompat="@drawable/ic_baseline_manufacturer_24" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vehicle_manufacturer"
-                style="@style/Widget.MyCarMaintenance.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/manufacturer"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/icon_vehicle_manufacturer"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_type">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/vehicle_manufacturer_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapWords" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/icon_vehicle_model"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
-                app:layout_constraintBottom_toBottomOf="@+id/vehicle_model"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/vehicle_model"
-                app:srcCompat="@drawable/ic_baseline_model_24" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vehicle_model"
-                style="@style/Widget.MyCarMaintenance.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/model"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/icon_vehicle_model"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_manufacturer">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/vehicle_model_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapWords" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/icon_vehicle_license_plate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
-                app:layout_constraintBottom_toBottomOf="@+id/vehicle_license_plate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/vehicle_license_plate"
-                app:srcCompat="@drawable/ic_baseline_license_24" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vehicle_license_plate"
-                style="@style/Widget.MyCarMaintenance.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/license_plate"
-                app:layout_constraintBottom_toTopOf="@id/vehicle_fuel_type"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/icon_vehicle_license_plate"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_model">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/vehicle_license_plate_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapCharacters" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/icon_vehicle_fuel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
-                app:layout_constraintBottom_toBottomOf="@+id/vehicle_fuel_type"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/vehicle_fuel_type"
-                app:srcCompat="@drawable/ic_baseline_fuel_type_24" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vehicle_fuel_type"
-                style="@style/Widget.MyCarMaintenance.TextInputLayout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vehicle_type_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"
-                android:hint="@string/fuel_type"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/icon_vehicle_fuel"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_license_plate">
+                android:inputType="none" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/vehicle_fuel_type_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/icon_vehicle_manufacturer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@+id/vehicle_manufacturer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_manufacturer"
+            app:srcCompat="@drawable/ic_baseline_manufacturer_24" />
 
-            <ImageView
-                android:id="@+id/icon_vehicle_mileage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
-                app:layout_constraintBottom_toBottomOf="@+id/vehicle_mileage"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/vehicle_mileage"
-                app:srcCompat="@drawable/ic_baseline_mileage_24" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_manufacturer"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/manufacturer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_vehicle_manufacturer"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_type">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vehicle_mileage"
-                style="@style/Widget.MyCarMaintenance.TextInputLayout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vehicle_manufacturer_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/mileage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/icon_vehicle_mileage"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_fuel_type">
+                android:inputType="textCapWords" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/vehicle_mileage_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/icon_vehicle_model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@+id/vehicle_model"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_model"
+            app:srcCompat="@drawable/ic_baseline_model_24" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/cancel_register_button"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_model"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/model"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_vehicle_model"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_manufacturer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vehicle_model_edit_text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/side_margin"
-                android:minHeight="@dimen/button_min_height"
-                android:onClick="@{() -> vehicleRegistrationFragment.cancelRegistration()}"
-                android:text="@string/cancel"
-                app:layout_constraintEnd_toStartOf="@id/register_vehicle_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/register_vehicle_button" />
+                android:inputType="textCapWords" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/register_vehicle_button"
-                android:layout_width="0dp"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/icon_vehicle_license_plate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@+id/vehicle_license_plate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_license_plate"
+            app:srcCompat="@drawable/ic_baseline_license_24" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_license_plate"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/license_plate"
+            app:layout_constraintBottom_toTopOf="@id/vehicle_fuel_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_vehicle_license_plate"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_model">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vehicle_license_plate_edit_text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
-                android:minHeight="@dimen/button_min_height"
-                android:text="@string/register"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cancel_register_button"
-                app:layout_constraintTop_toBottomOf="@id/vehicle_mileage" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</layout>
+                android:inputType="textCapCharacters" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/icon_vehicle_fuel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@+id/vehicle_fuel_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_fuel_type"
+            app:srcCompat="@drawable/ic_baseline_fuel_type_24" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_fuel_type"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/fuel_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_vehicle_fuel"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_license_plate">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vehicle_fuel_type_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/icon_vehicle_mileage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@+id/vehicle_mileage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_mileage"
+            app:srcCompat="@drawable/ic_baseline_mileage_24" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_mileage"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mileage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_vehicle_mileage"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_fuel_type">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vehicle_mileage_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_register_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:minHeight="@dimen/button_min_height"
+            android:text="@string/cancel"
+            app:layout_constraintEnd_toStartOf="@id/register_vehicle_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/register_vehicle_button" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/register_vehicle_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:minHeight="@dimen/button_min_height"
+            android:text="@string/register"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cancel_register_button"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_mileage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -34,8 +34,6 @@ class VehicleRegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.apply {
-            vehicleRegistrationFragment = this@VehicleRegistrationFragment
-
             // Setup a click listener for the Vehicle type EditText to show a menu.
             vehicleTypeEditText.setOnClickListener {
                 showMenu(binding.vehicleTypeEditText, R.menu.popup_menu_vehicle_type)
@@ -44,6 +42,11 @@ class VehicleRegistrationFragment : Fragment() {
             // Setup a click listener for the Fuel type EditText to show a menu.
             vehicleFuelTypeEditText.setOnClickListener {
                 showMenu(binding.vehicleFuelTypeEditText, R.menu.popup_menu_fuel_type)
+            }
+
+            // Setup a click listener for the cancel button
+            cancelRegisterButton.setOnClickListener {
+                cancelRegistration()
             }
         }
 
@@ -117,8 +120,7 @@ class VehicleRegistrationFragment : Fragment() {
         val mileage = binding.vehicleMileageEditText.text.toString().toInt()
 
         val vehicle = Vehicle(type, manufacturer, model, licensePlate, fuel, mileage)
-
-        val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToVehiclesFragment()
+        val action = VehicleRegistrationFragmentDirections.actionVehicleRegistrationFragmentToHomeFragment()
         findNavController().navigate(action)
     }
 
@@ -127,7 +129,7 @@ class VehicleRegistrationFragment : Fragment() {
      */
     fun cancelRegistration() {
         clearText()
-        findNavController().navigate(R.id.action_vehicleRegistrationFragment_to_welcomeFragment)
+        findNavController().navigate(R.id.action_vehicleRegistrationFragment_to_homeFragment)
     }
 
     /**

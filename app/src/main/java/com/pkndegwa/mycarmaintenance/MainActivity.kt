@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         // Instantiate the navController using the NavHostFragment
         navController = navHostFragment.navController
 
-        val appBarConfiguration = AppBarConfiguration.Builder(R.id.welcomeFragment, R.id.vehiclesFragment).build()
+        val appBarConfiguration = AppBarConfiguration.Builder(R.id.homeFragment).build()
 
         // Make sure actions in the ActionBar get propagated to the NavController
         setupActionBarWithNavController(navController, appBarConfiguration)
