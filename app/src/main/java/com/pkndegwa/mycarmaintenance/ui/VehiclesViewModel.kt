@@ -72,9 +72,49 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
         return vehicleDao.getVehicle(id).asLiveData()
     }
 
+    /**
+     * This function deletes a Vehicle object from the database on a background thread.
+     */
     fun deleteVehicle(vehicle: Vehicle) {
         viewModelScope.launch {
             vehicleDao.deleteVehicle(vehicle)
         }
+    }
+
+    /**
+     * This function takes in a [Vehicle] object and updates the data of the existing
+     * vehicle in the database on a background thread.
+     * @param [vehicle]
+     */
+    private fun update(vehicle: Vehicle) {
+        viewModelScope.launch {
+            vehicleDao.updateVehicle(vehicle)
+        }
+
+    }
+
+    /**
+     * Converts edited vehicle details that have been entered by the user to a [Vehicle] instance
+     * and returns it.
+     * @return Vehicle
+     */
+    private fun getUpdatedVehicleEntry(vehicleId: Int, vehicleType: String, vehicleManufacturer: String, vehicleModel:
+    String, vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String): Vehicle {
+        return Vehicle(
+            id = vehicleId,
+            type = vehicleType,
+            manufacturer = vehicleManufacturer,
+            model = vehicleModel,
+            licensePlate = vehicleLicensePlate,
+            fuelType = vehicleFuelType,
+            mileage = vehicleMileage.toInt()
+        )
+    }
+
+    fun updateVehicle(vehicleId: Int, vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
+                   vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String) {
+        val updatedVehicle = getUpdatedVehicleEntry(vehicleId, vehicleType, vehicleManufacturer, vehicleModel,
+            vehicleLicensePlate, vehicleFuelType, vehicleMileage)
+        update(updatedVehicle)
     }
 }

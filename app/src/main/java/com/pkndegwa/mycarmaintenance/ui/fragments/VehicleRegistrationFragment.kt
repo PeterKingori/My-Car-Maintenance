@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
@@ -15,6 +16,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
@@ -31,6 +33,8 @@ class VehicleRegistrationFragment : Fragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
+    private val navigationArgs: VehicleDetailsFragmentArgs by navArgs()
+
     private val viewModel: VehiclesViewModel by activityViewModels {
         VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
     }
@@ -44,6 +48,20 @@ class VehicleRegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val vehicleId = navigationArgs.vehicleId
+        if (vehicleId > 0) {
+            viewModel.retrieveVehicle(vehicleId).observe(this.viewLifecycleOwner) { selectedVehicle ->
+                vehicle = selectedVehicle
+                bind(vehicle)
+            }
+        } else {
+            // Setup a click listener for the Save button.
+            binding.saveVehicleButton.setOnClickListener {
+                addNewVehicle()
+            }
+        }
+
         binding.apply {
             // Setup a click listener for the Vehicle type EditText to show a menu.
             vehicleTypeEditText.setOnClickListener {
@@ -55,14 +73,9 @@ class VehicleRegistrationFragment : Fragment() {
                 showMenu(binding.vehicleFuelTypeEditText, R.menu.popup_menu_fuel_type)
             }
 
-            // Setup a click listener for the cancel button
+            // Setup a click listener for the Cancel button.
             cancelRegisterButton.setOnClickListener {
                 cancelRegistration()
-            }
-
-            // Setup a click listener for the Register buttons.
-            saveVehicleButton.setOnClickListener {
-                addNewVehicle()
             }
         }
     }
@@ -94,6 +107,24 @@ class VehicleRegistrationFragment : Fragment() {
     }
 
     /**
+     * Sets the text field error status.
+     */
+    private fun setError(view: TextInputLayout) {
+        view.isErrorEnabled = true
+        view.error = "Fill in this field."
+    }
+
+    /**
+     * Removes the text field error stats.
+     */
+    private fun removeError(view: TextInputLayout) {
+        view.editText?.doOnTextChanged { _, _, _, _ ->
+            view.isErrorEnabled = false
+            view.error = null
+        }
+    }
+
+    /**
      * Validates user input before adding the new vehicle in the database using the ViewModel.
      */
     private fun addNewVehicle() {
@@ -117,25 +148,6 @@ class VehicleRegistrationFragment : Fragment() {
         }
     }
 
-
-    /**
-     * Sets the text field error status.
-     */
-    private fun setError(view: TextInputLayout) {
-        view.isErrorEnabled = true
-        view.error = "Fill in this field."
-    }
-
-    /**
-     * Removes the text field error stats.
-     */
-    private fun removeError(view: TextInputLayout) {
-        view.editText?.doOnTextChanged { _, _, _, _ ->
-            view.isErrorEnabled = false
-            view.error = null
-        }
-    }
-
     /**
      * Cancels the registration.
      */
@@ -155,6 +167,48 @@ class VehicleRegistrationFragment : Fragment() {
             vehicleLicensePlateEditText.text = null
             vehicleFuelTypeEditText.text = null
             vehicleMileageEditText.text = null
+        }
+    }
+
+    /**
+     * Binds the vehicle data to the TextViews when the Edit menu option has been selected in the
+     * VehicleDetailsFragment.
+     */
+    private fun bind(vehicle: Vehicle) {
+        binding.apply {
+            vehicleTypeEditText.setText(vehicle.type, TextView.BufferType.SPANNABLE)
+            vehicleManufacturerEditText.setText(vehicle.manufacturer, TextView.BufferType.SPANNABLE)
+            vehicleModelEditText.setText(vehicle.model, TextView.BufferType.SPANNABLE)
+            vehicleLicensePlateEditText.setText(vehicle.licensePlate, TextView.BufferType.SPANNABLE)
+            vehicleFuelTypeEditText.setText(vehicle.fuelType, TextView.BufferType.SPANNABLE)
+            vehicleMileageEditText.setText(vehicle.mileage.toString(), TextView.BufferType.SPANNABLE)
+
+            saveVehicleButton.setOnClickListener { updateVehicle() }
+        }
+    }
+
+    /**
+     * Validates user input before updating the vehicle details in the database using the ViewModel.
+     */
+    private fun updateVehicle() {
+        if (isEntryValid(binding.vehicleType) &&
+            isEntryValid(binding.vehicleManufacturer) &&
+            isEntryValid(binding.vehicleModel) &&
+            isEntryValid(binding.vehicleLicensePlate) &&
+            isEntryValid(binding.vehicleFuelType) &&
+            isEntryValid(binding.vehicleMileage)
+        ) {
+            viewModel.updateVehicle(
+                vehicleId = this.navigationArgs.vehicleId,
+                vehicleType = this.binding.vehicleTypeEditText.text.toString(),
+                vehicleManufacturer = this.binding.vehicleManufacturerEditText.text.toString(),
+                vehicleModel = this.binding.vehicleModelEditText.text.toString(),
+                vehicleLicensePlate = this.binding.vehicleLicensePlateEditText.text.toString(),
+                vehicleFuelType = this.binding.vehicleFuelTypeEditText.text.toString(),
+                vehicleMileage = this.binding.vehicleMileageEditText.text.toString()
+            )
+            Toast.makeText(this.context, "Vehicle updated successfully", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_vehicleRegistrationFragment_to_homeFragment)
         }
     }
 

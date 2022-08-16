@@ -20,13 +20,20 @@
     <fragment
         android:id="@+id/vehicleRegistrationFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.fragments.VehicleRegistrationFragment"
-        android:label="@string/register_vehicle"
+        android:label="{title}"
         tools:layout="@layout/fragment_vehicle_registration">
         <action
             android:id="@+id/action_vehicleRegistrationFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="vehicle_id"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/vehicleDetailsFragment"
@@ -36,5 +43,8 @@
         <argument
             android:name="vehicle_id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_vehicleDetailsFragment_to_vehicleRegistrationFragment"
+            app:destination="@id/vehicleRegistrationFragment" />
     </fragment>
 </navigation>

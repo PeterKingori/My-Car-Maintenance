@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
+import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.adapter.VehicleListAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentHomeBinding
 import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModel
@@ -44,7 +45,9 @@ class HomeFragment : Fragment() {
         }
 
         binding.newVehicleFab.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToVehicleRegistrationFragment()
+            val action = HomeFragmentDirections.actionHomeFragmentToVehicleRegistrationFragment(
+                getString(R.string.register_vehicle)
+            )
             this.findNavController().navigate(action)
         }
     }

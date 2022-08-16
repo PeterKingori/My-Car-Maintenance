@@ -50,12 +50,16 @@ class VehicleDetailsFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                when (menuItem.itemId) {
+                return when (menuItem.itemId) {
                     R.id.delete_option -> {
                         showConfirmationDialog()
-                        return true
+                        true
                     }
-                    else -> return false
+                    R.id.edit_option -> {
+                        editVehicle()
+                        true
+                    }
+                    else -> false
                 }
             }
 
@@ -78,6 +82,17 @@ class VehicleDetailsFragment : Fragment() {
             fuelText.text = vehicle.fuelType
             mileageText.text = vehicle.mileage.toString()
         }
+    }
+
+    /**
+     * Allows the user to edit vehicle details.
+     */
+    private fun editVehicle() {
+        val action = VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToVehicleRegistrationFragment(
+            getString(R.string.edit_fragment_title),
+            vehicle.id
+        )
+        this.findNavController().navigate(action)
     }
 
     /**
