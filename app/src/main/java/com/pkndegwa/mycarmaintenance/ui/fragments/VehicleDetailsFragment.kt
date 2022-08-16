@@ -50,10 +50,13 @@ class VehicleDetailsFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId == R.id.delete_option) {
-                    showConfirmationDialog()
+                when (menuItem.itemId) {
+                    R.id.delete_option -> {
+                        showConfirmationDialog()
+                        return true
+                    }
+                    else -> return false
                 }
-                return true
             }
 
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)

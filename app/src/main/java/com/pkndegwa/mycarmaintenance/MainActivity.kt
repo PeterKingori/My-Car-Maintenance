@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.pkndegwa.mycarmaintenance.databinding.ActivityMainBinding
 
 /**
@@ -26,10 +25,8 @@ class MainActivity : AppCompatActivity() {
         // Instantiate the navController using the NavHostFragment
         navController = navHostFragment.navController
 
-        val appBarConfiguration = AppBarConfiguration.Builder(R.id.homeFragment).build()
-
         // Make sure actions in the ActionBar get propagated to the NavController
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        setupActionBarWithNavController(this, navController)
     }
 
     /**
