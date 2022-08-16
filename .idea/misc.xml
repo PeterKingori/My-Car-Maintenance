@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_build_24.xml" value="0.318" />
         <entry key="app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.312" />
         <entry key="app/src/main/res/drawable/ic_baseline_chassis_number_24.xml" value="0.248" />
+        <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.332" />
         <entry key="app/src/main/res/drawable/ic_baseline_directions_bike_24.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_baseline_directions_bus_24.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_baseline_directions_car_24.xml" value="0.318" />
@@ -45,6 +46,7 @@
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3958333333333333" />
         <entry key="app/src/main/res/menu/popup_menu.xml" value="0.3958333333333333" />
         <entry key="app/src/main/res/menu/popup_menu_fuel_type.xml" value="0.3958333333333333" />
+        <entry key="app/src/main/res/menu/vehicle_details_menu.xml" value="0.396875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3845" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3845" />
       </map>

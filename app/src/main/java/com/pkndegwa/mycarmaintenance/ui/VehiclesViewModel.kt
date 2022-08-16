@@ -72,4 +72,9 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
         return vehicleDao.getVehicle(id).asLiveData()
     }
 
+    fun deleteVehicle(vehicle: Vehicle) {
+        viewModelScope.launch {
+            vehicleDao.deleteVehicle(vehicle)
+        }
+    }
 }

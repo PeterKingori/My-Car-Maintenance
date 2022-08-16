@@ -1,12 +1,15 @@
 package com.pkndegwa.mycarmaintenance.ui.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.data.model.Vehicle
@@ -39,6 +42,22 @@ class VehicleDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.clear()
+                menuInflater.inflate(R.menu.vehicle_details_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                if (menuItem.itemId == R.id.delete_option) {
+                    showConfirmationDialog()
+                }
+                return true
+            }
+
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
         val vehicleId = navigationArgs.vehicleId
         viewModel.retrieveVehicle(vehicleId).observe(this.viewLifecycleOwner) { selectedVehicle ->
             vehicle = selectedVehicle
@@ -46,6 +65,9 @@ class VehicleDetailsFragment : Fragment() {
         }
     }
 
+    /**
+     * Binds the vehicle data retrieved using the ViewModel to the TextViews in the Vehicle Details layout.
+     */
     private fun bind(vehicle: Vehicle) {
         binding.apply {
             vehicleManufacturerAndModel.text = getString(R.string.vehicle_name, vehicle.manufacturer, vehicle.model)
@@ -53,6 +75,28 @@ class VehicleDetailsFragment : Fragment() {
             fuelText.text = vehicle.fuelType
             mileageText.text = vehicle.mileage.toString()
         }
+    }
+
+    /**
+     * Displays an alert dialog to get the user's confirmation before deleting the item.
+     */
+    private fun showConfirmationDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setMessage(getString(R.string.delete_question))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.cancel), null)
+            .setPositiveButton(getString(R.string.delete)) { _, _ ->
+                deleteVehicle()
+            }
+            .show()
+    }
+
+    /**
+     * Deletes the current vehicle and navigates to the Home Fragment.
+     */
+    private fun deleteVehicle() {
+        viewModel.deleteVehicle(vehicle)
+        this.findNavController().navigateUp()
     }
 
     /**
