@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
  * The [ViewModel] that is attached to the VehiclesFragment.
  */
 class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
+
     val allVehicles: LiveData<List<Vehicle>> = vehicleDao.getAllVehicles().asLiveData()
 
     /**
@@ -61,6 +62,14 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
             return false
         }
         return true
+    }
+
+    /**
+     * This function retrieves the vehicle details from the database based on the vehicle [id].
+     * @return LiveData<Vehicle>
+     */
+    fun retrieveVehicle(id: Int): LiveData<Vehicle> {
+        return vehicleDao.getVehicle(id).asLiveData()
     }
 
 }

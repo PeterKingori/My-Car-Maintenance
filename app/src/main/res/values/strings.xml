@@ -16,6 +16,8 @@
     <string name="image_of_vehicle">Image of vehicle</string>
     <string name="fuel">Fuel</string>
     <string name="vehicle_name">%s %s</string>
+    <string name="new_vehicle_fab">Add new vehicle</string>
+    <string name="vehicle_details">Vehicle Details</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>
@@ -29,7 +31,5 @@
     <string name="electric">Electric</string>
     <string name="liquefied_petroleum_gas">Liquefied Petroleum Gas (LPG)</string>
     <string name="compressed_natural_gas">Compressed Natural Gas (CNG)</string>
-    <string name="new_vehicle_fab">Add new vehicle</string>
-
 
 </resources>

@@ -31,6 +31,10 @@
     <fragment
         android:id="@+id/vehicleDetailsFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.fragments.VehicleDetailsFragment"
-        android:label="Vehicle Details"
-        tools:layout="@layout/fragment_vehicle_details" />
+        android:label="@string/vehicle_details"
+        tools:layout="@layout/fragment_vehicle_details">
+        <argument
+            android:name="vehicle_id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

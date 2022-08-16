@@ -25,6 +25,7 @@ class HomeFragment : Fragment() {
     private val viewModel: VehiclesViewModel by activityViewModels {
         VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
     }
+
     private lateinit var vehicleListAdapter: VehicleListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -38,6 +39,10 @@ class HomeFragment : Fragment() {
 
         setupRecyclerView()
 
+        viewModel.allVehicles.observe(this.viewLifecycleOwner) { vehicles ->
+            vehicleListAdapter.submitList(vehicles)
+        }
+
         binding.newVehicleFab.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToVehicleRegistrationFragment()
             this.findNavController().navigate(action)
@@ -46,16 +51,13 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         vehicleListAdapter = VehicleListAdapter {
-            this.findNavController()
+            val action = HomeFragmentDirections.actionHomeFragmentToVehicleDetailsFragment(it.id)
+            this.findNavController().navigate(action)
         }
 
         binding.vehiclesListRecyclerView.apply {
             adapter = vehicleListAdapter
             layoutManager = LinearLayoutManager(this.context)
-        }
-
-        viewModel.allVehicles.observe(this.viewLifecycleOwner) { vehicles ->
-            vehicleListAdapter.submitList(vehicles)
         }
     }
 

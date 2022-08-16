@@ -9,7 +9,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="12dp">
 
         <ImageView
             android:id="@+id/vehicle_image"
@@ -47,7 +50,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="12dp">
+                android:padding="8dp">
 
                 <LinearLayout
                     android:id="@+id/left_layout"
@@ -55,6 +58,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
                     android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -66,6 +70,8 @@
                         android:paddingEnd="8dp"
                         android:text="@string/license_plate"
                         android:textAppearance="?attr/textAppearanceBody2"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
                         tools:text="License Plate" />
 
                     <TextView
@@ -74,6 +80,7 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
+                        android:textAppearance="?attr/textAppearanceBody2"
                         tools:text="KAE 123J" />
 
                     <TextView
@@ -85,6 +92,8 @@
                         android:paddingEnd="8dp"
                         android:text="@string/fuel"
                         android:textAppearance="?attr/textAppearanceBody2"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
                         tools:text="Fuel" />
 
                     <TextView
@@ -93,8 +102,8 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
+                        android:textAppearance="?attr/textAppearanceBody2"
                         tools:text="Petrol" />
-
 
                 </LinearLayout>
 
@@ -115,6 +124,8 @@
                         android:paddingEnd="8dp"
                         android:text="@string/mileage"
                         android:textAppearance="?attr/textAppearanceBody2"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
                         tools:text="Mileage" />
 
                     <TextView
@@ -124,10 +135,10 @@
                         android:layout_marginEnd="122dp"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
+                        android:textAppearance="?attr/textAppearanceBody2"
                         tools:text="12,0km" />
 
                 </LinearLayout>
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
