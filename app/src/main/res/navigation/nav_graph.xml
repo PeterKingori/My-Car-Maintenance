@@ -46,5 +46,10 @@
         <action
             android:id="@+id/action_vehicleDetailsFragment_to_vehicleRegistrationFragment"
             app:destination="@id/vehicleRegistrationFragment" />
+        <action
+            android:id="@+id/action_vehicleDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

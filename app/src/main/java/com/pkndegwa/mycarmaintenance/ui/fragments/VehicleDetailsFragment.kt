@@ -114,7 +114,8 @@ class VehicleDetailsFragment : Fragment() {
      */
     private fun deleteVehicle() {
         viewModel.deleteVehicle(vehicle)
-        this.findNavController().navigateUp()
+        val action = VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToHomeFragment()
+        this.findNavController().navigate(action)
     }
 
     /**

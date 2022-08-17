@@ -14,6 +14,7 @@ import com.pkndegwa.mycarmaintenance.adapter.VehicleListAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentHomeBinding
 import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModel
 import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModelFactory
+import com.pkndegwa.mycarmaintenance.utils.EmptyDataObserver
 
 /**
  * [HomeFragment] allows a user to click a button to register a vehicle.
@@ -28,6 +29,7 @@ class HomeFragment : Fragment() {
     }
 
     private lateinit var vehicleListAdapter: VehicleListAdapter
+    private lateinit var emptyDataView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Retrieve and inflate the layout for this fragment
@@ -38,11 +40,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
+        emptyDataView = view.findViewById(R.id.empty_data_parent)
 
-        viewModel.allVehicles.observe(this.viewLifecycleOwner) { vehicles ->
-            vehicleListAdapter.submitList(vehicles)
-        }
+        setupRecyclerView()
 
         binding.newVehicleFab.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToVehicleRegistrationFragment(
@@ -61,6 +61,13 @@ class HomeFragment : Fragment() {
         binding.vehiclesListRecyclerView.apply {
             adapter = vehicleListAdapter
             layoutManager = LinearLayoutManager(this.context)
+        }
+
+        viewModel.allVehicles.observe(this.viewLifecycleOwner) { vehicles ->
+            vehicleListAdapter.submitList(vehicles)
+            val emptyDataObserver = EmptyDataObserver(vehicles.isEmpty(), binding.vehiclesListRecyclerView,
+                emptyDataView)
+            vehicleListAdapter.registerAdapterDataObserver(emptyDataObserver)
         }
     }
 

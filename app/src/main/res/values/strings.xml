@@ -2,7 +2,7 @@
     <string name="app_name">My Car Maintenance</string>
     <string name="welcome">Welcome!</string>
     <string name="car_tow_image">Image of car being towed</string>
-    <string name="add_vehicle_text">Add your first vehicle.</string>
+    <string name="add_vehicle_text">Add your first vehicle by clicking on the bottom right add button.</string>
     <string name="add_vehicle_button">Add vehicle</string>
     <string name="vehicle_type">Vehicle Type</string>
     <string name="manufacturer">Manufacturer</string>
