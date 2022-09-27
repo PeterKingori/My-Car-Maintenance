@@ -1,5 +1,6 @@
 package com.pkndegwa.mycarmaintenance.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.pkndegwa.mycarmaintenance.data.model.Vehicle
 import kotlinx.coroutines.flow.Flow
@@ -19,5 +20,5 @@ interface VehicleDao {
     fun getVehicle(id: Int): Flow<Vehicle>
 
     @Query("SELECT * FROM vehicles ORDER BY manufacturer ASC")
-    fun getAllVehicles(): Flow<List<Vehicle>>
+    fun getAllVehicles(): LiveData<List<Vehicle>>
 }

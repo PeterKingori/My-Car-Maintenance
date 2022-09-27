@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
  */
 class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
 
-    val allVehicles: LiveData<List<Vehicle>> = vehicleDao.getAllVehicles().asLiveData()
+    fun getAllVehicles() = vehicleDao.getAllVehicles()
 
     /**
      * This function takes in a [Vehicle] object and adds the data to the database
@@ -31,8 +31,10 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      * and returns it.
      * @return Vehicle
      */
-    private fun createNewVehicleEntry(vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
-                                      vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String): Vehicle {
+    private fun createNewVehicleEntry(
+        vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
+        vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String
+    ): Vehicle {
         return Vehicle(
             type = vehicleType,
             manufacturer = vehicleManufacturer,
@@ -47,10 +49,14 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      * Public function that takes in vehicle details, gets a new [Vehicle] instance,
      * and passes the information to [insertVehicle] to be saved to the database.
      */
-    fun addNewVehicle(vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
-                      vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String) {
-        val newVehicle = createNewVehicleEntry(vehicleType, vehicleManufacturer, vehicleModel,
-            vehicleLicensePlate, vehicleFuelType, vehicleMileage)
+    fun addNewVehicle(
+        vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
+        vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String
+    ) {
+        val newVehicle = createNewVehicleEntry(
+            vehicleType, vehicleManufacturer, vehicleModel,
+            vehicleLicensePlate, vehicleFuelType, vehicleMileage
+        )
         insertVehicle(newVehicle)
     }
 
@@ -68,8 +74,8 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      * This function retrieves the vehicle details from the database based on the vehicle [id].
      * @return LiveData<Vehicle>
      */
-    fun retrieveVehicle(id: Int): LiveData<Vehicle> {
-        return vehicleDao.getVehicle(id).asLiveData()
+    fun retrieveVehicle(id: Int?): LiveData<Vehicle>? {
+        return id?.let { vehicleDao.getVehicle(it).asLiveData() }
     }
 
     /**
@@ -98,8 +104,10 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      * and returns it.
      * @return Vehicle
      */
-    private fun getUpdatedVehicleEntry(vehicleId: Int, vehicleType: String, vehicleManufacturer: String, vehicleModel:
-    String, vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String): Vehicle {
+    private fun getUpdatedVehicleEntry(
+        vehicleId: Int, vehicleType: String, vehicleManufacturer: String, vehicleModel:
+        String, vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String
+    ): Vehicle {
         return Vehicle(
             id = vehicleId,
             type = vehicleType,
@@ -111,10 +119,14 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
         )
     }
 
-    fun updateVehicle(vehicleId: Int, vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
-                   vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String) {
-        val updatedVehicle = getUpdatedVehicleEntry(vehicleId, vehicleType, vehicleManufacturer, vehicleModel,
-            vehicleLicensePlate, vehicleFuelType, vehicleMileage)
+    fun updateVehicle(
+        vehicleId: Int, vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
+        vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String
+    ) {
+        val updatedVehicle = getUpdatedVehicleEntry(
+            vehicleId, vehicleType, vehicleManufacturer, vehicleModel,
+            vehicleLicensePlate, vehicleFuelType, vehicleMileage
+        )
         update(updatedVehicle)
     }
 }

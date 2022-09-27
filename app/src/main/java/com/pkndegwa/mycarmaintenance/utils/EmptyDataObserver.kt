@@ -1,23 +1,23 @@
 package com.pkndegwa.mycarmaintenance.utils
 
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class EmptyDataObserver(
-    private val isEmpty: Boolean, private val recyclerView: RecyclerView?, private val emptyView: View?) :
-    RecyclerView.AdapterDataObserver() {
+class EmptyDataObserver(private val recyclerView: RecyclerView?, private val emptyView: View?): RecyclerView
+.AdapterDataObserver() {
 
     init {
         checkIfEmpty()
     }
 
     private fun checkIfEmpty() {
-        emptyView?.visibility = if (isEmpty) View.VISIBLE else View.GONE
+        if (emptyView != null && recyclerView!!.adapter != null) {
+            val emptyViewVisible = recyclerView.adapter!!.itemCount == 0
 
-        recyclerView?.visibility = if (isEmpty) View.GONE else View.VISIBLE
+            emptyView.visibility = if (emptyViewVisible) View.VISIBLE else View.GONE
 
-        Log.d("EmptyDataObserver", "Empty checked")
+            recyclerView.visibility = if (emptyViewVisible) View.GONE else View.VISIBLE
+        }
     }
 
     override fun onChanged() {
@@ -25,13 +25,4 @@ class EmptyDataObserver(
         checkIfEmpty()
     }
 
-    override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
-        super.onItemRangeChanged(positionStart, itemCount)
-        checkIfEmpty()
-    }
-
-    override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
-        super.onItemRangeRemoved(positionStart, itemCount)
-        checkIfEmpty()
-    }
 }

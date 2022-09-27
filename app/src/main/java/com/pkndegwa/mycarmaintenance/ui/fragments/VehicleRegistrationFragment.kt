@@ -51,7 +51,7 @@ class VehicleRegistrationFragment : Fragment() {
 
         val vehicleId = navigationArgs.vehicleId
         if (vehicleId > 0) {
-            viewModel.retrieveVehicle(vehicleId).observe(this.viewLifecycleOwner) { selectedVehicle ->
+            viewModel.retrieveVehicle(vehicleId)?.observe(this.viewLifecycleOwner) { selectedVehicle ->
                 vehicle = selectedVehicle
                 bind(vehicle)
             }

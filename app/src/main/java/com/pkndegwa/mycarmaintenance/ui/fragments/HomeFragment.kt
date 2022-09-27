@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
@@ -21,6 +22,7 @@ import com.pkndegwa.mycarmaintenance.utils.EmptyDataObserver
  */
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
+
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
@@ -42,7 +44,7 @@ class HomeFragment : Fragment() {
 
         emptyDataView = view.findViewById(R.id.empty_data_parent)
 
-        setupRecyclerView()
+        setupRecyclerView(view)
 
         binding.newVehicleFab.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToVehicleRegistrationFragment(
@@ -52,21 +54,20 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupRecyclerView() {
+    private fun setupRecyclerView(view: View) {
         vehicleListAdapter = VehicleListAdapter {
             val action = HomeFragmentDirections.actionHomeFragmentToVehicleDetailsFragment(it.id)
-            this.findNavController().navigate(action)
+            view.findNavController().navigate(action)
         }
 
         binding.vehiclesListRecyclerView.apply {
-            adapter = vehicleListAdapter
             layoutManager = LinearLayoutManager(this.context)
+            adapter = vehicleListAdapter
         }
 
-        viewModel.allVehicles.observe(this.viewLifecycleOwner) { vehicles ->
+        viewModel.getAllVehicles().observe(viewLifecycleOwner) { vehicles ->
             vehicleListAdapter.submitList(vehicles)
-            val emptyDataObserver = EmptyDataObserver(vehicles.isEmpty(), binding.vehiclesListRecyclerView,
-                emptyDataView)
+            val emptyDataObserver = EmptyDataObserver(binding.vehiclesListRecyclerView, emptyDataView)
             vehicleListAdapter.registerAdapterDataObserver(emptyDataObserver)
         }
     }

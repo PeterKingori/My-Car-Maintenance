@@ -22,6 +22,7 @@ import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModelFactory
  */
 class VehicleDetailsFragment : Fragment() {
     private var _binding: FragmentVehicleDetailsBinding? = null
+
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
@@ -66,7 +67,7 @@ class VehicleDetailsFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         val vehicleId = navigationArgs.vehicleId
-        viewModel.retrieveVehicle(vehicleId).observe(this.viewLifecycleOwner) { selectedVehicle ->
+        viewModel.retrieveVehicle(vehicleId)?.observe(this.viewLifecycleOwner) { selectedVehicle ->
             vehicle = selectedVehicle
             bind(vehicle)
         }
