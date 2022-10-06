@@ -131,6 +131,7 @@ class VehicleRegistrationFragment : Fragment() {
         if (isEntryValid(binding.vehicleType) &&
             isEntryValid(binding.vehicleManufacturer) &&
             isEntryValid(binding.vehicleModel) &&
+            isEntryValid(binding.vehicleModelYear) &&
             isEntryValid(binding.vehicleLicensePlate) &&
             isEntryValid(binding.vehicleFuelType) &&
             isEntryValid(binding.vehicleMileage)
@@ -139,6 +140,7 @@ class VehicleRegistrationFragment : Fragment() {
                 vehicleType = binding.vehicleTypeEditText.text.toString(),
                 vehicleManufacturer = binding.vehicleManufacturerEditText.text.toString(),
                 vehicleModel = binding.vehicleModelEditText.text.toString(),
+                vehicleModelYear = binding.vehicleModelYearEditText.text.toString(),
                 vehicleLicensePlate = binding.vehicleLicensePlateEditText.text.toString(),
                 vehicleFuelType = binding.vehicleFuelTypeEditText.text.toString(),
                 vehicleMileage = binding.vehicleMileageEditText.text.toString()
@@ -164,6 +166,7 @@ class VehicleRegistrationFragment : Fragment() {
             vehicleTypeEditText.text = null
             vehicleManufacturerEditText.text = null
             vehicleModelEditText.text = null
+            vehicleModelYearEditText.text = null
             vehicleLicensePlateEditText.text = null
             vehicleFuelTypeEditText.text = null
             vehicleMileageEditText.text = null
@@ -179,6 +182,7 @@ class VehicleRegistrationFragment : Fragment() {
             vehicleTypeEditText.setText(vehicle.type, TextView.BufferType.SPANNABLE)
             vehicleManufacturerEditText.setText(vehicle.manufacturer, TextView.BufferType.SPANNABLE)
             vehicleModelEditText.setText(vehicle.model, TextView.BufferType.SPANNABLE)
+            vehicleModelYearEditText.setText(vehicle.modelYear.toString(), TextView.BufferType.SPANNABLE)
             vehicleLicensePlateEditText.setText(vehicle.licensePlate, TextView.BufferType.SPANNABLE)
             vehicleFuelTypeEditText.setText(vehicle.fuelType, TextView.BufferType.SPANNABLE)
             vehicleMileageEditText.setText(vehicle.mileage.toString(), TextView.BufferType.SPANNABLE)
@@ -194,6 +198,7 @@ class VehicleRegistrationFragment : Fragment() {
         if (isEntryValid(binding.vehicleType) &&
             isEntryValid(binding.vehicleManufacturer) &&
             isEntryValid(binding.vehicleModel) &&
+            isEntryValid(binding.vehicleModelYear) &&
             isEntryValid(binding.vehicleLicensePlate) &&
             isEntryValid(binding.vehicleFuelType) &&
             isEntryValid(binding.vehicleMileage)
@@ -203,6 +208,7 @@ class VehicleRegistrationFragment : Fragment() {
                 vehicleType = this.binding.vehicleTypeEditText.text.toString(),
                 vehicleManufacturer = this.binding.vehicleManufacturerEditText.text.toString(),
                 vehicleModel = this.binding.vehicleModelEditText.text.toString(),
+                vehicleModelYear = this.binding.vehicleModelYearEditText.text.toString(),
                 vehicleLicensePlate = this.binding.vehicleLicensePlateEditText.text.toString(),
                 vehicleFuelType = this.binding.vehicleFuelTypeEditText.text.toString(),
                 vehicleMileage = this.binding.vehicleMileageEditText.text.toString()

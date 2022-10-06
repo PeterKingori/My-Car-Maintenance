@@ -26,6 +26,7 @@ class VehicleListAdapter(private val onItemClicked: (Vehicle) -> Unit) :
                 vehicleName.text = context.getString(R.string.vehicle_name, vehicle.manufacturer, vehicle.model)
                 vehicleLicense.text = vehicle.licensePlate
                 vehicleOdometer.text = vehicle.mileage.toString()
+                vehicleModelYear.text = vehicle.modelYear.toString()
             }
         }
     }

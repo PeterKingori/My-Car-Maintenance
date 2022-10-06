@@ -136,7 +136,29 @@
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
                         android:textAppearance="?attr/textAppearanceBody2"
-                        tools:text="12,0km" />
+                        tools:text="1200km" />
+
+                    <TextView
+                        android:id="@+id/model_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="@string/model_year"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="Model Year" />
+
+                    <TextView
+                        android:id="@+id/model_year_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        tools:text="2014" />
 
                 </LinearLayout>
 

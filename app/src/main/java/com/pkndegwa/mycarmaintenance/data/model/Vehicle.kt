@@ -17,6 +17,8 @@ data class Vehicle(
     val manufacturer: String,
     @ColumnInfo(name = "model")
     val model: String,
+    @ColumnInfo(name = "model_year")
+    val modelYear: Int,
     @ColumnInfo(name = "license_plate")
     val licensePlate: String,
     @ColumnInfo(name = "fuel_type")

@@ -82,6 +82,7 @@ class VehicleDetailsFragment : Fragment() {
             licenseText.text = vehicle.licensePlate
             fuelText.text = vehicle.fuelType
             mileageText.text = vehicle.mileage.toString()
+            modelYearText.text = vehicle.modelYear.toString()
         }
     }
 
