@@ -36,6 +36,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.pkndegwa.mycarmaintenance'
 }
 
 dependencies {

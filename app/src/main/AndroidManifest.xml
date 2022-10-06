@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pkndegwa.mycarmaintenance">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:name=".CarMaintenanceApplication"
@@ -11,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCarMaintenance">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
