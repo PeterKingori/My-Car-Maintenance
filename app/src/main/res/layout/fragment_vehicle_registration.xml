@@ -101,6 +101,35 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
+            android:id="@+id/icon_vehicle_model_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@+id/vehicle_model_year"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_model_year"
+            app:srcCompat="@drawable/ic_baseline_calendar_24" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_model_year"
+            style="@style/Widget.MyCarMaintenance.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/model_year"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_vehicle_model_year"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_model">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vehicle_model_year_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
             android:id="@+id/icon_vehicle_license_plate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -119,7 +148,7 @@
             app:layout_constraintBottom_toTopOf="@id/vehicle_fuel_type"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/icon_vehicle_license_plate"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_model">
+            app:layout_constraintTop_toBottomOf="@id/vehicle_model_year">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/vehicle_license_plate_edit_text"
