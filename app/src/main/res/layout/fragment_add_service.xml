@@ -1,13 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.AddServiceFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/large_text" />
-</androidx.core.widget.NestedScrollView>
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/services_text"
+            style="@style/Widget.MyCarMaintenance.ServiceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/services"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/services_chip_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:chipSpacing="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/services_text">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MyCarMaintenance.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/air_conditioning" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MyCarMaintenance.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/air_filter" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MyCarMaintenance.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/battery" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MyCarMaintenance.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/brake_pads" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MyCarMaintenance.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/engine_oil_change" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MyCarMaintenance.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/inspection" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MyCarMaintenance.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/oil_filter" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MyCarMaintenance.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/spark_plugs" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MyCarMaintenance.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tire_change" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MyCarMaintenance.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wheel_alignment" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/add_new_service_chip"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_new"
+                app:chipIcon="@drawable/ic_baseline_add_circle_24"
+                app:chipIconTint="?attr/colorSecondary" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/mileage_text"
+            style="@style/Widget.MyCarMaintenance.ServiceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/mileage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/services_chip_group" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/current_mileage"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:hint="@string/current_mileage"
+            app:layout_constraintEnd_toStartOf="@id/next_service_mileage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mileage_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/current_mileage_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/next_service_mileage"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:hint="@string/next_service_mileage"
+            app:layout_constraintBottom_toBottomOf="@id/current_mileage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/current_mileage"
+            app:layout_constraintTop_toTopOf="@id/current_mileage">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/next_service_mileage_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/total_cost_text"
+            style="@style/Widget.MyCarMaintenance.ServiceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/total_cost"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/current_mileage" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/total_cost"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/amount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/total_cost_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/total_cost_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/service_date_text"
+            style="@style/Widget.MyCarMaintenance.ServiceTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/service_date"
+            app:layout_constraintEnd_toStartOf="@id/next_service_date_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/total_cost" />
+
+        <TextView
+            android:id="@+id/next_service_date_text"
+            style="@style/Widget.MyCarMaintenance.ServiceTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/next_service"
+            app:layout_constraintBottom_toBottomOf="@id/service_date_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/service_date_text"
+            app:layout_constraintTop_toTopOf="@id/service_date_text" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/service_date_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:minHeight="@dimen/button_min_height"
+            android:padding="12dp"
+            android:text="15 Oct 2022"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/black"
+            app:backgroundTint="#E8E8E8"
+            app:icon="@drawable/ic_baseline_calendar_24"
+            app:iconTint="@color/dark_gray"
+            app:layout_constraintEnd_toStartOf="@id/next_service_date_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/service_date_text" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_service_date_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:minHeight="@dimen/button_min_height"
+            android:padding="12dp"
+            android:text="01 March 2023"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/black"
+            app:backgroundTint="#E8E8E8"
+            app:icon="@drawable/ic_baseline_calendar_24"
+            app:iconTint="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/service_date_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/service_date_button"
+            app:layout_constraintTop_toTopOf="@id/service_date_button" />
+
+        <TextView
+            android:id="@+id/notes_text"
+            style="@style/Widget.MyCarMaintenance.ServiceTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/notes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/service_date_button" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/notes"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/notes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notes_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/notes_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionDone"
+                android:inputType="text|textCapSentences|textMultiLine"
+                android:minLines="2" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_service_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:minHeight="@dimen/button_min_height"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notes" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
