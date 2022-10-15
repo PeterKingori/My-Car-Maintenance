@@ -165,5 +165,25 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <Button
+            android:id="@+id/add_new_service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="#E9E9ED"
+            android:minHeight="@dimen/button_min_height"
+            android:text="@string/add_new_service"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_baseline_build_24"
+            app:iconTint="?attr/colorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_specs" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
