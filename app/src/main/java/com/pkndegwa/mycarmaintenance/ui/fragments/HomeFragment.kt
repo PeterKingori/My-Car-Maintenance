@@ -13,8 +13,8 @@ import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.adapter.VehicleListAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentHomeBinding
-import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModel
-import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModelFactory
+import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
+import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModelFactory
 import com.pkndegwa.mycarmaintenance.utils.EmptyDataObserver
 
 /**

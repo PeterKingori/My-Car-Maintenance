@@ -1,4 +1,4 @@
-package com.pkndegwa.mycarmaintenance.ui
+package com.pkndegwa.mycarmaintenance.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

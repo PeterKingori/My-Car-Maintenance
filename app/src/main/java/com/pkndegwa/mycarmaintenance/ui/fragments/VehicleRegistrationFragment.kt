@@ -22,8 +22,8 @@ import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
-import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModel
-import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModelFactory
+import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
+import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModelFactory
 
 /**
  * [VehicleRegistrationFragment] allows a user to add details of a vehicle to be registered.
