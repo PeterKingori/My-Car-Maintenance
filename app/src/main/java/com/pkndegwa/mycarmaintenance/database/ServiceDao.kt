@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ServiceDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addService(service: Service)
+    suspend fun insertService(service: Service)
 
     @Update
     suspend fun updateService(service: Service)

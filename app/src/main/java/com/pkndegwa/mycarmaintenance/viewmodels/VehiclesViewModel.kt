@@ -97,7 +97,6 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
         viewModelScope.launch {
             vehicleDao.updateVehicle(vehicle)
         }
-
     }
 
     /**
@@ -121,9 +120,19 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
         )
     }
 
+    /**
+     * Public function that takes in updated vehicle details, gets an updated [Vehicle] instance,
+     * and passes the information to [update] to be updated in the database.
+     */
     fun updateVehicle(
-        vehicleId: Int, vehicleType: String, vehicleManufacturer: String, vehicleModel: String, vehicleModelYear: String,
-        vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String
+        vehicleId: Int,
+        vehicleType: String,
+        vehicleManufacturer: String,
+        vehicleModel: String,
+        vehicleModelYear: String,
+        vehicleLicensePlate: String,
+        vehicleFuelType: String,
+        vehicleMileage: String
     ) {
         val updatedVehicle = getUpdatedVehicleEntry(
             vehicleId, vehicleType, vehicleManufacturer, vehicleModel, vehicleModelYear,
