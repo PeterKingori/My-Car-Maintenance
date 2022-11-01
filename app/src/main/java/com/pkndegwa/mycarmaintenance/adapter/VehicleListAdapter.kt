@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pkndegwa.mycarmaintenance.R
-import com.pkndegwa.mycarmaintenance.data.model.Vehicle
+import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.databinding.VehiclesListItemBinding
 
 /**

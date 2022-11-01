@@ -2,7 +2,7 @@ package com.pkndegwa.mycarmaintenance.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.pkndegwa.mycarmaintenance.data.VehicleDao
+import com.pkndegwa.mycarmaintenance.database.VehicleDao
 
 class VehiclesViewModelFactory(private val vehicleDao: VehicleDao): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

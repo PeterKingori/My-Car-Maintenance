@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.pkndegwa.mycarmaintenance.data.VehicleDao
-import com.pkndegwa.mycarmaintenance.data.model.Vehicle
+import com.pkndegwa.mycarmaintenance.database.VehicleDao
+import com.pkndegwa.mycarmaintenance.models.Vehicle
 import kotlinx.coroutines.launch
 
 /**

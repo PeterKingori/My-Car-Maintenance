@@ -1,13 +1,13 @@
-package com.pkndegwa.mycarmaintenance.data
+package com.pkndegwa.mycarmaintenance.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.pkndegwa.mycarmaintenance.data.model.Vehicle
+import com.pkndegwa.mycarmaintenance.models.Vehicle
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface VehicleDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertVehicle(vehicle: Vehicle)
 
     @Update

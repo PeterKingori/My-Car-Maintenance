@@ -20,7 +20,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
-import com.pkndegwa.mycarmaintenance.data.model.Vehicle
+import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
 import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModel
 import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModelFactory

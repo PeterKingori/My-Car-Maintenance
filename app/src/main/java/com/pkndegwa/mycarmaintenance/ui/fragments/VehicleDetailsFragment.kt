@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
-import com.pkndegwa.mycarmaintenance.data.model.Vehicle
+import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleDetailsBinding
 import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModel
 import com.pkndegwa.mycarmaintenance.ui.VehiclesViewModelFactory
