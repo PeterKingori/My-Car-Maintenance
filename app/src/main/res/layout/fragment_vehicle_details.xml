@@ -186,5 +186,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_specs" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/services_list_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_new_service"
+            tools:listitem="@layout/service_list_item" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

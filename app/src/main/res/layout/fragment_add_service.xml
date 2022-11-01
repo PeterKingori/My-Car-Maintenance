@@ -128,7 +128,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColorHint="#757575" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,7 +150,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColorHint="#757575" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -179,7 +181,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:imeOptions="actionDone"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColorHint="#757575" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView

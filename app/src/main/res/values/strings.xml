@@ -58,5 +58,6 @@
     <string name="service_date">Service Date</string>
     <string name="next_service">Next Service</string>
     <string name="notes">Notes</string>
+    <string name="expand_more_button">Press to expand and see details</string>
 
 </resources>
