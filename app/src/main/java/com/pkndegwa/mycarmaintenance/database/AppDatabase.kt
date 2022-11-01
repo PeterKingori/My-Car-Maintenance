@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 
-@Database(entities = [Vehicle::class], version = 2)
+@Database(entities = [Vehicle::class, Service::class], version = 3)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun vehicleDao(): VehicleDao
+    abstract fun serviceDao(): ServiceDao
 
     companion object {
         @Volatile
