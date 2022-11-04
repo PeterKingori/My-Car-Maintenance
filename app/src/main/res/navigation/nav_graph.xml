@@ -59,5 +59,9 @@
         android:id="@+id/addServiceFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.fragments.AddServiceFragment"
         android:label="@string/add_new_service"
-        tools:layout="@layout/fragment_add_service" />
+        tools:layout="@layout/fragment_add_service" >
+        <argument
+            android:name="vehicle_id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -35,7 +35,7 @@ class VehicleRegistrationFragment : Fragment() {
 
     private val navigationArgs: VehicleDetailsFragmentArgs by navArgs()
 
-    private val viewModel: VehiclesViewModel by activityViewModels {
+    private val vehiclesViewModel: VehiclesViewModel by activityViewModels {
         VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
     }
     private lateinit var vehicle: Vehicle
@@ -51,7 +51,7 @@ class VehicleRegistrationFragment : Fragment() {
 
         val vehicleId = navigationArgs.vehicleId
         if (vehicleId > 0) {
-            viewModel.retrieveVehicle(vehicleId)?.observe(this.viewLifecycleOwner) { selectedVehicle ->
+            vehiclesViewModel.retrieveVehicle(vehicleId)?.observe(this.viewLifecycleOwner) { selectedVehicle ->
                 vehicle = selectedVehicle
                 bind(vehicle)
             }
@@ -97,7 +97,7 @@ class VehicleRegistrationFragment : Fragment() {
      * Checks if the text input fields have been filled.
      */
     private fun isEntryValid(view: TextInputLayout): Boolean {
-        return if (!viewModel.isEntryValid(view.editText?.text.toString())) {
+        return if (!vehiclesViewModel.isEntryValid(view.editText?.text.toString())) {
             setError(view)
             removeError(view)
             false
@@ -136,7 +136,7 @@ class VehicleRegistrationFragment : Fragment() {
             isEntryValid(binding.vehicleFuelType) &&
             isEntryValid(binding.vehicleMileage)
         ) {
-            viewModel.addNewVehicle(
+            vehiclesViewModel.addNewVehicle(
                 vehicleType = binding.vehicleTypeEditText.text.toString(),
                 vehicleManufacturer = binding.vehicleManufacturerEditText.text.toString(),
                 vehicleModel = binding.vehicleModelEditText.text.toString(),
@@ -203,7 +203,7 @@ class VehicleRegistrationFragment : Fragment() {
             isEntryValid(binding.vehicleFuelType) &&
             isEntryValid(binding.vehicleMileage)
         ) {
-            viewModel.updateVehicle(
+            vehiclesViewModel.updateVehicle(
                 vehicleId = this.navigationArgs.vehicleId,
                 vehicleType = this.binding.vehicleTypeEditText.text.toString(),
                 vehicleManufacturer = this.binding.vehicleManufacturerEditText.text.toString(),

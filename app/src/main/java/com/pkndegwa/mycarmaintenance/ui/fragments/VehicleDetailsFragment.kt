@@ -74,7 +74,7 @@ class VehicleDetailsFragment : Fragment() {
 
         binding.addNewService.setOnClickListener {
             this.findNavController()
-                .navigate(VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToAddServiceFragment())
+                .navigate(VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToAddServiceFragment(vehicleId))
         }
     }
 
