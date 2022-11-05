@@ -48,6 +48,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/services_done_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Oil Filer, Spark Plugs, Battery"
@@ -57,6 +58,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/services_expand_view"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="12dp"
@@ -97,6 +99,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/service_date_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="01 Nov 2022"
@@ -107,12 +110,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Odometer"
+                    android:text="Current Mileage"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/current_mileage_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2,000 km"
@@ -129,6 +133,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/next_service_mileage_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4,000 km"
@@ -156,6 +161,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/next_service_date_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="01 Mar 2023"
@@ -172,6 +178,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/total_cost_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1,500 KSH"

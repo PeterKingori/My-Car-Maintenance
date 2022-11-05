@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.google.android.material.chip.ChipGroup
 import com.pkndegwa.mycarmaintenance.database.ServiceDao
 import com.pkndegwa.mycarmaintenance.models.Service
 import kotlinx.coroutines.launch
@@ -16,8 +17,13 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      * This method adds a [Service] object to the database on a background thread.
      * @param [service]
      */
-    private fun insertService(service: Service) {
-        viewModelScope.launch { serviceDao.insertService(service) }
+    private fun insertService(service: Service): Boolean {
+        return try {
+            viewModelScope.launch { serviceDao.insertService(service) }
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 
     /**
@@ -25,7 +31,7 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      * @return Service
      */
     private fun createNewServiceEntry(
-        servicesList: MutableList<String>, currentMileage: String, nextServiceMileage: String, totalCost: String,
+        servicesList: String, currentMileage: String, nextServiceMileage: String, totalCost: String,
         serviceDate: String, nextServiceDate: String, notes: String, vehicleId: Int
     ): Service {
         return Service(
@@ -44,14 +50,31 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      * Public function that takes in vehicle service details, gets
      */
     fun addNewService(
-        servicesList: MutableList<String>, currentMileage: String, nextServiceMileage: String, totalCost: String,
+        servicesList: String, currentMileage: String, nextServiceMileage: String, totalCost: String,
         serviceDate: String, nextServiceDate: String, notes: String, vehicleId: Int
-    ) {
+    ): Boolean {
         val newService = createNewServiceEntry(
             servicesList, currentMileage, nextServiceMileage, totalCost, serviceDate,
             nextServiceDate, notes, vehicleId
         )
-        insertService(newService)
+        return insertService(newService)
+    }
+
+    /**
+     * Public function that checks that chips have been selected
+     */
+    fun isServiceSelected(chipGroup: ChipGroup): Boolean {
+        return chipGroup.checkedChipIds != emptyList<String>()
+    }
+
+    /**
+     * Public function that checks if a string value is blank or not.
+     */
+    fun isEntryValid(propertyValue: String): Boolean {
+        if (propertyValue.isBlank()) {
+            return false
+        }
+        return true
     }
 
     /**
@@ -84,7 +107,7 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      * @return Service
      */
     private fun getUpdatedServiceEntry(
-        serviceId: Int, servicesList: MutableList<String>, currentMileage: String, nextServiceMileage: String,
+        serviceId: Int, servicesList: String, currentMileage: String, nextServiceMileage: String,
         totalCost: String, serviceDate: String, nextServiceDate: String, notes: String, vehicleId: Int
     ): Service {
         return Service(
@@ -105,7 +128,7 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      * and passes the information to [update] to be updated in the database.
      */
     fun updateService(
-        serviceId: Int, servicesList: MutableList<String>, currentMileage: String, nextServiceMileage: String,
+        serviceId: Int, servicesList: String, currentMileage: String, nextServiceMileage: String,
         totalCost: String, serviceDate: String, nextServiceDate: String, notes: String, vehicleId: Int
     ) {
         val updatedService = getUpdatedServiceEntry(
