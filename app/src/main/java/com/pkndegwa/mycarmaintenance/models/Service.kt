@@ -12,7 +12,7 @@ data class Service(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = "services_done_list")
-    val servicesDoneList: MutableList<String>,
+    val servicesDoneList: String,
     @ColumnInfo(name = "current_mileage")
     val currentMileage: Int,
     @ColumnInfo(name = "next_service_mileage")

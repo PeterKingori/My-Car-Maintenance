@@ -10,7 +10,6 @@ import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.utils.Converters
 
 @Database(entities = [Vehicle::class, Service::class], version = 3)
-@TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun vehicleDao(): VehicleDao
     abstract fun serviceDao(): ServiceDao
