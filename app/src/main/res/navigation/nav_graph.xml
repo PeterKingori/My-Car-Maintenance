@@ -63,5 +63,10 @@
         <argument
             android:name="vehicle_id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_addServiceFragment_to_vehicleDetailsFragment"
+            app:destination="@id/vehicleDetailsFragment"
+            app:popUpTo="@id/vehicleDetailsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
