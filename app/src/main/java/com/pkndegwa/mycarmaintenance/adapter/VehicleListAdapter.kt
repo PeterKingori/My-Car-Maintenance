@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pkndegwa.mycarmaintenance.R
-import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.databinding.VehiclesListItemBinding
+import com.pkndegwa.mycarmaintenance.models.Vehicle
 
 /**
  * Adapter for the [RecyclerView] in VehiclesFragment.
@@ -25,7 +25,7 @@ class VehicleListAdapter(private val onItemClicked: (Vehicle) -> Unit) :
             binding.apply {
                 vehicleName.text = context.getString(R.string.vehicle_name, vehicle.manufacturer, vehicle.model)
                 vehicleLicense.text = vehicle.licensePlate
-                vehicleOdometer.text = vehicle.mileage.toString()
+                vehicleOdometer.text = context.getString(R.string.formatted_vehicle_mileage, vehicle.mileage)
                 vehicleModelYear.text = vehicle.modelYear.toString()
             }
         }

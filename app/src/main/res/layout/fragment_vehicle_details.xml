@@ -54,11 +54,12 @@
 
                 <LinearLayout
                     android:id="@+id/left_layout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/right_layout"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -103,17 +104,18 @@
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
                         android:textAppearance="?attr/textAppearanceBody2"
-                        tools:text="Petrol" />
+                        tools:text="Compressed Natural Gas (CNG)" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/right_layout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/left_layout"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
@@ -132,7 +134,6 @@
                         android:id="@+id/mileage_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="122dp"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
                         android:textAppearance="?attr/textAppearanceBody2"
