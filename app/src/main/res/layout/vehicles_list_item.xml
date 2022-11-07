@@ -47,9 +47,9 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             app:drawableTopCompat="@drawable/ic_baseline_license_24"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/vehicle_odometer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vehicle_image"
-            app:layout_constraintEnd_toStartOf="@id/vehicle_odometer"
             tools:text="KAA 123A" />
 
         <TextView

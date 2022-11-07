@@ -9,11 +9,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
-import com.pkndegwa.mycarmaintenance.models.Vehicle
+import com.pkndegwa.mycarmaintenance.adapter.ServiceListAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleDetailsBinding
+import com.pkndegwa.mycarmaintenance.models.Service
+import com.pkndegwa.mycarmaintenance.models.Vehicle
+import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModel
+import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModelFactory
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModelFactory
 
@@ -28,11 +33,21 @@ class VehicleDetailsFragment : Fragment() {
 
     private val navigationArgs: VehicleDetailsFragmentArgs by navArgs()
 
-    private val viewModel: VehiclesViewModel by activityViewModels {
+    // ViewModel that works with vehicle details
+    private val vehiclesViewModel: VehiclesViewModel by activityViewModels {
         VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
     }
 
     private lateinit var vehicle: Vehicle
+
+    // ViewModel that works with services details
+    private val servicesViewModel: ServicesViewModel by activityViewModels {
+        ServicesViewModelFactory((activity?.application as CarMaintenanceApplication).database.serviceDao())
+    }
+
+    private lateinit var service: Service
+
+    private lateinit var servicesListAdapter: ServiceListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment.
@@ -67,10 +82,12 @@ class VehicleDetailsFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         val vehicleId = navigationArgs.vehicleId
-        viewModel.retrieveVehicle(vehicleId)?.observe(this.viewLifecycleOwner) { selectedVehicle ->
+        vehiclesViewModel.retrieveVehicle(vehicleId)?.observe(this.viewLifecycleOwner) { selectedVehicle ->
             vehicle = selectedVehicle
             bind(vehicle)
         }
+
+        setUpServicesRecyclerView(vehicleId)
 
         binding.addNewService.setOnClickListener {
             this.findNavController()
@@ -86,7 +103,7 @@ class VehicleDetailsFragment : Fragment() {
             vehicleManufacturerAndModel.text = getString(R.string.vehicle_name, vehicle.manufacturer, vehicle.model)
             licenseText.text = vehicle.licensePlate
             fuelText.text = vehicle.fuelType
-            mileageText.text = vehicle.mileage.toString()
+            mileageText.text = getString(R.string.formatted_vehicle_mileage, vehicle.mileage)
             modelYearText.text = vehicle.modelYear.toString()
         }
     }
@@ -120,9 +137,25 @@ class VehicleDetailsFragment : Fragment() {
      * Deletes the current vehicle and navigates to the Home Fragment.
      */
     private fun deleteVehicle() {
-        viewModel.deleteVehicle(vehicle)
+        vehiclesViewModel.deleteVehicle(vehicle)
         val action = VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToHomeFragment()
         this.findNavController().navigate(action)
+    }
+
+    /**
+     * RecyclerView that displays the list of services done for a particular vehicle
+     */
+    private fun setUpServicesRecyclerView(vehicleId: Int) {
+        servicesListAdapter = ServiceListAdapter()
+
+        binding.servicesListRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this.context)
+            adapter = servicesListAdapter
+        }
+
+        servicesViewModel.getAllServicesForVehicle(vehicleId).observe(viewLifecycleOwner) { services ->
+            servicesListAdapter.submitList(services)
+        }
     }
 
     /**
