@@ -52,12 +52,12 @@
     <string name="tire_change">Tire Change</string>
     <string name="wheel_alignment">Wheel Alignment</string>
     <string name="add_new">Add New</string>
-    <string name="current_mileage">Current Mileage (km)</string>
-    <string name="next_service_mileage">Next Service Mileage (km)</string>
+    <string name="current_mileage">Current Mileage</string>
+    <string name="next_service_mileage">Next Service Mileage</string>
     <string name="total_cost">Total Cost</string>
     <string name="amount">Amount</string>
     <string name="service_date">Service Date</string>
-    <string name="next_service">Next Service</string>
+    <string name="next_service_date">Next Service Date</string>
     <string name="notes">Notes</string>
     <string name="expand_more_button">Press to expand and see details</string>
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/service_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -41,7 +42,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Services"
+                    android:text="@string/services"
                     android:textAllCaps="false"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/black"
@@ -51,9 +52,9 @@
                     android:id="@+id/services_done_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Oil Filer, Spark Plugs, Battery"
                     android:textAllCaps="false"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="Oil Filer, Spark Plugs, Battery" />
 
             </LinearLayout>
 
@@ -93,7 +94,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Service Date"
+                    android:text="@string/service_date"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -102,15 +103,15 @@
                     android:id="@+id/service_date_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="01 Nov 2022"
                     android:textAllCaps="false"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="01 Nov 2022" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Current Mileage"
+                    android:text="@string/current_mileage"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -119,15 +120,15 @@
                     android:id="@+id/current_mileage_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2,000 km"
                     android:textAllCaps="false"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="2,000 km" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Next Service Mileage"
+                    android:text="@string/next_service_mileage"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -136,9 +137,9 @@
                     android:id="@+id/next_service_mileage_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4,000 km"
                     android:textAllCaps="false"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="4,000 km" />
 
             </LinearLayout>
 
@@ -155,7 +156,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Next Service Date"
+                    android:text="@string/next_service_date"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -164,15 +165,15 @@
                     android:id="@+id/next_service_date_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="01 Mar 2023"
                     android:textAllCaps="false"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="01 Mar 2023" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Cost"
+                    android:text="@string/total_cost"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -181,9 +182,9 @@
                     android:id="@+id/total_cost_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1,500 KSH"
                     android:textAllCaps="false"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="1,500 KSH" />
 
             </LinearLayout>
 
@@ -193,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
-                android:text="Notes"
+                android:text="@string/notes"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -206,12 +207,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Testing out the notes appearance"
                 android:textAllCaps="false"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/service_notes_title_text_view" />
+                app:layout_constraintTop_toBottomOf="@id/service_notes_title_text_view"
+                tools:text="Testing out the notes appearance" />
 
             <LinearLayout
                 android:id="@+id/services_actions_container"
@@ -231,7 +232,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="8dp"
-                    android:text="Edit"
+                    android:text="@string/edit"
                     android:textAppearance="?attr/textAppearanceBody2"
                     app:drawableTopCompat="@drawable/ic_baseline_edit_24" />
 
@@ -242,7 +243,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="8dp"
-                    android:text="Delete"
+                    android:text="@string/delete"
                     android:textAppearance="?attr/textAppearanceBody2"
                     app:drawableTopCompat="@drawable/ic_baseline_delete_24" />
 
