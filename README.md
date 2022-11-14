@@ -26,7 +26,7 @@ Record information about maintenance and repairs done to vehicles. Built with Ko
 **Will be available on Android soon.**
 
 <p align="center">
-  <img src = "">
+  <img src = "app/src/main/res/drawable-nodpi/screenshot1.jpg">
 </p>
 
 ## Features
@@ -37,24 +37,28 @@ A few of the things you can do with GitPoint:
 * Add service records as they happen
 
 <p align="center">
-  <img src = "">
-</p>
-
-<p align="center">
-  <img src = "">
+  <img src = "app/src/main/res/drawable-nodpi/screenshot2.jpg">
+  <img src = "app/src/main/res/drawable-nodpi/screenshot3.jpg">
+  <img src = "app/src/main/res/drawable-nodpi/screenshot4.jpg">
+  <img src = "app/src/main/res/drawable-nodpi/screenshot5.jpg">
+  <img src = "app/src/main/res/drawable-nodpi/screenshot6.jpg">
 </p>
 
 ## Feedback
 
-Feel free to send me feedback on [Twitter](https://twitter.com/PKNdegwa) or [file an issue](https://github.com/PeterKingori/My-Car-Maintenance/issues/new). Feature requests are always welcome.
+Feel free to send me feedback on [Twitter](https://twitter.com/PKNdegwa) or [file an issue](https://github.com/PeterKingori/My-Car-Maintenance/issues/new).
 
 
 ## Build Process
 
-- Clone or download the repo
-- Use Gradle to install dependencies
-- Build the app
-- Run it on a device
+1. Download the repository to your computer or use Git to clone it.
+2. Open the project in Android Studio.
+3. Build the project using Gradle.
+4. Install the app on your device or run it in an emulator.
 
 
 ## License
+
+This project is licensed under the **GNU Affero General Public License**. See the full [LICENSE](https://choosealicense.com/licenses/agpl-3.0/) for details.
+
+Copyright (c) 2022 **Peter Kingori Ndegwa**
