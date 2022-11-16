@@ -20,8 +20,8 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
-import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
+import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModelFactory
 
@@ -30,6 +30,7 @@ import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModelFactory
  */
 class VehicleRegistrationFragment : Fragment() {
     private var _binding: FragmentVehicleRegistrationBinding? = null
+
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
@@ -56,7 +57,7 @@ class VehicleRegistrationFragment : Fragment() {
                 bind(vehicle)
             }
         } else {
-            // Setup a click listener for the Save button.
+            // Setup a click listener for the Save button when creating a new Vehicle record.
             binding.saveVehicleButton.setOnClickListener {
                 addNewVehicle()
             }
@@ -75,7 +76,7 @@ class VehicleRegistrationFragment : Fragment() {
 
             // Setup a click listener for the Cancel button.
             cancelRegisterButton.setOnClickListener {
-                cancelRegistration()
+                cancelRegistration(vehicleId)
             }
         }
     }
@@ -153,9 +154,16 @@ class VehicleRegistrationFragment : Fragment() {
     /**
      * Cancels the registration.
      */
-    private fun cancelRegistration() {
+    private fun cancelRegistration(vehicleId: Int) {
         clearText()
-        findNavController().navigate(R.id.action_vehicleRegistrationFragment_to_homeFragment)
+        if (vehicleId == -1) {
+            findNavController().navigate(R.id.action_vehicleRegistrationFragment_to_homeFragment)
+        } else if (vehicleId > 0) {
+            findNavController().navigate(
+                VehicleRegistrationFragmentDirections
+                    .actionVehicleRegistrationFragmentToVehicleDetailsFragment(vehicleId)
+            )
+        }
     }
 
     /**
