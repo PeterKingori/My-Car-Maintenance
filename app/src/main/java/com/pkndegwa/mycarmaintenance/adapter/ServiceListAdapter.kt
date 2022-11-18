@@ -12,13 +12,14 @@ import com.pkndegwa.mycarmaintenance.databinding.ServiceListItemBinding
 import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.ui.fragments.VehicleDetailsFragmentDirections
 
-class ServiceListAdapter : ListAdapter<Service, ServiceListAdapter.ServiceViewHolder>(DiffCallback) {
+class ServiceListAdapter(private val onDeleteItemClicked: (Service) -> Unit) : ListAdapter<Service, ServiceListAdapter
+.ServiceViewHolder>(DiffCallback) {
     private lateinit var context: Context
 
     /**
      * Provides a reference for the views needed to display items in the list.
      */
-    class ServiceViewHolder(private var binding: ServiceListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ServiceViewHolder(private var binding: ServiceListItemBinding, private val onDeleteItem: (Service) -> Unit) : RecyclerView.ViewHolder(binding.root) {
         fun bind(service: Service, context: Context) {
             binding.apply {
                 servicesDoneList.text = service.servicesDoneList
@@ -46,6 +47,7 @@ class ServiceListAdapter : ListAdapter<Service, ServiceListAdapter.ServiceViewHo
                     )
                 itemView.findNavController().navigate(action)
             }
+            binding.deleteServiceButton.setOnClickListener { onDeleteItem(service) }
         }
     }
 
@@ -55,7 +57,7 @@ class ServiceListAdapter : ListAdapter<Service, ServiceListAdapter.ServiceViewHo
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
         context = parent.context
         val layoutInflater = ServiceListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ServiceViewHolder(layoutInflater)
+        return ServiceViewHolder(layoutInflater, onDeleteItemClicked)
     }
 
     /**

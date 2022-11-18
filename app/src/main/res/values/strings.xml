@@ -22,7 +22,7 @@
     <string name="formatted_vehicle_mileage">%,d</string>
     <string name="new_vehicle_fab">Add new vehicle</string>
     <string name="vehicle_details">Vehicle Details</string>
-    <string name="delete_question">Are you sure you want to delete the vehicle?</string>
+    <string name="delete_vehicle_question">Are you sure you want to delete the vehicle?</string>
     <string name="edit_fragment_title">Edit Vehicle Details</string>
     <string name="add_new_service">Add New Service</string>
 
@@ -61,5 +61,5 @@
     <string name="next_service_date">Next Service Date</string>
     <string name="notes">Notes</string>
     <string name="expand_more_button">Press to expand and see details</string>
-
+    <string name="delete_service_question">Are you sure you want to delete the service?</string>
 </resources>

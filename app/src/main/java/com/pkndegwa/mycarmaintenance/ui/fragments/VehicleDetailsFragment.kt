@@ -65,7 +65,7 @@ class VehicleDetailsFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.delete_option -> {
-                        showConfirmationDialog()
+                        showConfirmationDialogForVehicle()
                         true
                     }
                     R.id.edit_option -> {
@@ -120,11 +120,11 @@ class VehicleDetailsFragment : Fragment() {
     }
 
     /**
-     * Displays an alert dialog to get the user's confirmation before deleting the item.
+     * Displays an alert dialog to get the user's confirmation before deleting the vehicle.
      */
-    private fun showConfirmationDialog() {
+    private fun showConfirmationDialogForVehicle() {
         MaterialAlertDialogBuilder(requireContext())
-            .setMessage(getString(R.string.delete_question))
+            .setMessage(getString(R.string.delete_vehicle_question))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.cancel), null)
             .setPositiveButton(getString(R.string.delete)) { _, _ ->
@@ -146,7 +146,17 @@ class VehicleDetailsFragment : Fragment() {
      * RecyclerView that displays the list of services done for a particular vehicle
      */
     private fun setUpServicesRecyclerView(vehicleId: Int) {
-        servicesListAdapter = ServiceListAdapter()
+        servicesListAdapter = ServiceListAdapter {
+            // Displays an alert dialog to get the user's confirmation before deleting the service.
+            MaterialAlertDialogBuilder(requireContext())
+                .setMessage(getString(R.string.delete_service_question))
+                .setCancelable(false)
+                .setNegativeButton(getString(R.string.cancel), null)
+                .setPositiveButton(getString(R.string.delete)) { _, _ ->
+                    servicesViewModel.deleteService(it)
+                }
+                .show()
+        }
 
         binding.servicesListRecyclerView.apply {
             layoutManager = LinearLayoutManager(this.context)
