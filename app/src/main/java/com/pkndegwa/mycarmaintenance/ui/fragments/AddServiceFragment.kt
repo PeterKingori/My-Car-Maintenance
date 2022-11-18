@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.DatePicker
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.children
 import androidx.core.widget.doOnTextChanged
@@ -21,6 +22,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.databinding.FragmentAddServiceBinding
+import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModelFactory
 import java.text.SimpleDateFormat
@@ -40,6 +42,8 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private val servicesViewModel: ServicesViewModel by activityViewModels {
         ServicesViewModelFactory((activity?.application as CarMaintenanceApplication).database.serviceDao())
     }
+
+    private lateinit var service: Service
 
     // Calendar variables
     private val calendar: Calendar = Calendar.getInstance()
@@ -64,6 +68,19 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         futureDate(6)
 
         val vehicleId = navigationArgs.vehicleId
+        val serviceId = navigationArgs.serviceId
+        // Check if it's an update to an existing service or a new one being created
+        if (serviceId > 0) {
+            servicesViewModel.retrieveService(serviceId)?.observe(this.viewLifecycleOwner) { selectedService ->
+                service = selectedService
+                bind(service)
+            }
+        } else {
+            // Setup click listener for the Save button when creating a new Service record.
+            binding.saveServiceButton.setOnClickListener {
+                addNewService(vehicleId)
+            }
+        }
 
         // Click listeners for service dates buttons
         binding.serviceDateButton.setOnClickListener {
@@ -74,11 +91,6 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         binding.nextServiceDateButton.setOnClickListener {
             datePicker(requireContext(), false)
             flag = 1
-        }
-
-        // Setup a click listener for the Save button.
-        binding.saveServiceButton.setOnClickListener {
-            addNewService(vehicleId)
         }
     }
 
@@ -166,6 +178,15 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     /**
+     * Set previously saved services as checked when in Edit mode
+     */
+    private fun setSelectedChipValues(chipGroup: ChipGroup, servicesDone: String) {
+        chipGroup.children.forEach {
+            if (servicesDone.contains((it as Chip).text)) it.isChecked = true
+        }
+    }
+
+    /**
      * Checks if the input fields have been filled.
      */
     private fun isServiceSelected(chipGroup: ChipGroup): Boolean {
@@ -216,6 +237,52 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         view.editText?.doOnTextChanged { _, _, _, _ ->
             view.isErrorEnabled = false
             view.error = null
+        }
+    }
+
+    /**
+     * Binds the service data to the views.
+     */
+    private fun bind(service: Service) {
+        binding.apply {
+            setSelectedChipValues(servicesChipGroup, service.servicesDoneList)
+            currentMileageEditText.setText(service.currentMileage.toString(), TextView.BufferType.SPANNABLE)
+            nextServiceMileageEditText.setText(service.nextServiceMileage.toString(), TextView.BufferType.SPANNABLE)
+            totalCostEditText.setText(service.totalCost.toString(), TextView.BufferType.SPANNABLE)
+            serviceDateButton.text = service.serviceDate
+            nextServiceDateButton.text = service.nextServiceDate
+            notesEditText.setText(service.notes)
+
+            saveServiceButton.setOnClickListener { updateService() }
+        }
+    }
+
+    /**
+     * Validates user input before updating the service details in the database using the ViewModel.
+     */
+    private fun updateService() {
+        if (isServiceSelected(binding.servicesChipGroup) &&
+            isEntryValid(binding.currentMileage) &&
+            isEntryValid(binding.nextServiceMileage) &&
+            isEntryValid(binding.totalCost)
+        ) {
+            val result = servicesViewModel.updateService(
+                serviceId = this.navigationArgs.serviceId,
+                servicesList = getSelectedChipsValues(this.binding.servicesChipGroup),
+                currentMileage = this.binding.currentMileageEditText.text.toString(),
+                nextServiceMileage = this.binding.nextServiceMileageEditText.text.toString(),
+                totalCost = this.binding.totalCostEditText.text.toString(),
+                serviceDate = this.binding.serviceDateButton.text.toString(),
+                nextServiceDate = this.binding.nextServiceDateButton.text.toString(),
+                notes = this.binding.notesEditText.text.toString(),
+                vehicleId = this.navigationArgs.vehicleId
+            )
+            if (result) {
+                Toast.makeText(this.context, "Entry updated successfully", Toast.LENGTH_SHORT).show()
+                val action =
+                    AddServiceFragmentDirections.actionAddServiceFragmentToVehicleDetailsFragment(this.navigationArgs.vehicleId)
+                findNavController().navigate(action)
+            }
         }
     }
 

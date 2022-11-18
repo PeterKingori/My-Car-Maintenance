@@ -3,12 +3,14 @@ package com.pkndegwa.mycarmaintenance.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.ServiceListItemBinding
 import com.pkndegwa.mycarmaintenance.models.Service
+import com.pkndegwa.mycarmaintenance.ui.fragments.VehicleDetailsFragmentDirections
 
 class ServiceListAdapter : ListAdapter<Service, ServiceListAdapter.ServiceViewHolder>(DiffCallback) {
     private lateinit var context: Context
@@ -36,6 +38,13 @@ class ServiceListAdapter : ListAdapter<Service, ServiceListAdapter.ServiceViewHo
                         servicesDetailsContainer.visibility = ViewGroup.GONE
                     }
                 }
+            }
+            binding.editServiceButton.setOnClickListener { itemView ->
+                val action =
+                    VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToAddServiceFragment(
+                        service.vehicleId, service.id
+                    )
+                itemView.findNavController().navigate(action)
             }
         }
     }

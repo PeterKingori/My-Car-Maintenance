@@ -55,7 +55,7 @@
     <string name="current_mileage">Current Mileage</string>
     <string name="next_service_mileage">Next Service Mileage</string>
     <string name="total_cost">Total Cost</string>
-    <string name="formatted_total_cost">%,d</string>
+    <string name="formatted_total_cost">%,.2f</string>
     <string name="amount">Amount</string>
     <string name="service_date">Service Date</string>
     <string name="next_service_date">Next Service Date</string>

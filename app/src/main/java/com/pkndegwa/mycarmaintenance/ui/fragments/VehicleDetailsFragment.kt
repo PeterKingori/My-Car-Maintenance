@@ -15,7 +15,6 @@ import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.adapter.ServiceListAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleDetailsBinding
-import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModelFactory
@@ -44,8 +43,6 @@ class VehicleDetailsFragment : Fragment() {
     private val servicesViewModel: ServicesViewModel by activityViewModels {
         ServicesViewModelFactory((activity?.application as CarMaintenanceApplication).database.serviceDao())
     }
-
-    private lateinit var service: Service
 
     private lateinit var servicesListAdapter: ServiceListAdapter
 
@@ -91,7 +88,10 @@ class VehicleDetailsFragment : Fragment() {
 
         binding.addNewService.setOnClickListener {
             this.findNavController()
-                .navigate(VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToAddServiceFragment(vehicleId))
+                .navigate(
+                    VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToAddServiceFragment
+                        (vehicleId)
+                )
         }
     }
 

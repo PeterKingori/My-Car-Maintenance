@@ -97,8 +97,13 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      * service in the database on a background thread.
      * @param [service]
      */
-    private fun update(service: Service) {
-        viewModelScope.launch { serviceDao.updateService(service) }
+    private fun update(service: Service): Boolean {
+        return try {
+            viewModelScope.launch { serviceDao.updateService(service) }
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 
     /**
@@ -130,11 +135,11 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
     fun updateService(
         serviceId: Int, servicesList: String, currentMileage: String, nextServiceMileage: String,
         totalCost: String, serviceDate: String, nextServiceDate: String, notes: String, vehicleId: Int
-    ) {
+    ): Boolean {
         val updatedService = getUpdatedServiceEntry(
             serviceId, servicesList, currentMileage, nextServiceMileage, totalCost,
             serviceDate, nextServiceDate, notes, vehicleId
         )
-        update(updatedService)
+        return update(updatedService)
     }
 }
