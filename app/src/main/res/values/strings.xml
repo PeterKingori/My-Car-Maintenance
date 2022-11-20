@@ -62,4 +62,6 @@
     <string name="notes">Notes</string>
     <string name="expand_more_button">Press to expand and see details</string>
     <string name="delete_service_question">Are you sure you want to delete the service?</string>
+    <string name="enter_service_dialog">Please enter the service type name</string>
+    <string name="service_type">Service type</string>
 </resources>

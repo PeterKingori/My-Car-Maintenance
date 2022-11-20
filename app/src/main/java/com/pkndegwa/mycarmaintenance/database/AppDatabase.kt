@@ -4,13 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.models.Vehicle
-import com.pkndegwa.mycarmaintenance.utils.Converters
 
-@Database(entities = [Vehicle::class, Service::class], version = 3)
-abstract class AppDatabase: RoomDatabase() {
+@Database(entities = [Vehicle::class, Service::class], version = 3, exportSchema = false)
+abstract class AppDatabase : RoomDatabase() {
     abstract fun vehicleDao(): VehicleDao
     abstract fun serviceDao(): ServiceDao
 

@@ -8,9 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.DatePicker
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
+import androidx.core.view.size
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -21,6 +25,7 @@ import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
+import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentAddServiceBinding
 import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModel
@@ -91,6 +96,45 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         binding.nextServiceDateButton.setOnClickListener {
             datePicker(requireContext(), false)
             flag = 1
+        }
+
+        // Click listener to add a new service that isn't present in the chip group
+        binding.addNewServiceChip.setOnClickListener {
+            val position = binding.servicesChipGroup.size - 1
+            addNewServiceTypeDialog(position)
+        }
+    }
+
+    /**
+     * Displays a dialog to allow the user enter the name of a service type
+     */
+    private fun addNewServiceTypeDialog(position: Int) {
+        val inflater: LayoutInflater = LayoutInflater.from(requireContext())
+        val dialogTextInput = inflater.inflate(R.layout.dialog_text_input, ConstraintLayout(requireContext()))
+        val inputEditText = dialogTextInput.findViewById<EditText>(R.id.add_new_service_dialog_edit_text)
+        MaterialAlertDialogBuilder(requireContext())
+            .setMessage(getString(R.string.enter_service_dialog))
+            .setView(dialogTextInput)
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.cancel), null)
+            .setPositiveButton("Ok") { _, _ ->
+                binding.servicesChipGroup.addView(
+                    createChip(requireContext(), inputEditText.text.toString()),
+                    position
+                )
+            }
+            .show()
+    }
+
+    /**
+     * Function to create new chips with attributes
+     */
+    private fun createChip(context: Context, chipName: String): Chip {
+        return Chip(context).apply {
+            text = chipName
+            isCheckable = true
+            checkedIconTint = ContextCompat.getColorStateList(context, R.color.chip_color_state_list)
+            setCheckedIconResource(R.drawable.ic_baseline_check_24)
         }
     }
 
