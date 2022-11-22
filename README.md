@@ -23,7 +23,7 @@
 
 Record information about maintenance and repairs done to vehicles. Built with Kotlin, Android Jetpack libraries, Gradle and Android Studio.
 
-**Will be available on Android soon.**
+**Will be available on Google Play Store soon.**
 
 <p align="center">
   <img src = "app/src/main/res/drawable-nodpi/screenshot1.jpg">
@@ -31,7 +31,7 @@ Record information about maintenance and repairs done to vehicles. Built with Ko
 
 ## Features
 
-A few of the things you can do with GitPoint:
+A few of the things you can do:
 
 * Save details of vehicles you own
 * Add service records as they happen
