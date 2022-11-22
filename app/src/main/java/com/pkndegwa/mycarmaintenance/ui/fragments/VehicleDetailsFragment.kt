@@ -90,7 +90,7 @@ class VehicleDetailsFragment : Fragment() {
             this.findNavController()
                 .navigate(
                     VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToAddServiceFragment
-                        (vehicleId)
+                        (vehicleId, getString(R.string.add_new_service))
                 )
         }
     }

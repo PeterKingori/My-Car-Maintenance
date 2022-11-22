@@ -25,6 +25,7 @@
     <string name="delete_vehicle_question">Are you sure you want to delete the vehicle?</string>
     <string name="edit_fragment_title">Edit Vehicle Details</string>
     <string name="add_new_service">Add New Service</string>
+    <string name="edit_service">Edit Service</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>

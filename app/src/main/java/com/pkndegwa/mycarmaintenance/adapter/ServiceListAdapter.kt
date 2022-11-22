@@ -19,7 +19,8 @@ class ServiceListAdapter(private val onDeleteItemClicked: (Service) -> Unit) : L
     /**
      * Provides a reference for the views needed to display items in the list.
      */
-    class ServiceViewHolder(private var binding: ServiceListItemBinding, private val onDeleteItem: (Service) -> Unit) : RecyclerView.ViewHolder(binding.root) {
+    class ServiceViewHolder(private var binding: ServiceListItemBinding, private val onDeleteItem: (Service) -> Unit) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(service: Service, context: Context) {
             binding.apply {
                 servicesDoneList.text = service.servicesDoneList
@@ -43,7 +44,9 @@ class ServiceListAdapter(private val onDeleteItemClicked: (Service) -> Unit) : L
             binding.editServiceButton.setOnClickListener { itemView ->
                 val action =
                     VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToAddServiceFragment(
-                        service.vehicleId, service.id
+                        vehicleId = service.vehicleId,
+                        serviceId = service.id,
+                        title = context.resources.getString(R.string.edit_service)
                     )
                 itemView.findNavController().navigate(action)
             }
