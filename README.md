@@ -16,6 +16,7 @@
 - [Feedback](#feedback)
 - [Build Process](#build-process)
 - [License](#license)
+- [Acknowledgements](#acknowledgements)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -60,5 +61,9 @@ Feel free to send me feedback on [Twitter](https://twitter.com/PKNdegwa) or [fil
 ## License
 
 This project is licensed under the **GNU Affero General Public License**. See the full [LICENSE](https://choosealicense.com/licenses/agpl-3.0/) for details.
+
+## Acknowledgements
+
+<a href="https://www.flaticon.com/free-icons/tow-truck" title="tow truck icons">Tow truck icon found on Flaticon</a>
 
 Copyright (c) 2022 **Peter Kingori Ndegwa**
