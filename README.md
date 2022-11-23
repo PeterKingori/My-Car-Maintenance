@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  Keep records of your vehicle's maintenance and repairs.
+  Keep track of your vehicle's maintenance and repairs.
 </p>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
