@@ -1,15 +1,22 @@
 package com.pkndegwa.mycarmaintenance.ui.fragments
 
+import android.Manifest
+import android.app.Activity.RESULT_OK
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.widget.doOnTextChanged
@@ -22,6 +29,7 @@ import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
 import com.pkndegwa.mycarmaintenance.models.Vehicle
+import com.pkndegwa.mycarmaintenance.utils.ImageCapture
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModelFactory
 
@@ -40,6 +48,28 @@ class VehicleRegistrationFragment : Fragment() {
         VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
     }
     private lateinit var vehicle: Vehicle
+
+    private val openGalleryLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        { result ->
+            if (result.resultCode == RESULT_OK && result.data != null) {
+                val vehicleImage = binding.addVehicleImage
+                vehicleImage.setImageURI(result.data?.data)
+                vehicleImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                binding.addPhotoTextView.visibility = View.GONE
+            }
+        }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            val selectImageIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            openGalleryLauncher.launch(selectImageIntent)
+        } else {
+            Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Retrieve and inflate the layout for this fragment.
@@ -77,6 +107,15 @@ class VehicleRegistrationFragment : Fragment() {
             // Setup a click listener for the Cancel button.
             cancelRegisterButton.setOnClickListener {
                 cancelRegistration(vehicleId)
+            }
+
+            // Setup a click listener for the Add photo button.
+            addVehicleImage.setOnClickListener {
+                val imageCapture = ImageCapture(
+                    requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE,
+                    requireActivity(), requestPermissionLauncher
+                )
+                imageCapture.askForPermission()
             }
         }
     }

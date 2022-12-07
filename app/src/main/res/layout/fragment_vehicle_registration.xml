@@ -9,28 +9,46 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <ImageView
-            android:id="@+id/icon_vehicle_type"
+            android:id="@+id/add_vehicle_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_frame"
+            android:clickable="true"
+            android:contentDescription="@string/add_vehicle_image"
+            android:focusable="true"
+            android:scaleType="center"
+            android:src="@drawable/ic_baseline_add_a_photo_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/add_photo_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:importantForAccessibility="no"
-            app:layout_constraintBottom_toBottomOf="@+id/vehicle_type"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/vehicle_type"
-            app:srcCompat="@drawable/ic_baseline_directions_car_24" />
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/add_photo"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/add_vehicle_image"
+            app:layout_constraintStart_toStartOf="@id/add_vehicle_image" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_type"
             style="@style/Widget.MyCarMaintenance.TextInputLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="0dp"
             android:focusable="false"
             android:hint="@string/vehicle_type"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/icon_vehicle_type"
+            app:layout_constraintStart_toEndOf="@id/add_vehicle_image"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -42,24 +60,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageView
-            android:id="@+id/icon_vehicle_manufacturer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:importantForAccessibility="no"
-            app:layout_constraintBottom_toBottomOf="@+id/vehicle_manufacturer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/vehicle_manufacturer"
-            app:srcCompat="@drawable/ic_baseline_manufacturer_24" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_manufacturer"
             style="@style/Widget.MyCarMaintenance.TextInputLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:hint="@string/manufacturer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/icon_vehicle_manufacturer"
+            app:layout_constraintStart_toEndOf="@id/add_vehicle_image"
             app:layout_constraintTop_toBottomOf="@id/vehicle_type">
 
             <com.google.android.material.textfield.TextInputEditText

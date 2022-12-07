@@ -26,6 +26,8 @@
     <string name="edit_fragment_title">Edit Vehicle Details</string>
     <string name="add_new_service">Add New Service</string>
     <string name="edit_service">Edit Service</string>
+    <string name="add_photo">Add photo</string>
+    <string name="add_vehicle_image">add vehicle image</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>
