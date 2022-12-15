@@ -1,7 +1,9 @@
 package com.pkndegwa.mycarmaintenance.ui.fragments
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -10,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
@@ -106,6 +109,14 @@ class VehicleDetailsFragment : Fragment() {
             mileageText.text = getString(R.string.formatted_vehicle_mileage, vehicle.mileage)
             modelYearText.text = vehicle.modelYear.toString()
         }
+        val vehicleImageUri = Uri.parse(vehicle.vehicleImageUri)
+        Glide.with(requireContext())
+            .load(vehicleImageUri)
+            .centerInside()
+            .placeholder(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
+            .error(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
+            .fallback(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
+            .into(binding.vehicleImage)
     }
 
     /**

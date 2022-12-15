@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -18,12 +19,14 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.MenuRes
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
@@ -48,14 +51,16 @@ class VehicleRegistrationFragment : Fragment() {
         VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
     }
     private lateinit var vehicle: Vehicle
+    private var selectedImageUri: Uri? = null
 
     private val openGalleryLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         { result ->
             if (result.resultCode == RESULT_OK && result.data != null) {
-                val vehicleImage = binding.addVehicleImage
-                vehicleImage.setImageURI(result.data?.data)
-                vehicleImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                selectedImageUri = result.data?.data
+                val vehicleImageView = binding.addVehicleImage
+                vehicleImageView.setImageURI(selectedImageUri)
+                vehicleImageView.scaleType = ImageView.ScaleType.CENTER_CROP
                 binding.addPhotoTextView.visibility = View.GONE
             }
         }
@@ -177,6 +182,7 @@ class VehicleRegistrationFragment : Fragment() {
             isEntryValid(binding.vehicleMileage)
         ) {
             vehiclesViewModel.addNewVehicle(
+                vehicleImageUri = selectedImageUri.toString(),
                 vehicleType = binding.vehicleTypeEditText.text.toString(),
                 vehicleManufacturer = binding.vehicleManufacturerEditText.text.toString(),
                 vehicleModel = binding.vehicleModelEditText.text.toString(),
@@ -236,6 +242,15 @@ class VehicleRegistrationFragment : Fragment() {
 
             saveVehicleButton.setOnClickListener { updateVehicle() }
         }
+        val vehicleImageUri = Uri.parse(vehicle.vehicleImageUri)
+        Glide.with(requireContext())
+            .load(vehicleImageUri)
+            .centerCrop()
+            .placeholder(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
+            .error(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
+            .fallback(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
+            .into(binding.addVehicleImage)
+        binding.addPhotoTextView.visibility = View.GONE
     }
 
     /**
@@ -252,6 +267,7 @@ class VehicleRegistrationFragment : Fragment() {
         ) {
             vehiclesViewModel.updateVehicle(
                 vehicleId = this.navigationArgs.vehicleId,
+                vehicleImageUri = selectedImageUri.toString(),
                 vehicleType = this.binding.vehicleTypeEditText.text.toString(),
                 vehicleManufacturer = this.binding.vehicleManufacturerEditText.text.toString(),
                 vehicleModel = this.binding.vehicleModelEditText.text.toString(),

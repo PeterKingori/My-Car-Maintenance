@@ -32,10 +32,11 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      * @return Vehicle
      */
     private fun createNewVehicleEntry(
-        vehicleType: String, vehicleManufacturer: String, vehicleModel: String, vehicleModelYear: String,
-        vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String
+        vehicleImageUri: String, vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
+        vehicleModelYear: String, vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String
     ): Vehicle {
         return Vehicle(
+            vehicleImageUri = vehicleImageUri,
             type = vehicleType,
             manufacturer = vehicleManufacturer,
             model = vehicleModel,
@@ -51,12 +52,12 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      * and passes the information to [insertVehicle] to be saved to the database.
      */
     fun addNewVehicle(
-        vehicleType: String, vehicleManufacturer: String, vehicleModel: String, vehicleModelYear: String,
-        vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String
+        vehicleImageUri: String, vehicleType: String, vehicleManufacturer: String, vehicleModel: String,
+        vehicleModelYear: String, vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String
     ) {
         val newVehicle = createNewVehicleEntry(
-            vehicleType, vehicleManufacturer, vehicleModel, vehicleModelYear,
-            vehicleLicensePlate, vehicleFuelType, vehicleMileage
+            vehicleImageUri, vehicleType, vehicleManufacturer,
+            vehicleModel, vehicleModelYear, vehicleLicensePlate, vehicleFuelType, vehicleMileage
         )
         insertVehicle(newVehicle)
     }
@@ -105,11 +106,12 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      * @return Vehicle
      */
     private fun getUpdatedVehicleEntry(
-        vehicleId: Int, vehicleType: String, vehicleManufacturer: String, vehicleModel:
+        vehicleId: Int, vehicleImageUri: String, vehicleType: String, vehicleManufacturer: String, vehicleModel:
         String, vehicleModelYear: String, vehicleLicensePlate: String, vehicleFuelType: String, vehicleMileage: String
     ): Vehicle {
         return Vehicle(
             id = vehicleId,
+            vehicleImageUri = vehicleImageUri,
             type = vehicleType,
             manufacturer = vehicleManufacturer,
             model = vehicleModel,
@@ -126,6 +128,7 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      */
     fun updateVehicle(
         vehicleId: Int,
+        vehicleImageUri: String,
         vehicleType: String,
         vehicleManufacturer: String,
         vehicleModel: String,
@@ -135,7 +138,7 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
         vehicleMileage: String
     ) {
         val updatedVehicle = getUpdatedVehicleEntry(
-            vehicleId, vehicleType, vehicleManufacturer, vehicleModel, vehicleModelYear,
+            vehicleId, vehicleImageUri, vehicleType, vehicleManufacturer, vehicleModel, vehicleModelYear,
             vehicleLicensePlate, vehicleFuelType, vehicleMileage
         )
         update(updatedVehicle)

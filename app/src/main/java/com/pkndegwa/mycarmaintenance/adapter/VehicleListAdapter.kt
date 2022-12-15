@@ -1,11 +1,14 @@
 package com.pkndegwa.mycarmaintenance.adapter
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.VehiclesListItemBinding
 import com.pkndegwa.mycarmaintenance.models.Vehicle
@@ -20,7 +23,7 @@ class VehicleListAdapter(private val onItemClicked: (Vehicle) -> Unit) :
     /**
      * Provides a reference for the views needed to display items in the list.
      */
-    class VehicleViewHolder(private var binding: VehiclesListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class VehicleViewHolder(private val binding: VehiclesListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(vehicle: Vehicle, context: Context) {
             binding.apply {
                 vehicleName.text = context.getString(R.string.vehicle_name, vehicle.manufacturer, vehicle.model)
@@ -28,6 +31,14 @@ class VehicleListAdapter(private val onItemClicked: (Vehicle) -> Unit) :
                 vehicleOdometer.text = context.getString(R.string.formatted_vehicle_mileage, vehicle.mileage)
                 vehicleModelYear.text = vehicle.modelYear.toString()
             }
+            val vehicleImageUri = Uri.parse(vehicle.vehicleImageUri)
+            Glide.with(context)
+                .load(vehicleImageUri)
+                .centerCrop()
+                .placeholder(AppCompatResources.getDrawable(context, R.drawable.generic_car))
+                .error(AppCompatResources.getDrawable(context, R.drawable.generic_car))
+                .fallback(AppCompatResources.getDrawable(context, R.drawable.generic_car))
+                .into(binding.vehicleImage)
         }
     }
 

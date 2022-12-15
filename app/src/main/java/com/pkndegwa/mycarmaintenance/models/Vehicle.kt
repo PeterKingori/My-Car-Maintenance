@@ -11,6 +11,8 @@ import androidx.room.PrimaryKey
 data class Vehicle(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+    @ColumnInfo(name = "vehicle_image")
+    val vehicleImageUri: String,
     @ColumnInfo(name = "type")
     val type: String,
     @ColumnInfo(name = "manufacturer")
