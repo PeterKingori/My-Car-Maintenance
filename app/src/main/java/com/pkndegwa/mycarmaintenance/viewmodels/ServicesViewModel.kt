@@ -32,7 +32,7 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      */
     private fun createNewServiceEntry(
         servicesList: String, currentMileage: String, nextServiceMileage: String, totalCost: String,
-        serviceDate: String, nextServiceDate: String, notes: String, vehicleId: Int
+        serviceDate: String, nextServiceDate: String, notes: String, receiptImageUri: String, vehicleId: Int
     ): Service {
         return Service(
             servicesDoneList = servicesList,
@@ -42,6 +42,7 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
             serviceDate = serviceDate,
             nextServiceDate = nextServiceDate,
             notes = notes,
+            receiptImageUriString = receiptImageUri,
             vehicleId = vehicleId
         )
     }
@@ -51,11 +52,11 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      */
     fun addNewService(
         servicesList: String, currentMileage: String, nextServiceMileage: String, totalCost: String,
-        serviceDate: String, nextServiceDate: String, notes: String, vehicleId: Int
+        serviceDate: String, nextServiceDate: String, notes: String, receiptImageUri: String, vehicleId: Int
     ): Boolean {
         val newService = createNewServiceEntry(
             servicesList, currentMileage, nextServiceMileage, totalCost, serviceDate,
-            nextServiceDate, notes, vehicleId
+            nextServiceDate, notes, receiptImageUri, vehicleId
         )
         return insertService(newService)
     }
@@ -113,7 +114,8 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      */
     private fun getUpdatedServiceEntry(
         serviceId: Int, servicesList: String, currentMileage: String, nextServiceMileage: String,
-        totalCost: String, serviceDate: String, nextServiceDate: String, notes: String, vehicleId: Int
+        totalCost: String, serviceDate: String, nextServiceDate: String, notes: String, receiptImageUri: String,
+        vehicleId: Int
     ): Service {
         return Service(
             id = serviceId,
@@ -124,6 +126,7 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
             serviceDate = serviceDate,
             nextServiceDate = nextServiceDate,
             notes = notes,
+            receiptImageUriString = receiptImageUri,
             vehicleId = vehicleId
         )
     }
@@ -134,11 +137,12 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      */
     fun updateService(
         serviceId: Int, servicesList: String, currentMileage: String, nextServiceMileage: String,
-        totalCost: String, serviceDate: String, nextServiceDate: String, notes: String, vehicleId: Int
+        totalCost: String, serviceDate: String, nextServiceDate: String, notes: String, receiptImageUri: String,
+        vehicleId: Int
     ): Boolean {
         val updatedService = getUpdatedServiceEntry(
             serviceId, servicesList, currentMileage, nextServiceMileage, totalCost,
-            serviceDate, nextServiceDate, notes, vehicleId
+            serviceDate, nextServiceDate, notes, receiptImageUri, vehicleId
         )
         return update(updatedService)
     }

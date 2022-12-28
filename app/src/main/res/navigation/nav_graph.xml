@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_vehicleDetailsFragment_to_addServiceFragment"
             app:destination="@id/addServiceFragment" />
+        <action
+            android:id="@+id/action_vehicleDetailsFragment_to_viewImageFragment"
+            app:destination="@id/viewImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/addServiceFragment"
@@ -79,6 +82,23 @@
             app:argType="integer" />
         <argument
             android:name="title"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewImageFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.ViewImageFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_view_image">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_viewImageFragment_to_vehicleDetailsFragment"
+            app:destination="@id/vehicleDetailsFragment"
+            app:popUpTo="@id/vehicleDetailsFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="imageUriString"
             app:argType="string" />
     </fragment>
 </navigation>

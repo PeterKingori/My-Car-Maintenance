@@ -1,16 +1,20 @@
 package com.pkndegwa.mycarmaintenance.ui.fragments
 
+import android.Manifest
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
@@ -28,6 +32,7 @@ import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentAddServiceBinding
 import com.pkndegwa.mycarmaintenance.models.Service
+import com.pkndegwa.mycarmaintenance.utils.ImageCapture
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModelFactory
 import java.text.SimpleDateFormat
@@ -59,6 +64,32 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
     private var flag = 0
 
+    private var selectedReceiptImageUri: Uri? = null
+//    private val receiptImagesList = mutableListOf<String>()
+
+    private val openGalleryLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        { result ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                selectedReceiptImageUri = result.data?.data
+                binding.receiptImageCard.visibility = View.VISIBLE
+                val receiptImage = binding.receiptImage
+                receiptImage.setImageURI(selectedReceiptImageUri)
+                receiptImage.scaleType = ImageView.ScaleType.CENTER_CROP
+            }
+        }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            val selectImageIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            openGalleryLauncher.launch(selectImageIntent)
+        } else {
+            Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Retrieve and inflate the layout for this fragment.
         _binding = FragmentAddServiceBinding.inflate(inflater, container, false)
@@ -87,23 +118,48 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             }
         }
 
-        // Click listeners for service dates buttons
-        binding.serviceDateButton.setOnClickListener {
-            datePicker(requireContext(), true)
-            flag = 0
-        }
+        binding.apply {
+            // Click listeners for service dates buttons
+            serviceDateButton.setOnClickListener {
+                datePicker(requireContext(), true)
+                flag = 0
+            }
+            nextServiceDateButton.setOnClickListener {
+                datePicker(requireContext(), false)
+                flag = 1
+            }
 
-        binding.nextServiceDateButton.setOnClickListener {
-            datePicker(requireContext(), false)
-            flag = 1
-        }
+            // Click listener to add a new service that isn't present in the chip group
+            addNewServiceChip.setOnClickListener {
+                val position = binding.servicesChipGroup.size - 1
+                addNewServiceTypeDialog(position)
+            }
 
-        // Click listener to add a new service that isn't present in the chip group
-        binding.addNewServiceChip.setOnClickListener {
-            val position = binding.servicesChipGroup.size - 1
-            addNewServiceTypeDialog(position)
+            // Click listener to add a photo of a receipt
+            addReceiptPhotoButton.setOnClickListener {
+                val imageCapture = ImageCapture(
+                    requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE,
+                    requireActivity(), requestPermissionLauncher
+                )
+                imageCapture.askForPermission()
+            }
+            removeReceiptImageIcon.setOnClickListener {
+                selectedReceiptImageUri = null
+                binding.receiptImageCard.visibility = View.GONE
+            }
         }
     }
+
+    // RecyclerView for showing multiple receipt images
+//    private fun setupReceiptsRecyclerView() {
+//        val receiptImagesAdapter = FileImageListAdapter()
+//        val horizontalLayoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+//        binding.receiptImagesRecyclerView.apply {
+//            layoutManager = horizontalLayoutManager
+//            adapter = receiptImagesAdapter
+//        }
+//        receiptImagesAdapter.submitList(receiptImagesList)
+//    }
 
     /**
      * Displays a dialog to allow the user enter the name of a service type
@@ -201,6 +257,7 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 serviceDate = binding.serviceDateButton.text.toString(),
                 nextServiceDate = binding.nextServiceDateButton.text.toString(),
                 notes = binding.notesEditText.text.toString(),
+                receiptImageUri = selectedReceiptImageUri?.run { toString() } ?: "",
                 vehicleId = vehicleId
             )
             if (result) {
@@ -299,6 +356,12 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
             saveServiceButton.setOnClickListener { updateService() }
         }
+
+        val receiptImageUri = Uri.parse(service.receiptImageUriString)
+        binding.receiptImageCard.visibility = View.VISIBLE
+        val receiptImage = binding.receiptImage
+        receiptImage.setImageURI(receiptImageUri)
+        receiptImage.scaleType = ImageView.ScaleType.CENTER_CROP
     }
 
     /**
@@ -319,6 +382,7 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 serviceDate = this.binding.serviceDateButton.text.toString(),
                 nextServiceDate = this.binding.nextServiceDateButton.text.toString(),
                 notes = this.binding.notesEditText.text.toString(),
+                receiptImageUri = selectedReceiptImageUri?.run { toString() } ?: "",
                 vehicleId = this.navigationArgs.vehicleId
             )
             if (result) {

@@ -28,6 +28,7 @@
     <string name="edit_service">Edit Service</string>
     <string name="add_photo">Add photo</string>
     <string name="add_vehicle_image">add vehicle image</string>
+    <string name="file_images">File images</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>
@@ -67,4 +68,7 @@
     <string name="delete_service_question">Are you sure you want to delete the service?</string>
     <string name="enter_service_dialog">Please enter the service type name</string>
     <string name="service_type">Service type</string>
+    <string name="receipt">Receipt</string>
+    <string name="receipt_image_title">Receipt Image</string>
+
 </resources>

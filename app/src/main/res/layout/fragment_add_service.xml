@@ -12,7 +12,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/services_text"
+            android:id="@+id/services_label"
             style="@style/Widget.MyCarMaintenance.ServiceTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             app:chipSpacing="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/services_text">
+            app:layout_constraintTop_toBottomOf="@id/services_label">
 
             <com.google.android.material.chip.Chip
                 style="@style/Widget.MyCarMaintenance.Chip.Filter"
@@ -102,7 +102,7 @@
         </com.google.android.material.chip.ChipGroup>
 
         <TextView
-            android:id="@+id/mileage_text"
+            android:id="@+id/mileage_label"
             style="@style/Widget.MyCarMaintenance.ServiceTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
             android:hint="@string/current_mileage"
             app:layout_constraintEnd_toStartOf="@id/next_service_mileage"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mileage_text">
+            app:layout_constraintTop_toBottomOf="@id/mileage_label">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/current_mileage_edit_text"
@@ -156,7 +156,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/total_cost_text"
+            android:id="@+id/total_cost_label"
             style="@style/Widget.MyCarMaintenance.ServiceTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
             android:hint="@string/amount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/total_cost_text">
+            app:layout_constraintTop_toBottomOf="@id/total_cost_label">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/total_cost_edit_text"
@@ -186,26 +186,26 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/service_date_text"
+            android:id="@+id/service_date_label"
             style="@style/Widget.MyCarMaintenance.ServiceTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/service_date"
-            app:layout_constraintEnd_toStartOf="@id/next_service_date_text"
+            app:layout_constraintEnd_toStartOf="@id/next_service_date_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/total_cost" />
 
         <TextView
-            android:id="@+id/next_service_date_text"
+            android:id="@+id/next_service_date_label"
             style="@style/Widget.MyCarMaintenance.ServiceTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/next_service_date"
-            app:layout_constraintBottom_toBottomOf="@id/service_date_text"
+            app:layout_constraintBottom_toBottomOf="@id/service_date_label"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/service_date_text"
-            app:layout_constraintTop_toTopOf="@id/service_date_text" />
+            app:layout_constraintStart_toEndOf="@id/service_date_label"
+            app:layout_constraintTop_toTopOf="@id/service_date_label" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/service_date_button"
@@ -222,7 +222,7 @@
             app:iconTint="@color/dark_gray"
             app:layout_constraintEnd_toStartOf="@id/next_service_date_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/service_date_text"
+            app:layout_constraintTop_toBottomOf="@id/service_date_label"
             tools:text="15 Oct 2022" />
 
         <com.google.android.material.button.MaterialButton
@@ -245,7 +245,7 @@
             tools:text="01 March 2023" />
 
         <TextView
-            android:id="@+id/notes_text"
+            android:id="@+id/notes_label"
             style="@style/Widget.MyCarMaintenance.ServiceTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -263,7 +263,7 @@
             android:hint="@string/notes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/notes_text">
+            app:layout_constraintTop_toBottomOf="@id/notes_label">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/notes_edit_text"
@@ -274,6 +274,80 @@
                 android:minLines="2" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/receipt_photo_label"
+            style="@style/Widget.MyCarMaintenance.ServiceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/receipt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notes" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_receipt_photo_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/button_min_height"
+            android:padding="12dp"
+            android:text="@string/add_photo"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/black"
+            app:backgroundTint="#E8E8E8"
+            app:icon="@drawable/ic_baseline_add_a_photo_24"
+            app:iconGravity="textStart"
+            app:iconTint="@color/dark_gray"
+            app:layout_constraintBottom_toTopOf="@id/receipt_image_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/receipt_photo_label" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/receipt_image_card"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/file_images"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/save_service_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_receipt_photo_button">
+
+            <ImageButton
+                android:id="@+id/receipt_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/file_images"
+                android:scaleType="centerCrop" />
+
+            <ImageButton
+                android:id="@+id/remove_receipt_image_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/rounded_corners"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_baseline_close_24" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--<androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/receipt_images_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:clipToPadding="false"
+            android:focusable="true"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/save_service_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_receipt_photo_button"
+            tools:listitem="@layout/file_image_list_item" />-->
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/save_service_button"
             android:layout_width="match_parent"
@@ -283,7 +357,7 @@
             android:text="@string/save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/notes" />
+            app:layout_constraintTop_toBottomOf="@id/receipt_image_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

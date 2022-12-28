@@ -25,6 +25,8 @@ data class Service(
     val nextServiceDate: String = "",
     @ColumnInfo(name = "notes")
     val notes: String = "",
+    @ColumnInfo(name = "receipt_image")
+    val receiptImageUriString: String = "",
     @ColumnInfo(name = "vehicle_id")
     val vehicleId: Int
 )

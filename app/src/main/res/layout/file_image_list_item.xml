@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_margin="8dp"
+    android:contentDescription="@string/file_images">
+
+    <ImageButton
+        android:id="@+id/receipt_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/file_images"
+        android:scaleType="centerCrop" />
+
+    <ImageButton
+        android:id="@+id/remove_receipt_image_icon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="top|end"
+        android:background="@drawable/rounded_corners"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_baseline_close_24" />
+
+</com.google.android.material.card.MaterialCardView>
