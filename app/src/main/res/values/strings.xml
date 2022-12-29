@@ -29,6 +29,9 @@
     <string name="add_photo">Add photo</string>
     <string name="add_vehicle_image">add vehicle image</string>
     <string name="file_images">File images</string>
+    <string name="vehicles">Vehicles</string>
+    <string name="reminders">Reminders</string>
+    <string name="more">More</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>

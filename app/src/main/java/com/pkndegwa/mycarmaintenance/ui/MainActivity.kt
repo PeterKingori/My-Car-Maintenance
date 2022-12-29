@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.ActivityMainBinding
 
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         // Make sure actions in the ActionBar get propagated to the NavController
         setupActionBarWithNavController(this, navController)
+
+        setupWithNavController(binding.bottomNavigationView, navController)
     }
 
     /**

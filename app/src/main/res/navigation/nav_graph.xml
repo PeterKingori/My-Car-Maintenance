@@ -101,4 +101,19 @@
             android:name="imageUriString"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.NotesFragment"
+        android:label="Notes"
+        tools:layout="@layout/fragment_notes" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.MoreFragment"
+        android:label="More options"
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/reminderFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.ReminderFragment"
+        android:label="Reminders"
+        tools:layout="@layout/fragment_reminder" />
 </navigation>
