@@ -325,11 +325,13 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             saveServiceButton.setOnClickListener { updateService() }
         }
 
-        val receiptImageUri = Uri.parse(service.receiptImageUriString)
-        binding.receiptImageCard.visibility = View.VISIBLE
-        val receiptImage = binding.receiptImage
-        receiptImage.setImageURI(receiptImageUri)
-        receiptImage.scaleType = ImageView.ScaleType.CENTER_CROP
+        if (service.receiptImageUriString.isNotEmpty()) {
+            val receiptImageUri = Uri.parse(service.receiptImageUriString)
+            binding.receiptImageCard.visibility = View.VISIBLE
+            val receiptImage = binding.receiptImage
+            receiptImage.setImageURI(receiptImageUri)
+            receiptImage.scaleType = ImageView.ScaleType.CENTER_CROP
+        }
     }
 
     /**

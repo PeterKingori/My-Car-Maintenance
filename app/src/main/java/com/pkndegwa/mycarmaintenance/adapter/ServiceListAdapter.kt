@@ -2,6 +2,7 @@ package com.pkndegwa.mycarmaintenance.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
@@ -45,12 +46,16 @@ class ServiceListAdapter(private val onDeleteItemClicked: (Service) -> Unit) : L
                     }
                 }
             }
-            binding.receiptImageButton.setOnClickListener { itemView ->
-                val action = VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToViewImageFragment(
-                    title = context.getString(R.string.receipt_image_title),
-                    imageUriString = service.receiptImageUriString
-                )
-                itemView.findNavController().navigate(action)
+            if (service.receiptImageUriString.isEmpty()) {
+                binding.receiptImageButton.visibility = View.INVISIBLE
+            } else {
+                binding.receiptImageButton.setOnClickListener { itemView ->
+                    val action = VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToViewImageFragment(
+                        title = context.getString(R.string.receipt_image_title),
+                        imageUriString = service.receiptImageUriString
+                    )
+                    itemView.findNavController().navigate(action)
+                }
             }
             binding.editServiceButton.setOnClickListener { itemView ->
                 val action =

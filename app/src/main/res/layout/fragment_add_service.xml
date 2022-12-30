@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/services_label"
@@ -179,7 +179,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/total_cost_edit_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:textColorHint="#757575" />
@@ -217,7 +217,7 @@
             android:textAlignment="viewStart"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/black"
-            app:backgroundTint="#E8E8E8"
+            app:backgroundTint="#E9E9ED"
             app:icon="@drawable/ic_baseline_calendar_24"
             app:iconTint="@color/dark_gray"
             app:layout_constraintEnd_toStartOf="@id/next_service_date_button"
@@ -235,7 +235,7 @@
             android:textAlignment="viewStart"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/black"
-            app:backgroundTint="#E8E8E8"
+            app:backgroundTint="#E9E9ED"
             app:icon="@drawable/ic_baseline_calendar_24"
             app:iconTint="@color/dark_gray"
             app:layout_constraintBottom_toBottomOf="@id/service_date_button"
@@ -268,7 +268,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/notes_edit_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
                 android:inputType="text|textCapSentences|textMultiLine"
                 android:minLines="2" />
@@ -295,7 +295,7 @@
             android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/black"
-            app:backgroundTint="#E8E8E8"
+            app:backgroundTint="#E9E9ED"
             app:icon="@drawable/ic_baseline_add_a_photo_24"
             app:iconGravity="textStart"
             app:iconTint="@color/dark_gray"
