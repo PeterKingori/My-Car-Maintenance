@@ -21,13 +21,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.MenuRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
@@ -140,37 +138,6 @@ class VehicleRegistrationFragment : Fragment() {
     }
 
     /**
-     * Checks if the text input fields have been filled.
-     */
-    private fun isEntryValid(view: TextInputLayout): Boolean {
-        return if (isEntryValid(view.editText?.text.toString())) {
-            setError(view)
-            removeError(view)
-            false
-        } else {
-            true
-        }
-    }
-
-    /**
-     * Sets the text field error status.
-     */
-    private fun setError(view: TextInputLayout) {
-        view.isErrorEnabled = true
-        view.error = "Fill in this field."
-    }
-
-    /**
-     * Removes the text field error stats.
-     */
-    private fun removeError(view: TextInputLayout) {
-        view.editText?.doOnTextChanged { _, _, _, _ ->
-            view.isErrorEnabled = false
-            view.error = null
-        }
-    }
-
-    /**
      * Validates user input before adding the new vehicle in the database using the ViewModel.
      */
     private fun addNewVehicle() {
@@ -266,7 +233,7 @@ class VehicleRegistrationFragment : Fragment() {
             isEntryValid(binding.vehicleFuelType) &&
             isEntryValid(binding.vehicleMileage)
         ) {
-            vehiclesViewModel.updateVehicle(
+            val result = vehiclesViewModel.updateVehicle(
                 vehicleId = this.navigationArgs.vehicleId,
                 vehicleImageUri = selectedImageUri.toString(),
                 vehicleType = this.binding.vehicleTypeEditText.text.toString(),
@@ -277,8 +244,10 @@ class VehicleRegistrationFragment : Fragment() {
                 vehicleFuelType = this.binding.vehicleFuelTypeEditText.text.toString(),
                 vehicleMileage = this.binding.vehicleMileageEditText.text.toString()
             )
-            Toast.makeText(this.context, "Vehicle updated successfully", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_vehicleRegistrationFragment_to_homeFragment)
+            if (result) {
+                Toast.makeText(this.context, "Vehicle updated successfully", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_vehicleRegistrationFragment_to_homeFragment)
+            }
         }
     }
 

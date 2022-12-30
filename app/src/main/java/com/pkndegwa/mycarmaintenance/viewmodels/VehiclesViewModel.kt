@@ -83,10 +83,14 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
      * This function takes in a [Vehicle] object and updates the data of the existing
      * vehicle in the database on a background thread.
      * @param [vehicle]
+     * @return Boolean
      */
-    private fun update(vehicle: Vehicle) {
-        viewModelScope.launch {
-            vehicleDao.updateVehicle(vehicle)
+    private fun update(vehicle: Vehicle): Boolean {
+        return try {
+            viewModelScope.launch { vehicleDao.updateVehicle(vehicle) }
+            true
+        } catch (e: Exception) {
+            false
         }
     }
 
@@ -126,11 +130,11 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
         vehicleLicensePlate: String,
         vehicleFuelType: String,
         vehicleMileage: String
-    ) {
+    ): Boolean {
         val updatedVehicle = getUpdatedVehicleEntry(
             vehicleId, vehicleImageUri, vehicleType, vehicleManufacturer, vehicleModel, vehicleModelYear,
             vehicleLicensePlate, vehicleFuelType, vehicleMileage
         )
-        update(updatedVehicle)
+        return update(updatedVehicle)
     }
 }

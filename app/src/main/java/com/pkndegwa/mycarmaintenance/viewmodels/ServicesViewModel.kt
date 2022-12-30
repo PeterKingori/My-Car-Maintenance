@@ -88,6 +88,7 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      * This function takes in a [Service] object and updates the data of the existing
      * service in the database on a background thread.
      * @param [service]
+     * @return Boolean
      */
     private fun update(service: Service): Boolean {
         return try {

@@ -19,7 +19,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.size
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -27,7 +26,6 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.textfield.TextInputLayout
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentAddServiceBinding
@@ -309,37 +307,6 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 dialog.dismiss()
             }
         dialogBuilder.create().show()
-    }
-
-    /**
-     * Checks if the text input fields have been filled.
-     */
-    private fun isEntryValid(view: TextInputLayout): Boolean {
-        return if (isEntryValid(view.editText?.text.toString())) {
-            setError(view)
-            removeError(view)
-            false
-        } else {
-            true
-        }
-    }
-
-    /**
-     * Sets the text field error status.
-     */
-    private fun setError(view: TextInputLayout) {
-        view.isErrorEnabled = true
-        view.error = "Fill in this field."
-    }
-
-    /**
-     * Removes the text field error stats.
-     */
-    private fun removeError(view: TextInputLayout) {
-        view.editText?.doOnTextChanged { _, _, _, _ ->
-            view.isErrorEnabled = false
-            view.error = null
-        }
     }
 
     /**
