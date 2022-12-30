@@ -14,7 +14,8 @@ import com.pkndegwa.mycarmaintenance.databinding.VehiclesListItemBinding
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 
 /**
- * Adapter for the [RecyclerView] in VehiclesFragment.
+ * This class implements a [RecyclerView] [ListAdapter] in VehiclesFragment which uses Data Binding to present [List]
+ * data, including computing diffs between lists.
  */
 class VehicleListAdapter(private val onItemClicked: (Vehicle) -> Unit) :
     ListAdapter<Vehicle, VehicleListAdapter.VehicleViewHolder>(DiffCallback) {
@@ -35,7 +36,6 @@ class VehicleListAdapter(private val onItemClicked: (Vehicle) -> Unit) :
             Glide.with(context)
                 .load(vehicleImageUri)
                 .centerCrop()
-                .placeholder(AppCompatResources.getDrawable(context, R.drawable.generic_car))
                 .error(AppCompatResources.getDrawable(context, R.drawable.generic_car))
                 .fallback(AppCompatResources.getDrawable(context, R.drawable.generic_car))
                 .into(binding.vehicleImage)

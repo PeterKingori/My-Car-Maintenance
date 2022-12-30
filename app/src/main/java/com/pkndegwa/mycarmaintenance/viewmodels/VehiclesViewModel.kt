@@ -63,16 +63,6 @@ class VehiclesViewModel(private val vehicleDao: VehicleDao) : ViewModel() {
     }
 
     /**
-     * Public function that checks if a string value is blank or not.
-     */
-    fun isEntryValid(propertyValue: String): Boolean {
-        if (propertyValue.isBlank()) {
-            return false
-        }
-        return true
-    }
-
-    /**
      * This function retrieves the vehicle details from the database based on the vehicle [id].
      * @return LiveData<Vehicle>
      */

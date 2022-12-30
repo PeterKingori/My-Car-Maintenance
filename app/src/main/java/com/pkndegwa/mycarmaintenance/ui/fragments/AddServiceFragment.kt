@@ -33,6 +33,7 @@ import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentAddServiceBinding
 import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.utils.ImageCapture
+import com.pkndegwa.mycarmaintenance.utils.isEntryValid
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModelFactory
 import java.text.SimpleDateFormat
@@ -101,7 +102,7 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         // Sets the dates buttons on first access
         setDate()
-        futureDate(6)
+        futureDate()
 
         val vehicleId = navigationArgs.vehicleId
         val serviceId = navigationArgs.serviceId
@@ -206,8 +207,8 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     /**
      * Function to set future date when none is selected
      */
-    private fun futureDate(months: Int) {
-        calendar.add(Calendar.MONTH, months)
+    private fun futureDate() {
+        calendar.add(Calendar.MONTH, 6)
         val futureDate = simpleDateFormat.format(calendar.time)
         binding.nextServiceDateButton.text = futureDate
     }
@@ -314,7 +315,7 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
      * Checks if the text input fields have been filled.
      */
     private fun isEntryValid(view: TextInputLayout): Boolean {
-        return if (!servicesViewModel.isEntryValid(view.editText?.text.toString())) {
+        return if (isEntryValid(view.editText?.text.toString())) {
             setError(view)
             removeError(view)
             false

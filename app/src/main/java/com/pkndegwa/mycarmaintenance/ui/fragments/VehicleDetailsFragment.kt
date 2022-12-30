@@ -113,7 +113,6 @@ class VehicleDetailsFragment : Fragment() {
         Glide.with(requireContext())
             .load(vehicleImageUri)
             .centerInside()
-            .placeholder(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
             .error(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
             .fallback(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
             .into(binding.vehicleImage)

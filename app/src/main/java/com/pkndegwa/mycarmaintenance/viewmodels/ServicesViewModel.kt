@@ -27,7 +27,7 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
     }
 
     /**
-     * Converts service details that have been entered to a new [Service] instance and returns it.
+     * Converts service details that have been entered by a user to a new [Service] instance and returns it.
      * @return Service
      */
     private fun createNewServiceEntry(
@@ -48,7 +48,8 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
     }
 
     /**
-     * Public function that takes in vehicle service details, gets
+     * Public function that takes in vehicle service details, gets a new [Service] instance,
+     * and passes the information to [insertService] to be saved to the database.
      */
     fun addNewService(
         servicesList: String, currentMileage: String, nextServiceMileage: String, totalCost: String,
@@ -66,16 +67,6 @@ class ServicesViewModel(private val serviceDao: ServiceDao) : ViewModel() {
      */
     fun isServiceSelected(chipGroup: ChipGroup): Boolean {
         return chipGroup.checkedChipIds != emptyList<String>()
-    }
-
-    /**
-     * Public function that checks if a string value is blank or not.
-     */
-    fun isEntryValid(propertyValue: String): Boolean {
-        if (propertyValue.isBlank()) {
-            return false
-        }
-        return true
     }
 
     /**

@@ -12,6 +12,10 @@ import com.pkndegwa.mycarmaintenance.databinding.ServiceListItemBinding
 import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.ui.fragments.VehicleDetailsFragmentDirections
 
+/**
+ * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
+ * data, including computing diffs between lists.
+ */
 class ServiceListAdapter(private val onDeleteItemClicked: (Service) -> Unit) : ListAdapter<Service, ServiceListAdapter
 .ServiceViewHolder>(DiffCallback) {
     private lateinit var context: Context

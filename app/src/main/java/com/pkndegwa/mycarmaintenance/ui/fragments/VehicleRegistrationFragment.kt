@@ -33,6 +33,7 @@ import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.utils.ImageCapture
+import com.pkndegwa.mycarmaintenance.utils.isEntryValid
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModelFactory
 
@@ -142,7 +143,7 @@ class VehicleRegistrationFragment : Fragment() {
      * Checks if the text input fields have been filled.
      */
     private fun isEntryValid(view: TextInputLayout): Boolean {
-        return if (!vehiclesViewModel.isEntryValid(view.editText?.text.toString())) {
+        return if (isEntryValid(view.editText?.text.toString())) {
             setError(view)
             removeError(view)
             false
