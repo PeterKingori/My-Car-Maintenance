@@ -64,6 +64,8 @@ This project is licensed under the **GNU Affero General Public License**. See th
 
 ## Acknowledgements
 
-<a href="https://www.flaticon.com/free-icons/tow-truck" title="tow truck icons">Tow truck icon found on Flaticon</a>
+<p><a href="https://www.flaticon.com/free-icons/tow-truck" title="tow truck icons">Tow truck icon found on Flaticon</a></p>
+<p>Screwdriver icon by <a href="https://freeicons.io/profile/135331">Chanut is Industries</a> on <a href="https://freeicons.io">freeicons.io</a></p>
+                                
 
 Copyright (c) 2022 **Peter Kingori Ndegwa**
