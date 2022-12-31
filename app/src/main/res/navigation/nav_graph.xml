@@ -112,8 +112,23 @@
         android:label="More options"
         tools:layout="@layout/fragment_more" />
     <fragment
-        android:id="@+id/reminderFragment"
-        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.ReminderFragment"
+        android:id="@+id/remindersFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.RemindersFragment"
         android:label="Reminders"
-        tools:layout="@layout/fragment_reminder" />
+        tools:layout="@layout/fragment_reminders">
+        <action
+            android:id="@+id/action_remindersFragment_to_addReminderFragment"
+            app:destination="@id/addReminderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addReminderFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.AddReminderFragment"
+        android:label="@string/new_reminder"
+        tools:layout="@layout/fragment_add_reminder">
+        <action
+            android:id="@+id/action_addReminderFragment_to_remindersFragment"
+            app:destination="@id/remindersFragment"
+            app:popUpTo="@id/remindersFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

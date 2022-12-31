@@ -32,6 +32,12 @@
     <string name="vehicles">Vehicles</string>
     <string name="reminders">Reminders</string>
     <string name="more">More</string>
+    <string name="new_reminder">Add New Reminder</string>
+    <string name="reminder_title">Reminder Text</string>
+    <string name="reminder_text_hint">Enter reminder text</string>
+    <string name="reminder_date">Reminder Date</string>
+    <string name="additional_text_title">Additional Text</string>
+    <string name="additional_text_hint">Enter additional text</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>

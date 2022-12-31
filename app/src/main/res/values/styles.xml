@@ -28,4 +28,23 @@
         <item name="android:textStyle">bold</item>
         <item name="android:padding">4dp</item>
     </style>
+
+    <style name="Widget.MyCarMaintenance.TextInputLayout.FilledNoStrokes" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxCornerRadiusBottomEnd">4dp</item>
+        <item name="boxCornerRadiusBottomStart">4dp</item>
+        <item name="boxCornerRadiusTopEnd">4dp</item>
+        <item name="boxCornerRadiusTopStart">4dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="errorIconDrawable">@drawable/ic_baseline_error_outline_24</item>
+        <item name="helperTextTextAppearance">@style/TextAppearance.MaterialComponents.Subtitle1</item>
+    </style>
+
+    <style name="Widget.MyCarMaintenance.TextInputEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:backgroundTint">#E9E9ED</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+        <item name="android:imeOptions">actionDone</item>
+    </style>
 </resources>

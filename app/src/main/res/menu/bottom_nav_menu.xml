@@ -12,7 +12,7 @@
         android:title="@string/notes" />
 
     <item
-        android:id="@+id/reminderFragment"
+        android:id="@+id/remindersFragment"
         android:icon="@drawable/ic_baseline_notifications_none_24"
         android:title="@string/reminders" />
 
