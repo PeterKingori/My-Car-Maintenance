@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.pkndegwa.mycarmaintenance.R
@@ -22,6 +23,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val appBarConfiguration = AppBarConfiguration.Builder(
+            R.id.homeFragment,
+            R.id.notesFragment,
+            R.id.remindersFragment,
+            R.id.moreFragment
+        ).build()
+
         // Get the navigation host fragment from this Activity
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
@@ -29,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         // Make sure actions in the ActionBar get propagated to the NavController
-        setupActionBarWithNavController(this, navController)
+        setupActionBarWithNavController(this, navController, appBarConfiguration)
 
         setupWithNavController(binding.bottomNavigationView, navController)
     }
