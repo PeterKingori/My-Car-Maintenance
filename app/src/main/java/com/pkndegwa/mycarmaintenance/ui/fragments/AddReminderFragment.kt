@@ -3,16 +3,22 @@ package com.pkndegwa.mycarmaintenance.ui.fragments
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.DatePicker
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
+import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentAddReminderBinding
+import com.pkndegwa.mycarmaintenance.models.Reminder
 import com.pkndegwa.mycarmaintenance.utils.isEntryValid
 import com.pkndegwa.mycarmaintenance.viewmodels.RemindersViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.RemindersViewModelFactory
@@ -31,6 +37,9 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         RemindersViewModelFactory((activity?.application as CarMaintenanceApplication).database.reminderDao())
     }
 
+    private val navigationArgs: AddReminderFragmentArgs by navArgs()
+    private lateinit var reminder: Reminder
+
     // Calendar variables
     private val calendar: Calendar = Calendar.getInstance()
     private val year = calendar.get(Calendar.YEAR)
@@ -48,15 +57,42 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val reminderId = navigationArgs.id
+        if (reminderId > 0) {
+            remindersViewModel.retrieveReminder(reminderId).observe(this.viewLifecycleOwner) { selectedReminder ->
+                reminder = selectedReminder
+                bindDetails(reminder)
+            }
+
+            val menuHost: MenuHost = requireActivity()
+            menuHost.addMenuProvider(object : MenuProvider {
+                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                    menu.clear()
+                    menuInflater.inflate(R.menu.edit_reminder_menu, menu)
+                }
+
+                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                    return when (menuItem.itemId) {
+                        R.id.delete_reminder -> {
+                            showConfirmationDialogForReminder()
+                            true
+                        }
+                        else -> false
+                    }
+                }
+
+            }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        } else {
+            binding.saveReminderButton.setOnClickListener {
+                addNewReminder()
+            }
+        }
+
         // Set the date on first access
         setDate()
 
         binding.reminderDateButton.setOnClickListener {
             datePicker(requireContext())
-        }
-
-        binding.saveReminderButton.setOnClickListener {
-            addNewReminder()
         }
     }
 
@@ -101,6 +137,58 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 )
             }
         }
+    }
+
+    /**
+     * Binds the reminder data to the TextViews when a reminder is selected in the RemindersFragment.
+     */
+    private fun bindDetails(reminder: Reminder) {
+        binding.apply {
+            reminderTextEditText.setText(reminder.reminderText, TextView.BufferType.SPANNABLE)
+            reminderDateButton.text = reminder.reminderDate
+            reminderAdditionalTextEditText.setText(reminder.additionalText, TextView.BufferType.SPANNABLE)
+
+            saveReminderButton.setOnClickListener { updateReminder() }
+        }
+    }
+
+    /**
+     * Validates user input before updating the reminder details in the database using the ViewModel.
+     */
+    private fun updateReminder() {
+        if (isEntryValid(binding.reminderText)) {
+            val result = remindersViewModel.updateReminder(
+                reminderId = this.navigationArgs.id,
+                reminderText = this.binding.reminderTextEditText.text.toString(),
+                reminderDate = this.binding.reminderDateButton.text.toString(),
+                additionalText = this.binding.reminderAdditionalTextEditText.text.toString()
+            )
+            if (result) {
+                Toast.makeText(this.context, "Reminder updated successfully", Toast.LENGTH_SHORT).show()
+                val action = AddReminderFragmentDirections.actionAddReminderFragmentToRemindersFragment()
+                findNavController().navigate(action)
+            }
+        }
+    }
+
+    /**
+     * Displays an alert dialog to get the user's confirmation before deleting the reminder.
+     */
+    private fun showConfirmationDialogForReminder() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setMessage("Are you sure you want to delete the reminder?")
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.cancel), null)
+            .setPositiveButton(getString(R.string.delete)) { _, _ ->
+                deleteReminder()
+            }
+            .show()
+    }
+
+    private fun deleteReminder() {
+        remindersViewModel.deleteReminder(reminder)
+        val action = AddReminderFragmentDirections.actionAddReminderFragmentToRemindersFragment()
+        this.findNavController().navigate(action)
     }
 
     /**

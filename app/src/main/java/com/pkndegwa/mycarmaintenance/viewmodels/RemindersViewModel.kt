@@ -55,8 +55,8 @@ class RemindersViewModel(private val reminderDao: ReminderDao) : ViewModel() {
      * This function retrieves the reminder details from the database based on the [id].
      * @return LiveData<Reminder>
      */
-    fun retrieveReminder(id: Int?): LiveData<Reminder>? {
-        return id?.let { reminderDao.getReminder(it).asLiveData() }
+    fun retrieveReminder(id: Int): LiveData<Reminder> {
+        return reminderDao.getReminder(id).asLiveData()
     }
 
     /**

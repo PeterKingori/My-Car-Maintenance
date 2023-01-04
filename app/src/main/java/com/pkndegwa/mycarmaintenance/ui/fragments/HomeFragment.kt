@@ -30,7 +30,6 @@ class HomeFragment : Fragment() {
         VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
     }
 
-    private lateinit var vehicleListAdapter: VehicleListAdapter
     private lateinit var emptyDataView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -55,7 +54,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView(view: View) {
-        vehicleListAdapter = VehicleListAdapter {
+        val vehicleListAdapter = VehicleListAdapter {
             val action = HomeFragmentDirections.actionHomeFragmentToVehicleDetailsFragment(it.id)
             view.findNavController().navigate(action)
         }

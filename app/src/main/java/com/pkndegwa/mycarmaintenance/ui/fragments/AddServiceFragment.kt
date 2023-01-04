@@ -320,7 +320,7 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             totalCostEditText.setText(service.totalCost.toString(), TextView.BufferType.SPANNABLE)
             serviceDateButton.text = service.serviceDate
             nextServiceDateButton.text = service.nextServiceDate
-            notesEditText.setText(service.notes)
+            notesEditText.setText(service.notes, TextView.BufferType.SPANNABLE)
 
             saveServiceButton.setOnClickListener { updateService() }
         }

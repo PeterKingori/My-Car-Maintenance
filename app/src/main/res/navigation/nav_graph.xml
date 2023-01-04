@@ -123,12 +123,19 @@
     <fragment
         android:id="@+id/addReminderFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.fragments.AddReminderFragment"
-        android:label="@string/new_reminder"
+        android:label="{title}"
         tools:layout="@layout/fragment_add_reminder">
         <action
             android:id="@+id/action_addReminderFragment_to_remindersFragment"
             app:destination="@id/remindersFragment"
             app:popUpTo="@id/remindersFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
 </navigation>
