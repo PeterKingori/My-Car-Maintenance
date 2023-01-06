@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,9 +13,9 @@ import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.adapter.VehicleListAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentHomeBinding
-import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
-import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModelFactory
 import com.pkndegwa.mycarmaintenance.utils.EmptyDataObserver
+import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
+import com.pkndegwa.mycarmaintenance.viewmodels.createFactory
 
 /**
  * [HomeFragment] allows a user to click a button to register a vehicle.
@@ -26,8 +26,11 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: VehiclesViewModel by activityViewModels {
-        VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
+    private lateinit var vehiclesViewModel: VehiclesViewModel
+    private fun initVehiclesViewModel() {
+        val factory =
+            VehiclesViewModel((activity?.application as CarMaintenanceApplication).database.vehicleDao()).createFactory()
+        vehiclesViewModel = ViewModelProvider(this, factory)[VehiclesViewModel::class.java]
     }
 
     private lateinit var emptyDataView: View
@@ -40,6 +43,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initVehiclesViewModel()
 
         emptyDataView = view.findViewById(R.id.empty_data_parent)
 
@@ -64,7 +68,7 @@ class HomeFragment : Fragment() {
             adapter = vehicleListAdapter
         }
 
-        viewModel.getAllVehicles().observe(viewLifecycleOwner) { vehicles ->
+        vehiclesViewModel.getAllVehicles().observe(viewLifecycleOwner) { vehicles ->
             vehicleListAdapter.submitList(vehicles)
             val emptyDataObserver = EmptyDataObserver(binding.vehiclesListRecyclerView, emptyDataView)
             vehicleListAdapter.registerAdapterDataObserver(emptyDataObserver)

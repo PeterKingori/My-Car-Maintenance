@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
@@ -33,7 +33,7 @@ import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.utils.ImageCapture
 import com.pkndegwa.mycarmaintenance.utils.isEntryValid
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModel
-import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModelFactory
+import com.pkndegwa.mycarmaintenance.viewmodels.createFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -48,8 +48,11 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private val navigationArgs: AddServiceFragmentArgs by navArgs()
 
-    private val servicesViewModel: ServicesViewModel by activityViewModels {
-        ServicesViewModelFactory((activity?.application as CarMaintenanceApplication).database.serviceDao())
+    private lateinit var servicesViewModel: ServicesViewModel
+    private fun initServicesViewModel() {
+        val factory =
+            ServicesViewModel((activity?.application as CarMaintenanceApplication).database.serviceDao()).createFactory()
+        servicesViewModel = ViewModelProvider(this, factory)[ServicesViewModel::class.java]
     }
 
     private lateinit var service: Service
@@ -97,6 +100,7 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initServicesViewModel()
 
         // Sets the dates buttons on first access
         setDate()
@@ -215,13 +219,20 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
      * Function to show date picker
      */
     private fun datePicker(context: Context, notFutureDate: Boolean) {
-        val datePickerDialog = DatePickerDialog(
+        var datePickerDialog = DatePickerDialog(
             context,
             this,
             year, month, dayOfMonth
         )
         if (notFutureDate) {
             datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+        } else {
+            datePickerDialog = DatePickerDialog(
+                context,
+                this,
+                year, month + 6, dayOfMonth
+            )
+            datePickerDialog.datePicker.minDate = System.currentTimeMillis()
         }
         datePickerDialog.show()
     }

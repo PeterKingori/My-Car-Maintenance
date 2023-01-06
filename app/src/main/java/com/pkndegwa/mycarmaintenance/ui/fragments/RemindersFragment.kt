@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +15,7 @@ import com.pkndegwa.mycarmaintenance.adapter.ReminderListAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentRemindersBinding
 import com.pkndegwa.mycarmaintenance.utils.EmptyDataObserver
 import com.pkndegwa.mycarmaintenance.viewmodels.RemindersViewModel
-import com.pkndegwa.mycarmaintenance.viewmodels.RemindersViewModelFactory
+import com.pkndegwa.mycarmaintenance.viewmodels.createFactory
 
 /**
  * Use the [RemindersFragment] to show a list of reminders.
@@ -24,8 +24,11 @@ class RemindersFragment : Fragment() {
     private var _binding: FragmentRemindersBinding? = null
     private val binding get() = _binding!!
 
-    private val remindersViewModel: RemindersViewModel by activityViewModels {
-        RemindersViewModelFactory((activity?.application as CarMaintenanceApplication).database.reminderDao())
+    private lateinit var remindersViewModel: RemindersViewModel
+    private fun initRemindersViewModel() {
+        val factory = RemindersViewModel((activity?.application as CarMaintenanceApplication).database.reminderDao())
+            .createFactory()
+        remindersViewModel = ViewModelProvider(this, factory)[RemindersViewModel::class.java]
     }
 
     private lateinit var emptyDataView: View
@@ -38,6 +41,7 @@ class RemindersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initRemindersViewModel()
 
         emptyDataView = view.findViewById(R.id.empty_view_reminder_fragment)
 

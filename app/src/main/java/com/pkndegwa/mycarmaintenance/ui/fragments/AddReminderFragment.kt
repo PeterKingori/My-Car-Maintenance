@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -21,7 +21,7 @@ import com.pkndegwa.mycarmaintenance.databinding.FragmentAddReminderBinding
 import com.pkndegwa.mycarmaintenance.models.Reminder
 import com.pkndegwa.mycarmaintenance.utils.isEntryValid
 import com.pkndegwa.mycarmaintenance.viewmodels.RemindersViewModel
-import com.pkndegwa.mycarmaintenance.viewmodels.RemindersViewModelFactory
+import com.pkndegwa.mycarmaintenance.viewmodels.createFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,8 +33,11 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private var _binding: FragmentAddReminderBinding? = null
     private val binding get() = _binding!!
 
-    private val remindersViewModel: RemindersViewModel by activityViewModels {
-        RemindersViewModelFactory((activity?.application as CarMaintenanceApplication).database.reminderDao())
+    private lateinit var remindersViewModel: RemindersViewModel
+    private fun initRemindersViewModel() {
+        val factory = RemindersViewModel((activity?.application as CarMaintenanceApplication).database.reminderDao())
+            .createFactory()
+        remindersViewModel = ViewModelProvider(this, factory)[RemindersViewModel::class.java]
     }
 
     private val navigationArgs: AddReminderFragmentArgs by navArgs()
@@ -56,6 +59,7 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initRemindersViewModel()
 
         val reminderId = navigationArgs.id
         if (reminderId > 0) {

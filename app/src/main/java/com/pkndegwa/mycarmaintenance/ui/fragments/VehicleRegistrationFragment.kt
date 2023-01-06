@@ -22,7 +22,7 @@ import androidx.annotation.MenuRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -33,7 +33,7 @@ import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.utils.ImageCapture
 import com.pkndegwa.mycarmaintenance.utils.isEntryValid
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
-import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModelFactory
+import com.pkndegwa.mycarmaintenance.viewmodels.createFactory
 
 /**
  * [VehicleRegistrationFragment] allows a user to add details of a vehicle to be registered.
@@ -46,9 +46,13 @@ class VehicleRegistrationFragment : Fragment() {
 
     private val navigationArgs: VehicleDetailsFragmentArgs by navArgs()
 
-    private val vehiclesViewModel: VehiclesViewModel by activityViewModels {
-        VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
+    private lateinit var vehiclesViewModel: VehiclesViewModel
+    private fun initVehiclesViewModel() {
+        val factory =
+            VehiclesViewModel((activity?.application as CarMaintenanceApplication).database.vehicleDao()).createFactory()
+        vehiclesViewModel = ViewModelProvider(this, factory).get(VehiclesViewModel::class.java)
     }
+
     private lateinit var vehicle: Vehicle
     private var selectedImageUri: Uri? = null
 
@@ -83,6 +87,7 @@ class VehicleRegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initVehiclesViewModel()
 
         val vehicleId = navigationArgs.vehicleId
         if (vehicleId > 0) {

@@ -7,8 +7,8 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,9 +20,8 @@ import com.pkndegwa.mycarmaintenance.adapter.ServiceListAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleDetailsBinding
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModel
-import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModelFactory
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
-import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModelFactory
+import com.pkndegwa.mycarmaintenance.viewmodels.createFactory
 
 /**
  * [VehicleDetailsFragment] displays the details of a particular vehicle.
@@ -35,16 +34,20 @@ class VehicleDetailsFragment : Fragment() {
 
     private val navigationArgs: VehicleDetailsFragmentArgs by navArgs()
 
-    // ViewModel that works with vehicle details
-    private val vehiclesViewModel: VehiclesViewModel by activityViewModels {
-        VehiclesViewModelFactory((activity?.application as CarMaintenanceApplication).database.vehicleDao())
+    private lateinit var vehiclesViewModel: VehiclesViewModel
+    private fun initVehiclesViewModel() {
+        val factory =
+            VehiclesViewModel((activity?.application as CarMaintenanceApplication).database.vehicleDao()).createFactory()
+        vehiclesViewModel = ViewModelProvider(this, factory).get(VehiclesViewModel::class.java)
     }
 
     private lateinit var vehicle: Vehicle
 
-    // ViewModel that works with services details
-    private val servicesViewModel: ServicesViewModel by activityViewModels {
-        ServicesViewModelFactory((activity?.application as CarMaintenanceApplication).database.serviceDao())
+    private lateinit var servicesViewModel: ServicesViewModel
+    private fun initServicesViewModel() {
+        val factory =
+            ServicesViewModel((activity?.application as CarMaintenanceApplication).database.serviceDao()).createFactory()
+        servicesViewModel = ViewModelProvider(this, factory)[ServicesViewModel::class.java]
     }
 
     private lateinit var servicesListAdapter: ServiceListAdapter
@@ -57,6 +60,8 @@ class VehicleDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initVehiclesViewModel()
+        initServicesViewModel()
 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
