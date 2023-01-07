@@ -72,7 +72,7 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             menuHost.addMenuProvider(object : MenuProvider {
                 override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                     menu.clear()
-                    menuInflater.inflate(R.menu.edit_reminder_menu, menu)
+                    menuInflater.inflate(R.menu.delete_menu_item, menu)
                 }
 
                 override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -127,6 +127,9 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         binding.reminderDateButton.text = formattedDate
     }
 
+    /**
+     * Validates user input before adding a new reminder in the database using the ViewModel.
+     */
     private fun addNewReminder() {
         if (isEntryValid(binding.reminderText)) {
             val result = remindersViewModel.addNewReminder(
@@ -169,8 +172,7 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             )
             if (result) {
                 Toast.makeText(this.context, "Reminder updated successfully", Toast.LENGTH_SHORT).show()
-                val action = AddReminderFragmentDirections.actionAddReminderFragmentToRemindersFragment()
-                findNavController().navigate(action)
+                findNavController().navigate(AddReminderFragmentDirections.actionAddReminderFragmentToRemindersFragment())
             }
         }
     }
@@ -191,8 +193,7 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private fun deleteReminder() {
         remindersViewModel.deleteReminder(reminder)
-        val action = AddReminderFragmentDirections.actionAddReminderFragmentToRemindersFragment()
-        this.findNavController().navigate(action)
+        this.findNavController().navigate(AddReminderFragmentDirections.actionAddReminderFragmentToRemindersFragment())
     }
 
     /**

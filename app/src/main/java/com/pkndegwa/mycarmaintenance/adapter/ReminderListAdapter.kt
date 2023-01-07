@@ -31,8 +31,8 @@ class ReminderListAdapter(private val onItemClicked: (Reminder) -> Unit) :
 
     override fun onBindViewHolder(holder: ReminderViewHolder, position: Int) {
         val currentReminder = getItem(position)
-        holder.itemView.setOnClickListener { onItemClicked(currentReminder) }
         holder.bind(currentReminder)
+        holder.itemView.setOnClickListener { onItemClicked(currentReminder) }
     }
 
     companion object {

@@ -102,6 +102,7 @@ class RemindersViewModel(private val reminderDao: ReminderDao) : ViewModel() {
     /**
      * Public function that takes in updated reminder details, gets an updated [Reminder] instance,
      * and passes the information to [updateReminder] to be updated in the database.
+     * @return Boolean
      */
     fun updateReminder(reminderId: Int, reminderText: String, reminderDate: String, additionalText: String): Boolean {
         val updatedReminder = getUpdatedReminderEntry(reminderId, reminderText, reminderDate, additionalText)

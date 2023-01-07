@@ -102,11 +102,6 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/notesFragment"
-        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.NotesFragment"
-        android:label="Notes"
-        tools:layout="@layout/fragment_notes" />
-    <fragment
         android:id="@+id/moreFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.fragments.MoreFragment"
         android:label="More options"
@@ -129,6 +124,33 @@
             android:id="@+id/action_addReminderFragment_to_remindersFragment"
             app:destination="@id/remindersFragment"
             app:popUpTo="@id/remindersFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.NotesFragment"
+        android:label="Notes"
+        tools:layout="@layout/fragment_notes" >
+        <action
+            android:id="@+id/action_notesFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.AddNoteFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_add_note" >
+        <action
+            android:id="@+id/action_addNoteFragment_to_notesFragment"
+            app:destination="@id/notesFragment"
+            app:popUpTo="@id/notesFragment"
             app:popUpToInclusive="true" />
         <argument
             android:name="title"

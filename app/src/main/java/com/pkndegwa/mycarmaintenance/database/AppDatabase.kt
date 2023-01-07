@@ -4,15 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.pkndegwa.mycarmaintenance.models.Note
 import com.pkndegwa.mycarmaintenance.models.Reminder
 import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 
-@Database(entities = [Vehicle::class, Service::class, Reminder::class], version = 5, exportSchema = false)
+@Database(entities = [Vehicle::class, Service::class, Reminder::class, Note::class], version = 6, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun vehicleDao(): VehicleDao
     abstract fun serviceDao(): ServiceDao
     abstract fun reminderDao(): ReminderDao
+    abstract fun noteDao(): NoteDao
 
     companion object {
         @Volatile

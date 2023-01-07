@@ -40,6 +40,10 @@
     <string name="additional_text_hint">Enter additional text</string>
     <string name="add_reminder_text">Tap + button to add a reminder</string>
     <string name="edit_reminder">Edit Reminder</string>
+    <string name="add_new_note">Add New Note</string>
+    <string name="title">Title</string>
+    <string name="note">Note</string>
+    <string name="add_note_text">Tap + to add a note</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>

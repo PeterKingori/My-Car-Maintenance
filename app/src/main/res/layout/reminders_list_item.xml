@@ -34,7 +34,6 @@
                 android:id="@+id/reminder_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAllCaps="false"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -44,7 +43,6 @@
                 android:id="@+id/date_to_remind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAllCaps="false"
                 android:textSize="14sp"
                 tools:text="10 Jan 2023" />
 
