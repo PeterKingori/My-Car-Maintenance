@@ -102,11 +102,6 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/moreFragment"
-        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.MoreFragment"
-        android:label="More options"
-        tools:layout="@layout/fragment_more" />
-    <fragment
         android:id="@+id/remindersFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.fragments.RemindersFragment"
         android:label="Reminders"
@@ -160,4 +155,8 @@
             app:argType="integer"
             android:defaultValue="-1" />
     </fragment>
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.MoreFragment"
+        android:label="More Options" />
 </navigation>

@@ -20,6 +20,10 @@ class MoreFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     /**
      * Frees the binding object when the Fragment is destroyed.
      */

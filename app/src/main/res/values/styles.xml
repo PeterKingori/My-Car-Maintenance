@@ -47,4 +47,12 @@
         <item name="android:paddingBottom">18dp</item>
         <item name="android:imeOptions">actionDone</item>
     </style>
+
+    <style name="Widget.MyCarMaintenance.TextView2" parent="Widget.MaterialComponents.TextView">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_marginVertical">8dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="drawableEndCompat">@drawable/ic_baseline_play_arrow_24</item>
+    </style>
 </resources>

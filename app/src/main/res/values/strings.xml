@@ -44,6 +44,10 @@
     <string name="title">Title</string>
     <string name="note">Note</string>
     <string name="add_note_text">Tap + to add a note</string>
+    <string name="settings">Settings</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="share_with_friends">Share With Friends</string>
 
     <!-- Vehicle type -->
     <string name="car">Car</string>
