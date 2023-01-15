@@ -125,14 +125,14 @@
             app:argType="string" />
         <argument
             android:name="id"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="-1"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/notesFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.fragments.NotesFragment"
         android:label="Notes"
-        tools:layout="@layout/fragment_notes" >
+        tools:layout="@layout/fragment_notes">
         <action
             android:id="@+id/action_notesFragment_to_addNoteFragment"
             app:destination="@id/addNoteFragment" />
@@ -141,7 +141,7 @@
         android:id="@+id/addNoteFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.fragments.AddNoteFragment"
         android:label="{title}"
-        tools:layout="@layout/fragment_add_note" >
+        tools:layout="@layout/fragment_add_note">
         <action
             android:id="@+id/action_addNoteFragment_to_notesFragment"
             app:destination="@id/notesFragment"
@@ -152,11 +152,25 @@
             app:argType="string" />
         <argument
             android:name="id"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="-1"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.pkndegwa.mycarmaintenance.ui.fragments.MoreFragment"
-        android:label="More Options" />
+        android:label="More Options">
+        <action
+            android:id="@+id/action_moreFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.SettingsFragment"
+        android:label="Settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_moreFragment"
+            app:destination="@id/moreFragment"
+            app:popUpTo="@id/moreFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

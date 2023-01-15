@@ -90,4 +90,16 @@
     <string name="receipt">Receipt</string>
     <string name="receipt_image_title">Receipt Image</string>
 
+    <!-- Preference Titles -->
+    <string name="units_header">Units</string>
+
+    <!-- Unit Preferences -->
+    <string name="distance_title">Distance Unit</string>
+    <string name="currency_title">Currency</string>
+
+    <!-- Notification -->
+    <string name="reminder_notification_channel_id" translatable="false">reminder_channel</string>
+    <string name="reminder_notification_channel_name" translatable="false">Reminders</string>
+    <string name="notification_title">Vehicle Maintenance</string>
+
 </resources>

@@ -1,7 +1,10 @@
 package com.pkndegwa.mycarmaintenance.ui.fragments
 
 import android.app.DatePickerDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.widget.DatePicker
@@ -35,7 +38,11 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var remindersViewModel: RemindersViewModel
     private fun initRemindersViewModel() {
-        val factory = RemindersViewModel((activity?.application as CarMaintenanceApplication).database.reminderDao())
+        val factory = RemindersViewModel(
+            requireActivity().application,
+            (activity?.application as CarMaintenanceApplication).database
+                .reminderDao()
+        )
             .createFactory()
         remindersViewModel = ViewModelProvider(this, factory)[RemindersViewModel::class.java]
     }
@@ -54,6 +61,13 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         _binding = FragmentAddReminderBinding.inflate(inflater, container, false)
+
+        // Call create channel
+        createChannel(
+            getString(R.string.reminder_notification_channel_id),
+            getString(R.string.reminder_notification_channel_name)
+        )
+
         return binding.root
     }
 
@@ -138,6 +152,9 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 additionalText = binding.reminderAdditionalTextEditText.text.toString()
             )
             if (result) {
+                remindersViewModel.loadTime(calendar.timeInMillis)
+                remindersViewModel.setDateSelected(calendar.timeInMillis)
+                remindersViewModel.setAlarm(true)
                 Toast.makeText(this.context, "Reminder saved successfully", Toast.LENGTH_SHORT).show()
                 this.findNavController().navigate(
                     AddReminderFragmentDirections.actionAddReminderFragmentToRemindersFragment()
@@ -171,6 +188,9 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 additionalText = this.binding.reminderAdditionalTextEditText.text.toString()
             )
             if (result) {
+                remindersViewModel.loadTime(calendar.timeInMillis)
+                remindersViewModel.setDateSelected(calendar.timeInMillis)
+                remindersViewModel.setAlarm(true)
                 Toast.makeText(this.context, "Reminder updated successfully", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(AddReminderFragmentDirections.actionAddReminderFragmentToRemindersFragment())
             }
@@ -194,6 +214,21 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private fun deleteReminder() {
         remindersViewModel.deleteReminder(reminder)
         this.findNavController().navigate(AddReminderFragmentDirections.actionAddReminderFragmentToRemindersFragment())
+    }
+
+    private fun createChannel(channelId: String, channelName: String) {
+        val notificationChannel = NotificationChannel(
+            channelId,
+            channelName,
+            NotificationManager.IMPORTANCE_HIGH
+        ).apply { setShowBadge(false) }
+
+        notificationChannel.enableLights(true)
+        notificationChannel.lightColor = Color.YELLOW
+        notificationChannel.enableVibration(true)
+
+        val notificationManager = requireActivity().getSystemService(NotificationManager::class.java)
+        notificationManager.createNotificationChannel(notificationChannel)
     }
 
     /**

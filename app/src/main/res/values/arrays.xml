@@ -1,0 +1,21 @@
+<resources>
+    <!-- Distance Preference -->
+    <string-array name="distance_entries">
+        <item>Kilometer</item>
+        <item>Mile</item>
+    </string-array>
+
+    <string-array name="distance_values">
+        <item>kilometer</item>
+        <item>mile</item>
+    </string-array>
+
+    <!-- Currency Preference -->
+    <string-array name="currency_entries">
+        <item>Afghan Afghani</item>
+    </string-array>
+
+    <string-array name="currency_values">
+        <item>AFN</item>
+    </string-array>
+</resources>

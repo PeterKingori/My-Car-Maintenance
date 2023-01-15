@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.pkndegwa.mycarmaintenance.databinding.FragmentMoreBinding
 
 /**
@@ -22,6 +23,10 @@ class MoreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.settingsTextView.setOnClickListener {
+            this.findNavController().navigate(MoreFragmentDirections.actionMoreFragmentToSettingsFragment())
+        }
     }
 
     /**

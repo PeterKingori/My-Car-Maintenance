@@ -26,7 +26,10 @@ class RemindersFragment : Fragment() {
 
     private lateinit var remindersViewModel: RemindersViewModel
     private fun initRemindersViewModel() {
-        val factory = RemindersViewModel((activity?.application as CarMaintenanceApplication).database.reminderDao())
+        val factory = RemindersViewModel(
+            requireActivity().application,
+            (activity?.application as CarMaintenanceApplication).database.reminderDao()
+        )
             .createFactory()
         remindersViewModel = ViewModelProvider(this, factory)[RemindersViewModel::class.java]
     }
