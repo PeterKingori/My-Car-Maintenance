@@ -154,6 +154,7 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             if (result) {
                 remindersViewModel.loadTime(calendar.timeInMillis)
                 remindersViewModel.setDateSelected(calendar.timeInMillis)
+                remindersViewModel.setMessage(binding.reminderTextEditText.text.toString())
                 remindersViewModel.setAlarm(true)
                 Toast.makeText(this.context, "Reminder saved successfully", Toast.LENGTH_SHORT).show()
                 this.findNavController().navigate(
@@ -190,6 +191,7 @@ class AddReminderFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             if (result) {
                 remindersViewModel.loadTime(calendar.timeInMillis)
                 remindersViewModel.setDateSelected(calendar.timeInMillis)
+                remindersViewModel.setMessage(binding.reminderTextEditText.text.toString())
                 remindersViewModel.setAlarm(true)
                 Toast.makeText(this.context, "Reminder updated successfully", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(AddReminderFragmentDirections.actionAddReminderFragmentToRemindersFragment())

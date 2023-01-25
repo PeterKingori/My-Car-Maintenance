@@ -9,8 +9,8 @@ import com.pkndegwa.mycarmaintenance.utils.sendNotification
 
 class AlarmReceiver : BroadcastReceiver() {
 
-    override fun onReceive(context: Context, intent: Intent?) {
-        val message = intent?.getStringExtra("reminder_body")
+    override fun onReceive(context: Context, intent: Intent) {
+        val message = intent.getStringExtra("reminder_body")
 
         val notificationManager = ContextCompat.getSystemService(
             context,
@@ -19,6 +19,4 @@ class AlarmReceiver : BroadcastReceiver() {
 
         notificationManager.sendNotification(message ?: "Reminder alert", context)
     }
-
-
 }

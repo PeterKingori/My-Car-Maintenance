@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
  * The [ViewModel] that is attached to the ReminderFragment.
  */
 class RemindersViewModel(private val app: Application, private val reminderDao: ReminderDao) : ViewModel() {
-    private var reminderMessage = ""
 
     fun getAllReminders() = reminderDao.getAllReminders()
 
@@ -57,7 +56,6 @@ class RemindersViewModel(private val app: Application, private val reminderDao: 
      * @return Boolean
      */
     fun addNewReminder(reminderText: String, reminderDate: String, additionalText: String): Boolean {
-        reminderMessage = reminderText
         val newReminder = createNewReminderEntry(reminderText, reminderDate, additionalText)
         return insertReminder(newReminder)
     }
@@ -116,7 +114,6 @@ class RemindersViewModel(private val app: Application, private val reminderDao: 
      * @return Boolean
      */
     fun updateReminder(reminderId: Int, reminderText: String, reminderDate: String, additionalText: String): Boolean {
-        reminderMessage = reminderText
         val updatedReminder = getUpdatedReminderEntry(reminderId, reminderText, reminderDate, additionalText)
         return updateReminder(updatedReminder)
     }
@@ -129,12 +126,14 @@ class RemindersViewModel(private val app: Application, private val reminderDao: 
     private val second: Long = 1_000L
     private var triggerTime = 0L
 
-    private var notifyPendingIntent: PendingIntent
+    private lateinit var notifyPendingIntent: PendingIntent
     private val alarmManager = app.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     private val notifyIntent = Intent(app, AlarmReceiver::class.java)
 
     private val _dateSelection = MutableLiveData<Long>()
     private val dateSelection: LiveData<Long> get() = _dateSelection
+
+    private var reminderMessage = ""
 
     private val _elapsedTime = MutableLiveData<Long>()
 
@@ -149,13 +148,6 @@ class RemindersViewModel(private val app: Application, private val reminderDao: 
             notifyIntent,
             PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
         ) != null
-
-        notifyPendingIntent = PendingIntent.getBroadcast(
-            app,
-            REQUEST_CODE,
-            notifyIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
 
         // If alarm is not null resume the timer back for this alarm
         if (_alarmOn.value!!) {
@@ -200,7 +192,7 @@ class RemindersViewModel(private val app: Application, private val reminderDao: 
 
                 AlarmManagerCompat.setExact(
                     alarmManager,
-                    AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    AlarmManager.ELAPSED_REALTIME,
                     triggerTime,
                     notifyPendingIntent
                 )
@@ -216,7 +208,7 @@ class RemindersViewModel(private val app: Application, private val reminderDao: 
         viewModelScope.launch {
             timer = object : CountDownTimer(triggerTime, second) {
                 override fun onTick(millisUntilFinished: Long) {
-                    _elapsedTime.value = triggerTime - SystemClock.elapsedRealtime()
+                    _elapsedTime.value = triggerTime - AlarmManager.RTC
                     if (_elapsedTime.value!! <= 0) {
                         resetTimer()
                     }
@@ -250,5 +242,9 @@ class RemindersViewModel(private val app: Application, private val reminderDao: 
 
     fun setDateSelected(dateInMills: Long) {
         _dateSelection.value = dateInMills
+    }
+
+    fun setMessage(message: String) {
+        reminderMessage = message
     }
 }
