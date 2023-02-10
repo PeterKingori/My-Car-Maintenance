@@ -9,7 +9,10 @@ import com.pkndegwa.mycarmaintenance.models.Reminder
 import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 
-@Database(entities = [Vehicle::class, Service::class, Reminder::class, Note::class], version = 7, exportSchema = false)
+@Database(
+    entities = [Vehicle::class, Service::class, Reminder::class, Note::class], version = 7, exportSchema =
+    true, autoMigrations = []
+)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun vehicleDao(): VehicleDao
     abstract fun serviceDao(): ServiceDao
@@ -26,7 +29,7 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "vehicle_app_database"
-                ).fallbackToDestructiveMigration()
+                ).fallbackToDestructiveMigrationOnDowngrade()
                     .build()
                 INSTANCE = instance
                 return instance
