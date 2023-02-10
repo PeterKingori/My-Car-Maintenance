@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/share_text_view"
                     style="@style/Widget.MyCarMaintenance.TextView2"
                     android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="12dp"
-                    android:text="@string/share_with_friends" />
+                    android:text="@string/share_with_friends" />-->
 
             </LinearLayout>
 

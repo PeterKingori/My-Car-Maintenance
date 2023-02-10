@@ -46,17 +46,20 @@ class ServiceListAdapter(private val onDeleteItemClicked: (Service) -> Unit) : L
                     }
                 }
             }
-            if (service.receiptImageUriString.isEmpty()) {
+            if (service.receiptImageUriString.isNullOrEmpty()) {
                 binding.receiptImageButton.visibility = View.INVISIBLE
             } else {
                 binding.receiptImageButton.setOnClickListener { itemView ->
-                    val action = VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToViewImageFragment(
-                        title = context.getString(R.string.receipt_image_title),
-                        imageUriString = service.receiptImageUriString
-                    )
+                    val action = service.receiptImageUriString.let {
+                        VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToViewImageFragment(
+                            title = context.getString(R.string.receipt_image_title),
+                            imageUriString = it
+                        )
+                    }
                     itemView.findNavController().navigate(action)
                 }
             }
+
             binding.editServiceButton.setOnClickListener { itemView ->
                 val action =
                     VehicleDetailsFragmentDirections.actionVehicleDetailsFragmentToAddServiceFragment(

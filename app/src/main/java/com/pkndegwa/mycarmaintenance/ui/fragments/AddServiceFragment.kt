@@ -336,7 +336,7 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             saveServiceButton.setOnClickListener { updateService() }
         }
 
-        if (service.receiptImageUriString.isNotEmpty()) {
+        if (!service.receiptImageUriString.isNullOrEmpty()) {
             val receiptImageUri = Uri.parse(service.receiptImageUriString)
             binding.receiptImageCard.visibility = View.VISIBLE
             val receiptImage = binding.receiptImage

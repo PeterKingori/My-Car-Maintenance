@@ -9,7 +9,7 @@ import com.pkndegwa.mycarmaintenance.models.Reminder
 import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 
-@Database(entities = [Vehicle::class, Service::class, Reminder::class, Note::class], version = 6, exportSchema = false)
+@Database(entities = [Vehicle::class, Service::class, Reminder::class, Note::class], version = 7, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun vehicleDao(): VehicleDao
     abstract fun serviceDao(): ServiceDao

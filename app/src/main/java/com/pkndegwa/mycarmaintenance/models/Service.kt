@@ -26,7 +26,7 @@ data class Service(
     @ColumnInfo(name = "notes")
     val notes: String = "",
     @ColumnInfo(name = "receipt_image")
-    val receiptImageUriString: String = "",
+    val receiptImageUriString: String? = null,
     @ColumnInfo(name = "vehicle_id")
     val vehicleId: Int
 )
