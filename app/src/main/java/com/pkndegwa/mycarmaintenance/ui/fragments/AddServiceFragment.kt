@@ -342,6 +342,8 @@ class AddServiceFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             val receiptImage = binding.receiptImage
             receiptImage.setImageURI(receiptImageUri)
             receiptImage.scaleType = ImageView.ScaleType.CENTER_CROP
+        } else {
+            binding.receiptImageCard.visibility = View.GONE
         }
     }
 

@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
             R.id.homeFragment,
             R.id.notesFragment,
             R.id.remindersFragment,
-            R.id.moreFragment
+            R.id.moreFragment,
+            R.id.webViewFragment
         ).build()
 
         // Get the navigation host fragment from this Activity

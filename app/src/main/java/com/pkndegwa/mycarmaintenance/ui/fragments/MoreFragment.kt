@@ -24,8 +24,18 @@ class MoreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.settingsTextView.setOnClickListener {
-            this.findNavController().navigate(MoreFragmentDirections.actionMoreFragmentToSettingsFragment())
+        binding.apply {
+            privacyPolicyTextView.setOnClickListener {
+                val action =
+                    MoreFragmentDirections.actionMoreFragmentToWebViewFragment(title = "Privacy Policy", page = 1)
+                this@MoreFragment.findNavController().navigate(action)
+            }
+
+            termsOfServiceTextView.setOnClickListener {
+                val action = MoreFragmentDirections.actionMoreFragmentToWebViewFragment(title = "Terms of Service",
+                    page = 2)
+                this@MoreFragment.findNavController().navigate(action)
+            }
         }
     }
 

@@ -160,17 +160,25 @@
         android:name="com.pkndegwa.mycarmaintenance.ui.fragments.MoreFragment"
         android:label="More Options">
         <action
-            android:id="@+id/action_moreFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_moreFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.SettingsFragment"
-        android:label="Settings">
+        android:id="@+id/webViewFragment"
+        android:name="com.pkndegwa.mycarmaintenance.ui.fragments.WebViewFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_web_view">
         <action
-            android:id="@+id/action_settingsFragment_to_moreFragment"
+            android:id="@+id/action_webViewFragment_to_moreFragment"
             app:destination="@id/moreFragment"
             app:popUpTo="@id/moreFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="page"
+            app:argType="integer" />
+
     </fragment>
 </navigation>
