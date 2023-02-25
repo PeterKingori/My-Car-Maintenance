@@ -38,6 +38,7 @@ A few of the things you can do:
 
 * Save details of vehicles you own
 * Add service records as they happen
+* Add reminders and notes
 
 <p align="center">
   <img src = "app/src/main/res/drawable-nodpi/screenshot2.jpg">
