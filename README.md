@@ -15,7 +15,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Feedback](#feedback)
-- [Build Process](#build-process)
+- [Getting started](#getting-started)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
@@ -54,7 +54,7 @@ A few of the things you can do:
 Feel free to send me feedback on [Twitter](https://twitter.com/PKNdegwa)
 or [file an issue](https://github.com/PeterKingori/My-Car-Maintenance/issues/new).
 
-## Build Process
+## Getting Started
 
 1. Download the repository to your computer or use Git to clone it.
 2. Open the project in Android Studio.
