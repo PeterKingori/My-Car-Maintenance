@@ -15,7 +15,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Feedback](#feedback)
-- [Build Process](#build-process)
+- [Getting started](#getting-started)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
@@ -26,7 +26,7 @@
 Record information about maintenance and repairs done to vehicles. Built with Kotlin, Android Jetpack libraries, Gradle
 and Android Studio.
 
-**Will be available on Google Play Store soon.**
+**<a href="https://play.google.com/store/apps/details?id=com.pkndegwa.mycarmaintenance" target="_blank">Available on Google Play Store.</a>**
 
 <p align="center">
   <img src = "app/src/main/res/drawable-nodpi/screenshot1.jpg">
@@ -38,6 +38,7 @@ A few of the things you can do:
 
 * Save details of vehicles you own
 * Add service records as they happen
+* Add reminders and notes
 
 <p align="center">
   <img src = "app/src/main/res/drawable-nodpi/screenshot2.jpg">
@@ -54,7 +55,7 @@ A few of the things you can do:
 Feel free to send me feedback on [Twitter](https://twitter.com/PKNdegwa)
 or [file an issue](https://github.com/PeterKingori/My-Car-Maintenance/issues/new).
 
-## Build Process
+## Getting Started
 
 1. Download the repository to your computer or use Git to clone it.
 2. Open the project in Android Studio.
