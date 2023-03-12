@@ -3,7 +3,6 @@ package com.pkndegwa.mycarmaintenance.ui.fragments
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -19,6 +18,7 @@ import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.adapter.ServiceListAdapter
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleDetailsBinding
 import com.pkndegwa.mycarmaintenance.models.Vehicle
+import com.pkndegwa.mycarmaintenance.utils.changeVehicleTypeImage
 import com.pkndegwa.mycarmaintenance.viewmodels.ServicesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.createFactory
@@ -118,8 +118,8 @@ class VehicleDetailsFragment : Fragment() {
         Glide.with(requireContext())
             .load(vehicleImageUri)
             .centerInside()
-            .error(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
-            .fallback(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
+            .error(changeVehicleTypeImage(requireContext(), vehicle.type, false))
+            .fallback(changeVehicleTypeImage(requireContext(), vehicle.type, false))
             .into(binding.vehicleImage)
     }
 

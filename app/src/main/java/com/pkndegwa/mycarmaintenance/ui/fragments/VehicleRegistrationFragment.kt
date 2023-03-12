@@ -19,21 +19,21 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.MenuRes
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import com.pkndegwa.mycarmaintenance.CarMaintenanceApplication
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.FragmentVehicleRegistrationBinding
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 import com.pkndegwa.mycarmaintenance.utils.ImageCapture
+import com.pkndegwa.mycarmaintenance.utils.changeVehicleTypeImage
 import com.pkndegwa.mycarmaintenance.utils.isEntryValid
 import com.pkndegwa.mycarmaintenance.viewmodels.VehiclesViewModel
 import com.pkndegwa.mycarmaintenance.viewmodels.createFactory
+import com.squareup.picasso.Picasso
 
 /**
  * [VehicleRegistrationFragment] allows a user to add details of a vehicle to be registered.
@@ -215,14 +215,22 @@ class VehicleRegistrationFragment : Fragment() {
 
             saveVehicleButton.setOnClickListener { updateVehicle() }
         }
+
         val vehicleImageUri = Uri.parse(vehicle.vehicleImageUri)
-        Glide.with(requireContext())
+        Picasso.get()
             .load(vehicleImageUri)
+            .resize(160, 130)
+            .onlyScaleDown()
             .centerCrop()
-            .placeholder(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
-            .error(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
-            .fallback(AppCompatResources.getDrawable(requireContext(), R.drawable.generic_car))
+            .error(changeVehicleTypeImage(requireContext(), vehicle.type, true)!!)
             .into(binding.addVehicleImage)
+
+//        Glide.with(requireContext())
+//            .load(vehicleImageUri)
+//            .centerCrop()
+//            .error(changeVehicleTypeImage(requireContext(), vehicle.type, true))
+//            .fallback(changeVehicleTypeImage(requireContext(), vehicle.type, true))
+//            .into(binding.addVehicleImage)
         binding.addPhotoTextView.visibility = View.GONE
     }
 

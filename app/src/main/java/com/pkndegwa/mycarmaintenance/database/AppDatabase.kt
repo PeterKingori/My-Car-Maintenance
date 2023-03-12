@@ -1,6 +1,7 @@
 package com.pkndegwa.mycarmaintenance.database
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -10,8 +11,8 @@ import com.pkndegwa.mycarmaintenance.models.Service
 import com.pkndegwa.mycarmaintenance.models.Vehicle
 
 @Database(
-    entities = [Vehicle::class, Service::class, Reminder::class, Note::class], version = 7, exportSchema =
-    true, autoMigrations = []
+    entities = [Vehicle::class, Service::class, Reminder::class, Note::class], version = 8, exportSchema =
+    true, autoMigrations = [AutoMigration(from = 7, to = 8)]
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun vehicleDao(): VehicleDao

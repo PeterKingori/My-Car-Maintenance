@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.VehiclesListItemBinding
 import com.pkndegwa.mycarmaintenance.models.Vehicle
+import com.pkndegwa.mycarmaintenance.utils.changeVehicleTypeImage
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] in VehiclesFragment which uses Data Binding to present [List]
@@ -36,8 +36,8 @@ class VehicleListAdapter(private val onItemClicked: (Vehicle) -> Unit) :
             Glide.with(context)
                 .load(vehicleImageUri)
                 .centerCrop()
-                .error(AppCompatResources.getDrawable(context, R.drawable.generic_car))
-                .fallback(AppCompatResources.getDrawable(context, R.drawable.generic_car))
+                .error(changeVehicleTypeImage(context, vehicle.type, false))
+                .fallback(changeVehicleTypeImage(context, vehicle.type, false))
                 .into(binding.vehicleImage)
         }
     }

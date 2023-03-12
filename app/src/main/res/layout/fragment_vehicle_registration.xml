@@ -13,7 +13,7 @@
 
         <ImageView
             android:id="@+id/add_vehicle_image"
-            android:layout_width="130dp"
+            android:layout_width="160dp"
             android:layout_height="130dp"
             android:layout_marginStart="1dp"
             android:layout_marginTop="8dp"
@@ -30,13 +30,13 @@
             android:id="@+id/add_photo_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginBottom="30dp"
             android:text="@string/add_photo"
             android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="@color/dark_gray"
             app:layout_constraintBottom_toBottomOf="@id/add_vehicle_image"
-            app:layout_constraintStart_toStartOf="@id/add_vehicle_image" />
+            app:layout_constraintStart_toStartOf="@id/add_vehicle_image"
+            app:layout_constraintEnd_toEndOf="@id/add_vehicle_image"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_type"
