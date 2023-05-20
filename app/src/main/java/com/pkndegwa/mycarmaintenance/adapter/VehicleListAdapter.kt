@@ -21,9 +21,6 @@ class VehicleListAdapter(private val onItemClicked: (Vehicle) -> Unit) :
     ListAdapter<Vehicle, VehicleListAdapter.VehicleViewHolder>(DiffCallback) {
     private lateinit var context: Context
 
-    /**
-     * Provides a reference for the views needed to display items in the list.
-     */
     class VehicleViewHolder(private val binding: VehiclesListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(vehicle: Vehicle, context: Context) {
             binding.apply {
@@ -42,18 +39,12 @@ class VehicleListAdapter(private val onItemClicked: (Vehicle) -> Unit) :
         }
     }
 
-    /**
-     * Creates new views with R.layout.vehicles_list_item as its template.
-     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehicleViewHolder {
         context = parent.context
         val layoutInflater = VehiclesListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return VehicleViewHolder(layoutInflater)
     }
 
-    /**
-     * Replaces the content of an existing view with new data.
-     */
     override fun onBindViewHolder(holder: VehicleViewHolder, position: Int) {
         val currentVehicle = getItem(position)
         holder.itemView.setOnClickListener {

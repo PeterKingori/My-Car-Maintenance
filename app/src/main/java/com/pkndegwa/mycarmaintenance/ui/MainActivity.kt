@@ -12,9 +12,6 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.databinding.ActivityMainBinding
 
-/**
- * Main entry point for the app.
- */
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -23,16 +20,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        // Set up view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        // Each fragment sets its own AppBar title
         val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.homeFragment,
             R.id.notesFragment,
             R.id.remindersFragment,
             R.id.moreFragment,
-            R.id.webViewFragment
+            R.id.webViewFragment,
         ).build()
 
         // Get the navigation host fragment from this Activity
@@ -41,9 +39,19 @@ class MainActivity : AppCompatActivity() {
         // Instantiate the navController using the NavHostFragment
         navController = navHostFragment.navController
 
-        // Make sure actions in the ActionBar get propagated to the NavController
-        setupActionBarWithNavController(this, navController, appBarConfiguration)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.onboardingFragment -> {
+                    supportActionBar?.hide()
+                }
 
+                else -> {
+                    supportActionBar?.show()
+                    // Make sure actions in the ActionBar get propagated to the NavController
+                    setupActionBarWithNavController(this, navController, appBarConfiguration)
+                }
+            }
+        }
         setupWithNavController(binding.bottomNavigationView, navController)
     }
 

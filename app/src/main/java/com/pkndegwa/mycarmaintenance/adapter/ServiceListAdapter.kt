@@ -21,9 +21,6 @@ class ServiceListAdapter(private val onDeleteItemClicked: (Service) -> Unit) : L
 .ServiceViewHolder>(DiffCallback) {
     private lateinit var context: Context
 
-    /**
-     * Provides a reference for the views needed to display items in the list.
-     */
     class ServiceViewHolder(private val binding: ServiceListItemBinding, private val onDeleteItem: (Service) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(service: Service, context: Context) {
@@ -73,18 +70,12 @@ class ServiceListAdapter(private val onDeleteItemClicked: (Service) -> Unit) : L
         }
     }
 
-    /**
-     * Creates new views with R.layout.service_list_item as its template.
-     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
         context = parent.context
         val layoutInflater = ServiceListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ServiceViewHolder(layoutInflater, onDeleteItemClicked)
     }
 
-    /**
-     * Replaces the content of an existing view with new data.
-     */
     override fun onBindViewHolder(holder: ServiceViewHolder, position: Int) {
         val currentService = getItem(position)
         holder.bind(currentService, context)

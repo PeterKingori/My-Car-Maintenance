@@ -7,7 +7,7 @@ import androidx.navigation.NavDeepLinkBuilder
 import com.pkndegwa.mycarmaintenance.R
 import com.pkndegwa.mycarmaintenance.ui.MainActivity
 
-private val NOTIFICATION_ID = 0
+private const val NOTIFICATION_ID = 0
 
 // Extension function to send messages.
 /**

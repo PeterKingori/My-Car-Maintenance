@@ -4,9 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-/**
- * Data model for service done that is also used as the database entity class for the services table.
- */
 @Entity(tableName = "services")
 data class Service(
     @PrimaryKey(autoGenerate = true)

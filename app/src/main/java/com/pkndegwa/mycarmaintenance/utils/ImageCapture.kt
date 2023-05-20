@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
- * the [ImageCapture] class is used to request various permissions
+ * The [ImageCapture] class is used to request various permissions
  * such as accessing external storage or the camera.
  */
 class ImageCapture(

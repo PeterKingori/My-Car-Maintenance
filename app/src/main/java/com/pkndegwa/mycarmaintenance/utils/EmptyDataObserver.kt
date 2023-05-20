@@ -3,6 +3,10 @@ package com.pkndegwa.mycarmaintenance.utils
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * The [EmptyDataObserver] class is used to change the view on a fragment
+ * depending on whether there is data to display or not.
+ */
 class EmptyDataObserver(private val recyclerView: RecyclerView?, private val emptyView: View?): RecyclerView
 .AdapterDataObserver() {
 
